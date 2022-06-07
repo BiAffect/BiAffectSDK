@@ -1,0 +1,47 @@
+{
+    "type": "assessment",
+    "identifier": "Go-No-Go",
+    "versionString": "1.0.0",
+    "steps": [{
+            "identifier": "introduction",
+            "type": "permission",
+            "permissionType": "motion",
+            "optional": false,
+            "deniedMessage": "Permission to use the motion sensors is required for this assessment.",
+            "title": "Go No Go Test",
+            "detail": "This activity evaluates the time it takes for you to respond to a visual cue without making false reactions.",
+            "image": {
+                "type": "fetchable",
+                "imageName": "phoneshake"
+            }
+        },
+        {
+            "identifier": "instructions",
+            "type": "instruction",
+            "title": "Go No Go Test",
+            "detail": "Shake the device in any direction as soon as the blue dot appears on screen. Do not shake for a green dot. You will be asked to do this 9 times.",
+            "image": {
+                "type": "fetchable",
+                "imageName": "phoneshakecircle"
+            },
+            "actions" : {
+                "goForward" : {
+                  "buttonTitle" : "Start",
+                  "type" : "default"
+                }
+            }
+        },
+        {
+            "identifier": "gonogo",
+            "type": "gonogo",
+            "detail": "Quickly shake the device when the blue dot appears. Do not shake for a green dot.",
+            "attemptCountFormat": "Attempt %d of 9",
+            "errorCountFormat": "Errors: %d",
+            "reactionFormat": "Last reaction time: %.2f seconds"
+        },
+        {
+            "identifier": "completion",
+            "type": "completion"
+        }
+    ]
+}

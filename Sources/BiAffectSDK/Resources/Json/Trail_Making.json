@@ -1,0 +1,45 @@
+{
+    "type": "assessment",
+    "identifier": "Trail Making",
+    "versionString": "1.0.0",
+    "steps": [{
+            "identifier": "introduction",
+            "type": "instruction",
+            "title": "Trail Making Test",
+            "detail": "This activity evaluates your visual attention and task switching by recording the time required to tap a series of dots in order.",
+            "image": {
+                "type": "fetchable",
+                "imageName": "trailmaking"
+            }
+        },
+        {
+            "identifier": "instructions",
+            "type": "instruction",
+            "title": "Trail Making Test",
+            "detail": "After the countdown, tap dots in alternating order between numbers and letters. Begin by tapping the first number '1' followed by tapping the first letter 'A', and then '2' – 'B' – '3' – 'C'… until you reach the number '7'.\n\nDo this as quickly as you can without making mistakes.",
+            "image": {
+                "type": "fetchable",
+                "imageName": "trailmaking"
+            },
+            "actions": {
+                "goForward": {
+                    "buttonTitle": "Start",
+                    "type": "default"
+                }
+            }
+        },
+        {
+            "identifier": "countdown",
+            "type": "countdown",
+            "duration": 3.0
+        },
+        {
+            "identifier": "trailmaking",
+            "type": "trailmaking"
+        },
+        {
+            "identifier": "completion",
+            "type": "completion"
+        }
+    ]
+}

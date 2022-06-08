@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "icon_study_unselected.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

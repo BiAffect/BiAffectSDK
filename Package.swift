@@ -5,6 +5,11 @@ import PackageDescription
 
 let package = Package(
     name: "BiAffectSDK",
+    defaultLocalization: "en",
+    platforms: [
+        .iOS(.v14),
+        .macOS(.v11),
+    ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -18,9 +23,9 @@ let package = Package(
                  url: "https://github.com/Sage-Bionetworks/JsonModel-Swift.git",
                  from: "1.4.6"),
         .package(name: "AssessmentModel",
-                 path: "../AssessmentModelKMM"),
-//                 url: "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git",
-//                 from: "0.6.2"),
+//                 path: "../AssessmentModelKMM"),
+                 url: "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git",
+                 from: "0.6.2"),
         .package(name: "MobilePassiveData",
                  url: "https://github.com/Sage-Bionetworks/MobilePassiveData-SDK.git",
                  from: "1.2.4"),

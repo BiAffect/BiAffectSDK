@@ -9,7 +9,7 @@
             "detail": "This activity evaluates your visual attention and task switching by recording the time required to tap a series of dots in order.",
             "image": {
                 "type": "fetchable",
-                "imageName": "trailmaking"
+                "imageName": "Trail Making"
             }
         },
         {
@@ -19,7 +19,7 @@
             "detail": "After the countdown, tap dots in alternating order between numbers and letters. Begin by tapping the first number '1' followed by tapping the first letter 'A', and then '2' – 'B' – '3' – 'C'… until you reach the number '7'.\n\nDo this as quickly as you can without making mistakes.",
             "image": {
                 "type": "fetchable",
-                "imageName": "trailmaking"
+                "imageName": "Trail Making"
             },
             "actions": {
                 "goForward": {

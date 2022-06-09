@@ -1,0 +1,97 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "AssessmentModel",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git",
+        "state": {
+          "branch": null,
+          "revision": "379b515ca0fcbcf501086336175b3197203ee338",
+          "version": "0.7.1"
+        }
+      },
+      {
+        "package": "BiAffect",
+        "repositoryURL": "https://syoung-smallwisdom@github.com/BiAffect/BiAffect.git",
+        "state": {
+          "branch": "private-keys",
+          "revision": "661b5391d2a4ae78a8ee582f5dbfe71602e9646b",
+          "version": null
+        }
+      },
+      {
+        "package": "BridgeArchiver",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/BridgeArchiver-Swift.git",
+        "state": {
+          "branch": null,
+          "revision": "d5a7645789e62adc790c3d6b34d6f1637a46ba73",
+          "version": "0.3.1"
+        }
+      },
+      {
+        "package": "BridgeClient",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/BridgeClientKMM.git",
+        "state": {
+          "branch": null,
+          "revision": "47a0e0a598c5d25e3ba267fd6a909d66aaf3fe9f",
+          "version": "0.5.4"
+        }
+      },
+      {
+        "package": "CMSSupport",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/CMSSupport.git",
+        "state": {
+          "branch": null,
+          "revision": "9dd3ad846f09d3596ac032eff5693e40796dd6a4",
+          "version": "1.2.1"
+        }
+      },
+      {
+        "package": "JsonModel",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/JsonModel-Swift.git",
+        "state": {
+          "branch": null,
+          "revision": "dcce83598aa1e81478b6bd9adee38c8ed167665b",
+          "version": "1.4.9"
+        }
+      },
+      {
+        "package": "MobilePassiveData",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/MobilePassiveData-SDK.git",
+        "state": {
+          "branch": null,
+          "revision": "9c48602422ff2de9404112b9f2ed98c0a9ca2c44",
+          "version": "1.2.4"
+        }
+      },
+      {
+        "package": "SageResearch",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/SageResearch.git",
+        "state": {
+          "branch": null,
+          "revision": "9315af514a84f1f0990b79718d82437bbc2129cf",
+          "version": "4.5.0"
+        }
+      },
+      {
+        "package": "SharedMobileUI",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/SharedMobileUI-AppleOS.git",
+        "state": {
+          "branch": null,
+          "revision": "c16c754cff58d9eb3ec786aa163350538fc74c3d",
+          "version": "0.15.2"
+        }
+      },
+      {
+        "package": "ZIPFoundation",
+        "repositoryURL": "https://github.com/weichsel/ZIPFoundation.git",
+        "state": {
+          "branch": null,
+          "revision": "7254c74b49cec2cb81520523ba993c671f71b066",
+          "version": "0.9.14"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

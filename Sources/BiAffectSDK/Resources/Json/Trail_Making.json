@@ -1,7 +1,6 @@
 {
     "type": "assessment",
     "identifier": "Trail Making",
-    "versionString": "1.0.0",
     "steps": [{
             "identifier": "introduction",
             "type": "instruction",

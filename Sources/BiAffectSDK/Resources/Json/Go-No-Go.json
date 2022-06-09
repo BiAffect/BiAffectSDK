@@ -1,7 +1,6 @@
 {
     "type": "assessment",
     "identifier": "Go-No-Go",
-    "versionString": "1.0.0",
     "steps": [{
             "identifier": "introduction",
             "type": "permission",

@@ -34,11 +34,9 @@ import SwiftUI
 
 struct LaunchView: View {
     var body: some View {
-        ZStack {
-            Image("Launching")
-                .fixedSize()
-        }
-        .edgesIgnoringSafeArea(.all)
+        Image("Launching")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
     }
 }
 

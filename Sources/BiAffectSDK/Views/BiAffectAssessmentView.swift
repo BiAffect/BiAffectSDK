@@ -36,8 +36,19 @@ import AssessmentModelUI
 import JsonModel
 import SharedMobileUI
 
+extension BiAffectAssessmentView : AssessmentDisplayView {
+    public static func instantiateAssessmentState(_ identifier: String, config: Data?, restoredResult: Data?, interruptionHandling: InterruptionHandling?) throws -> AssessmentState {
+        guard let taskId = BiAffectIdentifier(rawValue: identifier)
+        else {
+            throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "This view does not support \(identifier)"))
+        }
+        return try taskId.instantiateAssessmentState()
+    }
+}
+
 /// Displays an assessment built using the views and model objects defined within this library.
 public struct BiAffectAssessmentView : View {
+    @StateObject var viewModel: AssessmentViewModel = .init()
     @ObservedObject var assessmentState: AssessmentState
     
     public init(_ assessmentState: AssessmentState) {
@@ -45,7 +56,7 @@ public struct BiAffectAssessmentView : View {
     }
     
     public var body: some View {
-        AssessmentWrapperView<StepView>(assessmentState)
+        AssessmentWrapperView<StepView>(assessmentState, viewModel: viewModel)
     }
     
     struct StepView : View, StepFactoryView {
@@ -60,7 +71,7 @@ public struct BiAffectAssessmentView : View {
                 CompletionStepView(step)
             }
             else if let nodeState = state as? ContentNodeState {
-                InstructionStepView(nodeState)
+                InstructionStepView(nodeState, alignment: .center)
             }
             else {
                 debugStepView(state)

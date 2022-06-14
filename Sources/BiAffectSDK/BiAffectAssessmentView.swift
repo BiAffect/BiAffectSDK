@@ -70,6 +70,9 @@ public struct BiAffectAssessmentView : View {
             if let step = state.step as? CompletionStep {
                 CompletionStepView(step)
             }
+            else if state.step is GoNoGoStepObject {
+                GoNoGoStepView(state)
+            }
             else if let nodeState = state as? ContentNodeState {
                 InstructionStepView(nodeState, alignment: .center)
             }

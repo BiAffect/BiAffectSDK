@@ -4,11 +4,6 @@
     "steps": [{
             "identifier": "introduction",
             "type": "overview",
-            "permissions": [{
-                "permissionType": "motion",
-                "optional": false,
-                "deniedMessage": "Permission to use the motion sensors is required for this assessment."
-            }],
             "title": "Go No Go Test",
             "detail": "This activity evaluates the time it takes for you to respond to a visual cue without making false reactions.",
             "image": {

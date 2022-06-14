@@ -37,7 +37,9 @@ import JsonModel
 
 public final class BiAffectSDK {
     public class func setup() {
-        PermissionAuthorizationHandler.registerAdaptorIfNeeded(MotionAuthorization.shared)
+        #if os(iOS)
+        PermissionAuthorizationHandler.registerAdaptorIfNeeded(MotionSensor.MotionAuthorization.shared)
+        #endif
     }
 }
 
@@ -74,8 +76,11 @@ public enum BiAffectIdentifier : String, CaseIterable {
 final class BiAffectFactory : AssessmentFactory {
     required init() {
         super.init()
-        self.nodeSerializer.add(GoNoGoStepObject.examples().first!)
-        self.nodeSerializer.add(TrailMakingStepObject.examples().first!)
+        
+        self.nodeSerializer.add(GoNoGoStepObject())
+        self.nodeSerializer.add(TrailMakingStepObject(identifier: "trailmaking"))
+        
+        self.resultSerializer.add(GoNoGoResultObject())
     }
     
     override func resourceBundle(for bundleInfo: DecodableBundleInfo, from decoder: Decoder) -> ResourceBundle? {
@@ -84,34 +89,11 @@ final class BiAffectFactory : AssessmentFactory {
 }
 
 extension SerializableNodeType {
-    static let gonogo: SerializableNodeType = "gonogo"
     static let trailmaking: SerializableNodeType = "trailmaking"
 }
 
-final class GoNoGoStepObject : AbstractStepObject, Encodable, DocumentableStruct, CopyWithIdentifier {
-    override class func defaultType() -> SerializableNodeType {
-        .gonogo
-    }
-    
-    static func examples() -> [GoNoGoStepObject] {
-        [.init(identifier: defaultType().rawValue)]
-    }
-    
-    func copy(with identifier: String) -> GoNoGoStepObject {
-        .init(identifier: identifier, copyFrom: self)
-    }
-}
-
-final class TrailMakingStepObject : AbstractStepObject, Encodable, DocumentableStruct, CopyWithIdentifier {
+final class TrailMakingStepObject : AbstractStepObject, Encodable {
     override class func defaultType() -> SerializableNodeType {
         .trailmaking
-    }
-    
-    static func examples() -> [TrailMakingStepObject] {
-        [.init(identifier: defaultType().rawValue)]
-    }
-    
-    func copy(with identifier: String) -> TrailMakingStepObject {
-        .init(identifier: identifier, copyFrom: self)
     }
 }

@@ -36,6 +36,7 @@ import BridgeClientUI
 import Research
 import AssessmentModel
 import AssessmentModelUI
+import BiAffectSDK
 
 public struct ContentView: View {
     @EnvironmentObject var bridgeManager: SingleStudyAppManager
@@ -70,6 +71,8 @@ public struct ContentView: View {
         switch todayViewModel.selectedAssessmentViewType {
         case .survey(let info):
             SurveyView<AssessmentView>(info, handler: todayViewModel)
+        case .biaffect(let info):
+            SurveyView<BiAffectAssessmentView>(info, handler: todayViewModel)
         default:
             emptyAssessment()
         }
@@ -86,6 +89,7 @@ public struct ContentView: View {
 
 enum AssessmentViewType {
     case survey(AssessmentScheduleInfo)
+    case biaffect(AssessmentScheduleInfo)
     case empty
 }
 
@@ -93,7 +97,12 @@ extension TodayTimelineViewModel {
     
     var selectedAssessmentViewType : AssessmentViewType {
         guard let info = selectedAssessment else { return .empty }
-        return .survey(info)
+        if let _ = BiAffectIdentifier(rawValue: info.assessmentIdentifier) {
+            return .biaffect(info)
+        }
+        else {
+            return .survey(info)
+        }
     }
 }
 

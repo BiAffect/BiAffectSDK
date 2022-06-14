@@ -1,6 +1,6 @@
 //
-//  BiAffectPreviewApp.swift
-//  BiAffectPreview
+//  ContentView.swift
+//  BiAffectViewBuilder
 //
 //  Copyright © 2022 BiAffect. All rights reserved.
 //
@@ -32,44 +32,16 @@
 //
 
 import SwiftUI
-import BridgeClient
-import BridgeClientUI
-import MobilePassiveData
-import PrivateKeys
-import BiAffectSDK
 
-class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    let bridgeManager: SingleStudyAppManager = SingleStudyAppManager(appId: PrivateKeys.shared.appId, pemPath: PrivateKeys.shared.pemPath)
-    
-    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]?) -> Bool {
-        
-        bridgeManager.appWillFinishLaunching(launchOptions)
-       
-        // Set up authorization for motion sensor handling
-        BiAffectSDK.setup()
-       
-        // Set up notifications handling
-        UIApplication.shared.applicationIconBadgeNumber = 0
-        UNUserNotificationCenter.current().delegate = bridgeManager.localNotificationManager
-        PermissionAuthorizationHandler.registerAdaptorIfNeeded(NotificationsAuthorization())
-        
-        return true
+struct ContentView: View {
+    var body: some View {
+        Text("Hello, world!")
+            .padding()
     }
 }
 
-@main
-struct BiAffectPreviewApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environmentObject(delegate.bridgeManager)
-        }
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
-}
-
-extension Bundle {
-    static let module: Bundle = .main
 }

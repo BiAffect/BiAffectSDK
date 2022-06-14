@@ -1,4 +1,4 @@
-# BiAffectPreview
+# BiAffectViewBuilder
 
 This app is used to create a preview version of an application that can be 
 used for developing the BiAffect assessments and surveys.

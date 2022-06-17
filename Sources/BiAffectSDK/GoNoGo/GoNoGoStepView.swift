@@ -53,7 +53,6 @@ struct GoNoGoStepView: View {
     @ObservedObject var nodeState: StepState
     @StateObject var viewModel: ViewModel = .init()
     
-    
     init(_ nodeState: StepState) {
         self.nodeState = nodeState
     }

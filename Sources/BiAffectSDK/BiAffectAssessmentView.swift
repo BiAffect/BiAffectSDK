@@ -110,3 +110,9 @@ struct BiAffectAssessmentView_Previews: PreviewProvider {
         BiAffectAssessmentPreview(.goNoGo)
     }
 }
+
+extension AssessmentObject {
+    convenience init(previewStep: Step) {
+        self.init(identifier: previewStep.identifier, children: [previewStep])
+    }
+}

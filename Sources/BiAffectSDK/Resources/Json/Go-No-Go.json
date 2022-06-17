@@ -33,7 +33,8 @@
         {
             "identifier": "gonogo",
             "type": "gonogo",
-            "detail": "Quickly shake the device when the blue dot appears. Do not shake for a green dot."
+            "detail": "Quickly shake the device when the blue dot appears. Do not shake for a green dot.",
+            "numberOfAttempts": 9
         },
         {
             "identifier": "completion",

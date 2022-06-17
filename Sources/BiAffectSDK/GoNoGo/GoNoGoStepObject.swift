@@ -34,39 +34,54 @@ import Foundation
 import JsonModel
 import AssessmentModel
 
-//@param maximumStimulusInterval     The maximum interval before the stimulus is delivered.
-//@param minimumStimulusInterval     The minimum interval before the stimulus is delivered.
-//@param thresholdAcceleration       The acceleration required to end a reaction time test. Default = `0.5`.
-//@param numberOfAttempts            The number of successful attempts required before the task is
-//complete. The active step result will contain this many
-//child results if the task is completed.
-//@param timeout                     The interval permitted after the stimulus until the test fails,
-//if the threshold is not reached.
-
 extension SerializableNodeType {
     static let gonogo: SerializableNodeType = "gonogo"
 }
 
-//final class GoNoGoStepObject : AbstractStepObject, Encodable {
-//    override class func defaultType() -> SerializableNodeType {
-//        .gonogo
-//    }
-//
-//    override func instantiateResult() -> ResultData {
-//        GoNoGoResultObject(identifier: self.identifier)
-//    }
-//}
-
 struct GoNoGoStepObject : SerializableNode, Step, Codable {
     private enum CodingKeys : String, OrderedEnumCodingKey {
         case serializableType = "type", identifier
+        
+        case detail
+        
+        // Parameters
+        case _maximumStimulusInterval = "maximumStimulusInterval",
+             _minimumStimulusInterval = "minimumStimulusInterval",
+             _thresholdAcceleration = "thresholdAcceleration",
+             _numberOfAttempts = "numberOfAttempts",
+             _timeout = "timeout"
     }
     
     private(set) var serializableType: SerializableNodeType = .gonogo
     let identifier: String
     
+    /// Localized instruction string included in JSON file.
+    let detail: String
+    
+    /// The maximum interval before the stimulus is delivered.
+    var maximumStimulusInterval: TimeInterval { _maximumStimulusInterval ?? 10.0 }
+    private(set) var _maximumStimulusInterval: TimeInterval?
+    
+    /// The minimum interval before the stimulus is delivered.
+    var minimumStimulusInterval: TimeInterval { _minimumStimulusInterval ?? 4.0 }
+    private(set) var _minimumStimulusInterval: TimeInterval?
+    
+    /// The acceleration required to end a reaction time test.
+    var thresholdAcceleration: Double { _thresholdAcceleration ?? 0.5 }
+    private(set) var _thresholdAcceleration: Double?
+    
+    /// The number of successful attempts required before the task is complete. The active step result will contain
+    /// this many child results if the task is completed.
+    var numberOfAttempts: Int { _numberOfAttempts ?? 9 }
+    private(set) var _numberOfAttempts: Int?
+    
+    /// The interval permitted after the stimulus until the test fails, if the threshold is not reached.
+    var timeout: TimeInterval { _timeout ?? 3.0 }
+    private(set) var _timeout: TimeInterval?
+    
     init() {
         self.identifier = SerializableNodeType.gonogo.rawValue
+        self.detail = "Quickly shake the device when the blue dot appears. Do not shake for a green dot."
     }
     
     func instantiateResult() -> ResultData {

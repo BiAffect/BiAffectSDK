@@ -39,7 +39,7 @@ extension SerializableResultType {
 
 public final class GoNoGoResultObject : MultiplatformResultData, SerializableResultData {
     private enum CodingKeys : String, OrderedEnumCodingKey {
-        case serializableType = "type", identifier, startDateTime = "startDate", endDateTime = "endDate", startUptime, results, motionError
+        case serializableType = "type", identifier, startDateTime = "startDate", endDateTime = "endDate", startUptime, responses = "results", motionError
     }
     public private(set) var serializableType: SerializableResultType = .gonogo
 
@@ -47,14 +47,14 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
     public var startDateTime: Date
     public var endDateTime: Date?
     public var startUptime: TimeInterval?
-    public var results: [Response]
+    public var responses: [Response]
     public var motionError: ErrorResultObject?
 
     public init(identifier: String) {
         self.identifier = identifier
         self.startDateTime = Date()
         self.endDateTime = nil
-        self.results = []
+        self.responses = []
     }
     
     public func deepCopy() -> GoNoGoResultObject {
@@ -62,7 +62,7 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
         copy.startDateTime = self.startDateTime
         copy.endDateTime = self.endDateTime
         copy.startUptime = self.startUptime
-        copy.results = self.results
+        copy.responses = self.responses
         copy.motionError = self.motionError
         return copy
     }
@@ -134,7 +134,7 @@ extension GoNoGoResultObject : DocumentableStruct {
         case .startUptime:
             return .init(propertyType: .primitive(.number), propertyDescription:
                             "The system clock uptime when the recorder was started.")
-        case .results:
+        case .responses:
             return .init(propertyType: .referenceArray(GoNoGoResultObject.Response.documentableType()), propertyDescription:
                             "The list of motion samples for this run of the test.")
         case .motionError:

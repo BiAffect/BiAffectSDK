@@ -42,6 +42,23 @@ import MobilePassiveData
 import CoreMotion
 #endif
 
+#if canImport(AudioToolbox)
+import AudioToolbox
+func vibrateDevice() {
+    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+}
+func playSound(_ soundId: SystemSoundID) {
+    
+}
+#else
+func vibrateDevice() {
+    // do nothing if not supported
+}
+func playSound(_ soundId: UInt32) {
+    
+}
+#endif
+
 extension Font {
     static let instruction: Font = .latoFont(24, relativeTo: .title, weight: .regular)
     static let detail: Font = .latoFont(16, relativeTo: .footnote, weight: .regular)
@@ -52,6 +69,7 @@ struct GoNoGoStepView: View {
     @EnvironmentObject var pagedNavigation: PagedNavigationViewModel
     @ObservedObject var nodeState: StepState
     @StateObject var viewModel: ViewModel = .init()
+    let soundPlayer: AudioFileSoundPlayer = .init()
     
     init(_ nodeState: StepState) {
         self.nodeState = nodeState
@@ -60,12 +78,13 @@ struct GoNoGoStepView: View {
     var body: some View {
         VStack {
             StepHeaderView(nodeState)
-            instructions()
             Spacer()
+            instructions()
             stimulus()
             Spacer()
         }
         .onAppear {
+            pagedNavigation.progressHidden = true
             viewModel.onAppear(nodeState)
         }
         .onDisappear {
@@ -83,21 +102,88 @@ struct GoNoGoStepView: View {
             viewModel.paused = newValue
         }
     }
+
+    @State var contentHeight: CGFloat = 0
+    
+    @ViewBuilder
+    func instructions() -> some View {
+        // Instructions and response - these are wrapped in a scrollview in case
+        // the participant has extra large accessibility text turned on.
+        ScrollView {
+            VStack(alignment: .center, spacing: 24) {
+                Text(viewModel.instructions)
+                    .font(.instruction)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Attempt \(viewModel.attemptCount) of \(viewModel.maxSuccessCount)", bundle: .module)
+                    HStack {
+                        Text("Last reaction time:")
+                        Text("\(viewModel.lastReactionTime ?? 0, specifier: "%.2f") seconds", bundle: .module)
+                            .opacity(viewModel.lastReactionTime == nil ? 0 : 1)
+                    }
+                    HStack {
+                        Text("Errors:", bundle: .module)
+                        Text("\(viewModel.errorCount)")
+                            .opacity(viewModel.errorCount > 0 ? 1 : 0)
+                    }
+                }
+                .font(.detail)
+            }
+            .foregroundColor(.textForeground)
+            .padding()
+            .heightReader(height: $contentHeight)
+        }
+        .frame(maxHeight: contentHeight)
+    }
+    
+    @ViewBuilder
+    func stimulus() -> some View {
+        ZStack {
+            // The circle is shown/hidden using opacity b/c its more performant
+            Circle()
+                .fill(viewModel.go ? .blue : .green)
+                .opacity(viewModel.showingDot ? 1 : 0)
+            // The response is added/removed b/c the animation of drawing the
+            // checkmark or X is simplier.
+            if viewModel.showingResponse {
+                if viewModel.correct {
+                    CheckmarkView()
+                        .onAppear {
+                            soundPlayer.playSound(.short_low_high)
+                        }
+                }
+                else {
+                    XmarkView()
+                        .onAppear {
+                            if viewModel.didTimeout {
+                                soundPlayer.playSound(.alarm)
+                            }
+                            else {
+                                vibrateDevice()
+                            }
+                        }
+                }
+            }
+        }
+        .frame(width: 128, height: 128, alignment: .center)
+        .padding(.vertical, 48)
+    }
     
     @MainActor
     class ViewModel : ObservableObject {
         @Published var instructions: String = "Hello, World"
         @Published var isVisible: Bool = false
-        @Published var attemptCount: Int = 0
-        @Published var maxAttempts: Int = 9
+        @Published var successCount: Int = 0
+        @Published var attemptCount: Int = 1
+        @Published var maxSuccessCount: Int = 9
         @Published var errorCount: Int = 0
         @Published var lastReactionTime: TimeInterval?
         @Published var go: Bool = false
-        @Published var incorrect: Bool = false
+        @Published var correct: Bool = false
+        @Published var didTimeout: Bool = false
         @Published var testState: TestState = .idle
         @Published var motionDenied: Bool = false
-        @Published var showDot: Bool = false
-        @Published var showResponse: Bool = false
+        @Published var showingDot: Bool = false
+        @Published var showingResponse: Bool = false
 
         enum TestState : Int, Comparable {
             case idle, running, finished, error
@@ -113,21 +199,17 @@ struct GoNoGoStepView: View {
         
         var result: GoNoGoResultObject!
         var step: GoNoGoStepObject!
-        var samples: [GoNoGoResultObject.Sample] = []
-        var clock: SystemClock!
         var thresholdUptime: TimeInterval?
         var stimulusUptime: TimeInterval?
-        var motionSensorsActive: Bool = false
-        
-        deinit {
-            
-        }
+        var waitTask: Task<Void, Never>?
+        let shakeSensor: ShakeMotionSensor = .init()
         
         func onAppear(_ nodeState: StepState) {
             guard let result = nodeState.result as? GoNoGoResultObject,
                   let step = nodeState.step as? GoNoGoStepObject
             else {
                 testState = .error
+                assertionFailure("Expected step and result are not in the node state.")
                 return
             }
             guard !isVisible else { return }
@@ -136,88 +218,139 @@ struct GoNoGoStepView: View {
             self.result = result
             self.step = step
             self.instructions = step.detail
+            self.maxSuccessCount = step.numberOfAttempts
+            
+            shakeSensor.start()
             reset()
         }
         
         func onDisappear() {
             guard isVisible else { return }
             isVisible = false
+            waitTask?.cancel()
+            shakeSensor.stop()
         }
         
         func onMotionShaked() {
-            guard isVisible, !motionSensorsActive else { return }
+            guard isVisible, !shakeSensor.motionSensorsActive, !showingResponse, !paused else { return }
             thresholdUptime = ProcessInfo.processInfo.systemUptime
             didFinishAttempt()
         }
         
         func reset() {
-            guard isVisible else { return }
+            guard isVisible, !paused else { return }
+            waitTask?.cancel()
             
-            self.clock = .init()
-            self.stimulusUptime = ProcessInfo.processInfo.systemUptime
-            self.testState = .running
-            self.showDot = false
-            self.showResponse = false
+            thresholdUptime = nil
+            stimulusUptime = nil
+            testState = .running
+            showingDot = false
+            showingResponse = false
+            go = calculateNextGo()
+            attemptCount = min(max(1, successCount + 1), maxSuccessCount)
+            
+            let stimulusDelay = calculateStimulusDelay()
+            waitTask = Task {
+                guard await Task.wait(seconds: stimulusDelay) else { return }
+                showStimulus()
+            }
+        }
+        
+        func showStimulus() {
+            stimulusUptime = ProcessInfo.processInfo.systemUptime
+            showingDot = true
+            waitTask = Task {
+                guard await Task.wait(seconds: step.timeout) else { return }
+                didFinishAttempt()
+            }
         }
         
         func didFinishAttempt() {
+            guard isVisible, !showingResponse, !paused else { return }
+            waitTask?.cancel()
             
-            self.showDot = !incorrect
-            self.showResponse = true
-        }
-    }
-    
-    @State var contentHeight: CGFloat = 0
-    
-    @ViewBuilder
-    func instructions() -> some View {
-        // Instructions and response - these are wrapped in a scrollview in case
-        // the participant has extra large accessibility text turned on.
-        ScrollView {
-            VStack(alignment: .center, spacing: 4) {
-                Text(viewModel.instructions)
-                    .font(.instruction)
-                    .padding(.bottom)
-                Text("Attempt \(viewModel.attemptCount) of \(viewModel.maxAttempts)", bundle: .module)
-                    .opacity(viewModel.attemptCount > 0 ? 1 : 0)
-                    .font(.detail)
-                if let reactionTime = viewModel.lastReactionTime {
-                    Text("Last reaction time: \(reactionTime, specifier: "%.2f") seconds", bundle: .module)
-                        .font(.detail)
-                }
-                Text("Errors: \(viewModel.errorCount)", bundle: .module)
-                    .opacity(viewModel.errorCount > 0 ? 1 : 0)
-                    .font(.detail)
+            // Determine response
+            didTimeout = thresholdUptime == nil
+            correct = (stimulusUptime != nil) && (go ? !didTimeout : didTimeout)
+            if correct {
+                successCount += 1
             }
-            .foregroundColor(.textForeground)
-            .padding()
-            .heightReader(height: $contentHeight)
-        }
-        .frame(maxHeight: contentHeight)
-    }
-    
-    @ViewBuilder
-    func stimulus() -> some View {
-        ZStack {
-            Circle()
-                .fill(.blue)
-                .opacity(viewModel.showDot && viewModel.go ? 1 : 0)
-                .animation(.easeOut)
-            Circle()
-                .fill(.green)
-                .opacity(viewModel.showDot && !viewModel.go ? 1 : 0)
-                .animation(.easeOut)
-            if viewModel.showResponse {
-                if viewModel.incorrect {
-                    XmarkView()
-                }
-                else {
-                    CheckmarkView()
-                }
+            else {
+                errorCount += 1
+            }
+            let startUptime = stimulusUptime ?? 0
+            let timeToThreshold = thresholdUptime.map { correct ? $0 - startUptime : 0 } ?? 0
+            
+            // Update display
+            showingDot = correct
+            showingResponse = true
+            if go && correct {
+                lastReactionTime = timeToThreshold
+            }
+
+            // Add response to result
+            result.responses.append(.init(timestamp: stimulusUptime ?? 0,
+                                          timeToThreshold: timeToThreshold,
+                                          go: go,
+                                          incorrect: !correct,
+                                          samples: shakeSensor.processSamples(startUptime)))
+
+            // Show response for 2.5 seconds before continuing
+            waitTask = Task {
+                guard await Task.wait(seconds: 2.5) else { return }
+                startNext()
             }
         }
-        .frame(width: 128, height: 128, alignment: .center)
-        .padding(.vertical, 48)
+        
+        func startNext() {
+            if successCount >= maxSuccessCount {
+                testState = .finished
+            }
+            else {
+                reset()
+            }
+        }
+        
+        func calculateStimulusDelay() -> TimeInterval {
+            TimeInterval.random(in: step.minimumStimulusInterval...step.maximumStimulusInterval)
+        }
+        
+        func calculateNextGo() -> Bool {
+            // Note: Calulation is done using the algorithm used in ResearchKit 1.0
+            
+            let responses = result.responses
+            let total = responses.count
+            
+            // Never allow more than 2 no go in a row
+            if total >= 2,
+               !responses[total-1].go,
+               !responses[total-2].go {
+                return true
+            }
+            
+            // Always include at least one no-go so if this is the last attempt
+            // check that there has been at least one no-go response.
+            if successCount == maxSuccessCount - 1,
+               !responses.contains(where: { !$0.go }) {
+                return false
+            }
+            
+            // Otherwise, ~2/3 of the time, return a "go" stimulus
+            return drand48() < 0.667
+        }
+    }
+}
+
+extension Task where Success == Never, Failure == Never {
+    static func wait(seconds: TimeInterval) async -> Bool {
+        let duration = UInt64(seconds * 1_000_000_000)
+        do {
+            try await Task.sleep(nanoseconds: duration)
+            return true
+        }
+        catch {
+            return false
+        }
     }
 }
 
@@ -286,6 +419,27 @@ struct GoNoGoStepView_Previews: PreviewProvider {
 
 fileprivate let example = GoNoGoStepObject()
 
+@MainActor
+class ShakeMotionSensor : ObservableObject {
+    @Published var motionSensorsActive: Bool = false
+    var samples: [GoNoGoResultObject.Sample] = []
+    
+    func processSamples(_ stimulusUptime: TimeInterval) -> [GoNoGoResultObject.Sample] {
+        let ret: [GoNoGoResultObject.Sample] = samples.compactMap {
+            $0.timestamp >= stimulusUptime ?
+                .init(timestamp: $0.timestamp - stimulusUptime, vectorMagnitude: $0.vectorMagnitude) : nil
+        }
+        samples.removeAll()
+        return ret
+    }
+    
+    func start() {
+    }
+    
+    func stop() {
+    }
+}
+
 let motionShaked = PassthroughSubject<Void, Never>()
 
 #if canImport(UIKit)
@@ -301,23 +455,3 @@ extension UIWindow {
 
 #endif
 
-//
-//// A view modifier that detects shaking and calls a function of our choosing.
-//struct DeviceShakeViewModifier: ViewModifier {
-//    let action: () -> Void
-//
-//    func body(content: Content) -> some View {
-//        content
-//            .onAppear()
-//            .onReceive(NotificationCenter.default.publisher(for: UIDevice.deviceDidShakeNotification)) { _ in
-//                action()
-//            }
-//    }
-//}
-//
-//// A View extension to make the modifier easier to use.
-//extension View {
-//    func onShake(perform action: @escaping () -> Void) -> some View {
-//        self.modifier(DeviceShakeViewModifier(action: action))
-//    }
-//}

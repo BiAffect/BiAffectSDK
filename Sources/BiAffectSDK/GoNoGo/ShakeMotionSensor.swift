@@ -40,7 +40,10 @@ import CoreMotion
 
 @MainActor
 class ShakeMotionSensor : ObservableObject {
-    @Published var motionSensorsActive: Bool = false
+    @Published var resetUptime: TimeInterval?
+    @Published var motionError: Error?
+    
+    var thresholdUptime: TimeInterval?
     var samples: [GoNoGoResultObject.Sample] = []
     
     func processSamples(_ stimulusUptime: TimeInterval) -> [GoNoGoResultObject.Sample] {
@@ -52,22 +55,31 @@ class ShakeMotionSensor : ObservableObject {
         return ret
     }
     
+    func reset() {
+        self.resetUptime = ProcessInfo.processInfo.systemUptime
+        self.thresholdUptime = nil
+        self.samples.removeAll()
+    }
+    
     func start() {
+        listenForDeviceShake = true
     }
     
     func stop() {
+        listenForDeviceShake = false
     }
 }
 
-let deviceShaked = PassthroughSubject<Void, Never>()
+fileprivate var listenForDeviceShake: Bool = false
+let deviceShaked = PassthroughSubject<TimeInterval, Never>()
 
 #if canImport(UIKit)
 import UIKit
 
 extension UIWindow {
      open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            deviceShaked.send()
+        if motion == .motionShake, listenForDeviceShake {
+            deviceShaked.send(event?.timestamp ?? ProcessInfo.processInfo.systemUptime)
         }
      }
 }

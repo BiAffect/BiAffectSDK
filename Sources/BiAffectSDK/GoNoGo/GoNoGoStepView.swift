@@ -83,8 +83,8 @@ struct GoNoGoStepView: View {
         .onDisappear {
             viewModel.onDisappear()
         }
-        .onReceive(deviceShaked) {
-            viewModel.onDeviceShaked()
+        .onReceive(deviceShaked) { timestamp in
+            viewModel.onDeviceShaked(timestamp)
         }
         .onChange(of: viewModel.testState) { newValue in
             if newValue >= .finished {
@@ -192,7 +192,6 @@ struct GoNoGoStepView: View {
         var step: GoNoGoStepObject!
         var successCount: Int = 0
         var isVisible: Bool = false
-        var thresholdUptime: TimeInterval?
         var stimulusUptime: TimeInterval?
         var waitTask: Task<Void, Never>?
         let shakeSensor: ShakeMotionSensor = .init()
@@ -224,17 +223,16 @@ struct GoNoGoStepView: View {
             shakeSensor.stop()
         }
         
-        func onDeviceShaked() {
-            guard isVisible, !shakeSensor.motionSensorsActive, !showingResponse, !paused else { return }
-            thresholdUptime = ProcessInfo.processInfo.systemUptime
-            didFinishAttempt()
+        func onDeviceShaked(_ timestamp: TimeInterval) {
+            guard isVisible, !showingResponse, !paused else { return }
+            didFinishAttempt(timestamp)
         }
         
         func reset() {
             guard isVisible, !paused else { return }
             waitTask?.cancel()
             
-            thresholdUptime = nil
+            shakeSensor.reset()
             stimulusUptime = nil
             testState = .running
             showingDot = false
@@ -258,12 +256,12 @@ struct GoNoGoStepView: View {
             }
         }
         
-        func didFinishAttempt() {
+        func didFinishAttempt(_ thresholdUptime: TimeInterval? = nil) {
             guard isVisible, !showingResponse, !paused else { return }
             waitTask?.cancel()
             
             // Determine response
-            didTimeout = thresholdUptime == nil
+            didTimeout = (thresholdUptime == nil)
             correct = (stimulusUptime != nil) && (go ? !didTimeout : didTimeout)
             if correct {
                 successCount += 1
@@ -283,6 +281,7 @@ struct GoNoGoStepView: View {
 
             // Add response to result
             result.responses.append(.init(timestamp: stimulusUptime ?? 0,
+                                          resetTimestamp: shakeSensor.resetUptime ?? 0,
                                           timeToThreshold: timeToThreshold,
                                           go: go,
                                           incorrect: !correct,

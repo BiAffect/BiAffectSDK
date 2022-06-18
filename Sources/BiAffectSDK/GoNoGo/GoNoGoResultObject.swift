@@ -69,10 +69,10 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
     
     public struct Response : Codable, Hashable {
         private enum CodingKeys : String, OrderedEnumCodingKey {
-            case timestamp, timeToThreshold, go, incorrect, samples
+            case timestamp, resetTimestamp, timeToThreshold, go, incorrect, samples
         }
-        
         public let timestamp: TimeInterval
+        public let resetTimestamp: TimeInterval
         public let timeToThreshold: TimeInterval
         public let go: Bool
         public let incorrect: Bool
@@ -83,7 +83,6 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
         private enum CodingKeys : String, OrderedEnumCodingKey {
             case timestamp, vectorMagnitude
         }
-        
         public let timestamp: TimeInterval
         public let vectorMagnitude: Double
     }
@@ -166,24 +165,37 @@ extension GoNoGoResultObject.Response : DocumentableStruct {
         switch key {
         case .timestamp:
             return .init(propertyType: .primitive(.number), propertyDescription:
-                            "The timestamp is relative to the time the stimulus was displayed.")
+                            """
+                            The timestamp is the system uptime for when the stimulus was displayed.
+                            A false start where the participant shakes the device while waiting for
+                            the stimulus to be displayed is indicated by a value of zero.
+                            """)
+        case .resetTimestamp:
+            return .init(propertyType: .primitive(.number), propertyDescription:
+                            """
+                            The reset timestamp is the system uptime for when go-no-go attempt is
+                            reset (ie. started).
+                            """)
         case .timeToThreshold:
             return .init(propertyType: .primitive(.number), propertyDescription:
-                            "Time from when the stimulus occurred to the threshold being reached.")
+                            """
+                            Time from when the stimulus occurred to the threshold being reached.
+                            For a timeout or false start, this value will be zero.
+                            """)
         case .go:
             return .init(propertyType: .primitive(.boolean), propertyDescription:
                             "YES if a go test and NO if a no go test.")
         case .incorrect:
             return .init(propertyType: .primitive(.boolean), propertyDescription:
-                            "Set to YES if the incorrect response is given i.e shaken for no go test or not shaken for a go test.")
+                            "Set to YES if the incorrect response is given --i.e shaken for no go test or not shaken for a go test.")
         case .samples:
             return .init(propertyType: .referenceArray(GoNoGoResultObject.Sample.documentableType()), propertyDescription:
-                            "A collection of samples")
+                            "A collection of samples.")
         }
     }
     
     public static func examples() -> [GoNoGoResultObject.Response] {
-        [.init(timestamp: 0, timeToThreshold: 0.1, go: true, incorrect: true, samples: nil)]
+        [.init(timestamp: 0, resetTimestamp: 120492.081, timeToThreshold: 0.1, go: true, incorrect: true, samples: nil)]
     }
 }
 
@@ -203,7 +215,10 @@ extension GoNoGoResultObject.Sample : DocumentableStruct {
         switch key {
         case .timestamp:
             return .init(propertyType: .primitive(.number), propertyDescription:
-                            "The timestamp is relative to the time the stimulus was displayed.")
+                            """
+                            The timestamp is relative to the time the stimulus was displayed, if there was a stimulus.
+                            If the participant triggered a false start, then the timestamps are equal to the system uptime.
+                            """)
         case .vectorMagnitude:
             return .init(propertyType: .primitive(.number), propertyDescription:
                             "Magnitude of the acceleration event.")

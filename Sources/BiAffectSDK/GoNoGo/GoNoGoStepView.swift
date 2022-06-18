@@ -35,29 +35,22 @@ import AssessmentModel
 import AssessmentModelUI
 import SharedMobileUI
 import JsonModel
-import Combine
 import MobilePassiveData
-
-#if canImport(CoreMotion)
-import CoreMotion
-#endif
 
 #if canImport(AudioToolbox)
 import AudioToolbox
-func vibrateDevice() {
-    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-}
-func playSound(_ soundId: SystemSoundID) {
-    
-}
-#else
-func vibrateDevice() {
-    // do nothing if not supported
-}
-func playSound(_ soundId: UInt32) {
-    
-}
 #endif
+
+func vibrateDevice() {
+    #if canImport(AudioToolbox)
+    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+    #endif
+}
+
+extension SoundFile {
+    static let success = SoundFile(name: "sms-received5")
+    static let failure = SoundFile(name: "jbl_cancel")
+}
 
 extension Font {
     static let instruction: Font = .latoFont(24, relativeTo: .title, weight: .regular)
@@ -90,8 +83,8 @@ struct GoNoGoStepView: View {
         .onDisappear {
             viewModel.onDisappear()
         }
-        .onReceive(motionShaked) {
-            viewModel.onMotionShaked()
+        .onReceive(deviceShaked) {
+            viewModel.onDeviceShaked()
         }
         .onChange(of: viewModel.testState) { newValue in
             if newValue >= .finished {
@@ -148,14 +141,14 @@ struct GoNoGoStepView: View {
                 if viewModel.correct {
                     CheckmarkView()
                         .onAppear {
-                            soundPlayer.playSound(.short_low_high)
+                            soundPlayer.playSound(.success)
                         }
                 }
                 else {
                     XmarkView()
                         .onAppear {
                             if viewModel.didTimeout {
-                                soundPlayer.playSound(.alarm)
+                                soundPlayer.playSound(.failure)
                             }
                             else {
                                 vibrateDevice()
@@ -171,8 +164,6 @@ struct GoNoGoStepView: View {
     @MainActor
     class ViewModel : ObservableObject {
         @Published var instructions: String = "Hello, World"
-        @Published var isVisible: Bool = false
-        @Published var successCount: Int = 0
         @Published var attemptCount: Int = 1
         @Published var maxSuccessCount: Int = 9
         @Published var errorCount: Int = 0
@@ -199,6 +190,8 @@ struct GoNoGoStepView: View {
         
         var result: GoNoGoResultObject!
         var step: GoNoGoStepObject!
+        var successCount: Int = 0
+        var isVisible: Bool = false
         var thresholdUptime: TimeInterval?
         var stimulusUptime: TimeInterval?
         var waitTask: Task<Void, Never>?
@@ -231,7 +224,7 @@ struct GoNoGoStepView: View {
             shakeSensor.stop()
         }
         
-        func onMotionShaked() {
+        func onDeviceShaked() {
             guard isVisible, !shakeSensor.motionSensorsActive, !showingResponse, !paused else { return }
             thresholdUptime = ProcessInfo.processInfo.systemUptime
             didFinishAttempt()
@@ -341,74 +334,6 @@ struct GoNoGoStepView: View {
     }
 }
 
-extension Task where Success == Never, Failure == Never {
-    static func wait(seconds: TimeInterval) async -> Bool {
-        let duration = UInt64(seconds * 1_000_000_000)
-        do {
-            try await Task.sleep(nanoseconds: duration)
-            return true
-        }
-        catch {
-            return false
-        }
-    }
-}
-
-struct AnimatedShape<Content : Shape> : View {
-    let shape: Content
-    let color: Color
-    let lineCape: CGLineCap
-    
-    @State private var percentage: CGFloat = .zero
-
-    var body: some View {
-        shape
-            .trim(from: .zero, to: percentage)
-            .stroke(color, style: .init(lineWidth: 12, lineCap: lineCape))
-            .animation(.easeOut)
-            .onAppear {
-                percentage = 1.0
-            }
-    }
-}
-
-struct CheckmarkView : View {
-    var body: some View {
-        AnimatedShape(shape: Checkmark(), color: .white, lineCape: .round)
-    }
-    
-    struct Checkmark: Shape {
-        func path(in rect: CGRect) -> Path {
-            let width = rect.size.width
-            let height = rect.size.height
-            var path = Path()
-            path.move(to: .init(x: 0.2 * width, y: 0.5 * height))
-            path.addLine(to: .init(x: 0.4 * width, y: 0.75 * height))
-            path.addQuadCurve(to: .init(x: 0.8 * width, y: 0.3 * height), control: .init(x: 0.5 * width, y: 0.45 * height))
-            return path
-        }
-    }
-}
-
-struct XmarkView : View {
-    var body: some View {
-        AnimatedShape(shape: Xmark(), color: .red, lineCape: .butt)
-    }
-
-    struct Xmark: Shape {
-        func path(in rect: CGRect) -> Path {
-            let width = rect.size.width
-            let height = rect.size.height
-            var path = Path()
-            path.move(to: .init(x: 0.1 * width, y: 0.1 * height))
-            path.addLine(to: .init(x: 0.85 * width, y: 0.9 * height))
-            path.move(to: .init(x: 0.85 * width, y: 0.1 * height))
-            path.addQuadCurve(to: .init(x: 0.1 * width, y: 0.9 * height), control: .init(x: 0.4 * width, y: 0.4 * height))
-            return path
-        }
-    }
-}
-
 struct GoNoGoStepView_Previews: PreviewProvider {
     static var previews: some View {
         GoNoGoStepView(StepState(step: example))
@@ -418,40 +343,4 @@ struct GoNoGoStepView_Previews: PreviewProvider {
 }
 
 fileprivate let example = GoNoGoStepObject()
-
-@MainActor
-class ShakeMotionSensor : ObservableObject {
-    @Published var motionSensorsActive: Bool = false
-    var samples: [GoNoGoResultObject.Sample] = []
-    
-    func processSamples(_ stimulusUptime: TimeInterval) -> [GoNoGoResultObject.Sample] {
-        let ret: [GoNoGoResultObject.Sample] = samples.compactMap {
-            $0.timestamp >= stimulusUptime ?
-                .init(timestamp: $0.timestamp - stimulusUptime, vectorMagnitude: $0.vectorMagnitude) : nil
-        }
-        samples.removeAll()
-        return ret
-    }
-    
-    func start() {
-    }
-    
-    func stop() {
-    }
-}
-
-let motionShaked = PassthroughSubject<Void, Never>()
-
-#if canImport(UIKit)
-import UIKit
-
-extension UIWindow {
-     open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake {
-            motionShaked.send()
-        }
-     }
-}
-
-#endif
 

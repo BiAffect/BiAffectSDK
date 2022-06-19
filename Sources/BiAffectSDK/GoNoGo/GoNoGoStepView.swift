@@ -182,7 +182,10 @@ struct GoNoGoStepView: View {
         
         @Published var paused: Bool = false {
             didSet {
-                if !paused {
+                if paused {
+                    shakeSensor.state = .paused
+                }
+                else {
                     reset()
                 }
             }
@@ -192,7 +195,6 @@ struct GoNoGoStepView: View {
         var step: GoNoGoStepObject!
         var successCount: Int = 0
         var isVisible: Bool = false
-        var stimulusUptime: TimeInterval?
         var waitTask: Task<Void, Never>?
         let shakeSensor: ShakeMotionSensor = .init()
         
@@ -211,6 +213,7 @@ struct GoNoGoStepView: View {
             self.step = step
             self.instructions = step.detail
             self.maxSuccessCount = step.numberOfAttempts
+            self.shakeSensor.thresholdAcceleration = step.thresholdAcceleration
             
             shakeSensor.start()
             reset()
@@ -233,7 +236,6 @@ struct GoNoGoStepView: View {
             waitTask?.cancel()
             
             shakeSensor.reset()
-            stimulusUptime = nil
             testState = .running
             showingDot = false
             showingResponse = false
@@ -248,7 +250,7 @@ struct GoNoGoStepView: View {
         }
         
         func showStimulus() {
-            stimulusUptime = ProcessInfo.processInfo.systemUptime
+            shakeSensor.stimulusUptime = ProcessInfo.processInfo.systemUptime
             showingDot = true
             waitTask = Task {
                 guard await Task.wait(seconds: step.timeout) else { return }
@@ -262,14 +264,14 @@ struct GoNoGoStepView: View {
             
             // Determine response
             didTimeout = (thresholdUptime == nil)
-            correct = (stimulusUptime != nil) && (go ? !didTimeout : didTimeout)
+            correct = showingDot && (go ? !didTimeout : didTimeout)
             if correct {
                 successCount += 1
             }
             else {
                 errorCount += 1
             }
-            let startUptime = stimulusUptime ?? 0
+            let startUptime = shakeSensor.stimulusUptime ?? 0
             let timeToThreshold = thresholdUptime.map { correct ? $0 - startUptime : 0 } ?? 0
             
             // Update display
@@ -280,7 +282,7 @@ struct GoNoGoStepView: View {
             }
 
             // Add response to result
-            result.responses.append(.init(timestamp: stimulusUptime ?? 0,
+            result.responses.append(.init(timestamp: startUptime,
                                           resetTimestamp: shakeSensor.resetUptime ?? 0,
                                           timeToThreshold: timeToThreshold,
                                           go: go,

@@ -76,7 +76,8 @@ struct ContentView: View {
                     // In a real use-case this is where you might save and upload data
                     if newValue == .readyToSave {
                         do {
-                            let output = try state.result.jsonEncodedDictionary()
+                            let data = try state.result.jsonEncodedData()
+                            let output = String(data: data, encoding: .utf8)!
                             print("assessment result = \n\(output)\n")
                         }
                         catch {

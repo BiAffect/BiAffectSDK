@@ -80,7 +80,7 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
     }
     
     public struct Sample : Codable, Hashable {
-        private enum CodingKeys : String, OrderedEnumCodingKey {
+        private enum CodingKeys : String, CodingKey, CaseIterable {
             case timestamp, vectorMagnitude
         }
         public let timestamp: TimeInterval

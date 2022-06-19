@@ -42,8 +42,16 @@ import CoreMotion
 class ShakeMotionSensor : ObservableObject {
     @Published var resetUptime: TimeInterval?
     @Published var motionError: Error?
+    @Published var state: State = .idle
     
+    enum State: Int {
+        case idle, started, listening, paused, stopped
+    }
+    
+    var thresholdAcceleration: Double = 0.5
     var thresholdUptime: TimeInterval?
+    var stimulusUptime: TimeInterval?
+    var samplesSinceStimulus: Int = 0
     var samples: [GoNoGoResultObject.Sample] = []
     
     func processSamples(_ stimulusUptime: TimeInterval) -> [GoNoGoResultObject.Sample] {
@@ -56,18 +64,101 @@ class ShakeMotionSensor : ObservableObject {
     }
     
     func reset() {
-        self.resetUptime = ProcessInfo.processInfo.systemUptime
-        self.thresholdUptime = nil
-        self.samples.removeAll()
+        guard state != .stopped else { return }
+        
+        resetUptime = ProcessInfo.processInfo.systemUptime
+        thresholdUptime = nil
+        stimulusUptime = nil
+        samples.removeAll()
+        samplesSinceStimulus = 0
+        
+        // Wait 0.5 seconds before listening for the participant to shake the device.
+        Task {
+            guard await Task.wait(seconds: 0.5) else { return }
+            state = .listening
+        }
+    }
+    
+    #if canImport(CoreMotion)
+    
+    let motionManager: CMMotionManager = .init()
+    
+    init() {
+        motionManager.deviceMotionUpdateInterval = 0.01
+    }
+    
+    deinit {
+        motionManager.stopDeviceMotionUpdates()
     }
     
     func start() {
+        guard state == .idle else { return }
+        state = .started
         listenForDeviceShake = true
+        motionManager.startDeviceMotionUpdates(to: .main) { [weak self] (motion, error) in
+            if let motion = motion {
+                self?.onMotionReceived(motion)
+            }
+            else {
+                self?.motionError = error
+            }
+        }
+    }
+    
+    func onMotionReceived(_ motion: CMDeviceMotion) {
+        // Turn off listening for device "shake" b/c motion sensors are more precise.
+        // This allows running the test if using the simulator or if permission to use
+        // motion sensors has not been given.
+        listenForDeviceShake = false
+        
+        // Ignore if not runnning
+        guard state == .listening else { return }
+        
+        // Process the sample
+        let v = motion.userAcceleration
+        let vectorMagnitude = sqrt(((v.x * v.x) + (v.y * v.y) + (v.z * v.z)))
+        let sample: GoNoGoResultObject.Sample = .init(timestamp: motion.timestamp, vectorMagnitude: vectorMagnitude)
+        samples.append(sample)
+        
+        let showingStimulus = stimulusUptime != nil
+        let isShaking = vectorMagnitude > thresholdAcceleration
+        
+        // If not showing the stimulus then exit early
+        guard showingStimulus else {
+            if isShaking {
+                // If the user jumps the gun, stop the test right away and exit.
+                deviceShaked.send(motion.timestamp)
+            }
+            return
+        }
+        
+        // Advance the post-stimulus sample count
+        samplesSinceStimulus += 1
+        
+        // Check if we should mark the threshold timestamp.
+        if isShaking, thresholdUptime == nil {
+            thresholdUptime = motion.timestamp
+        }
+        
+        // Finally, if there have been 100 samples since showing the stimulus and the
+        // device was shaking during that time, then send the message.
+        if samplesSinceStimulus >= 100, let timestamp = thresholdUptime {
+            state = .paused
+            deviceShaked.send(timestamp)
+        }
     }
     
     func stop() {
+        state = .stopped
         listenForDeviceShake = false
+        motionManager.stopDeviceMotionUpdates()
     }
+    
+    #else
+    // If running on a Mac (unit tests) then these methods do nothing.
+    func start() { }
+    func stop() { }
+    #endif
 }
 
 fileprivate var listenForDeviceShake: Bool = false

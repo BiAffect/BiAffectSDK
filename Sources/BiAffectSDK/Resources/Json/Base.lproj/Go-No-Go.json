@@ -10,6 +10,12 @@
                 "type": "fetchable",
                 "imageName": "Go-No-Go",
                 "placementType": "iconAfter"
+            },
+            "actions" : {
+                "goForward" : {
+                  "buttonTitle" : "Next",
+                  "type" : "default"
+                }
             }
         },
         {

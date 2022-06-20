@@ -13,14 +13,13 @@ final class BiAffectSDKTests: XCTestCase {
         }
     }
     
-    // TODO: syoung 06/09/2022 Add "countdown" step to AssessmentModel library
-//    func testAssessmentDecoding_TrailMaking() {
-//        do {
-//            let identifier = BiAffectIdentifier.trailmaking
-//            let _ = try identifier.instantiateAssessmentState()
-//        }
-//        catch {
-//            XCTFail("Failed to build assessment. \(error)")
-//        }
-//    }
+    func testAssessmentDecoding_TrailMaking() {
+        do {
+            let identifier = BiAffectIdentifier.trailmaking
+            let _ = try identifier.instantiateAssessmentState()
+        }
+        catch {
+            XCTFail("Failed to build assessment. \(error)")
+        }
+    }
 }

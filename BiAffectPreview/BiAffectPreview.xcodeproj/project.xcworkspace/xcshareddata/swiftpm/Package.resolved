@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "AssessmentModel",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git",
+        "state": {
+          "branch": null,
+          "revision": "09dc0463b9eb39a3cd03cdebd1813226f05c95ad",
+          "version": "0.7.4"
+        }
+      },
+      {
         "package": "BiAffect",
         "repositoryURL": "https://syoung-smallwisdom@github.com/BiAffect/BiAffect.git",
         "state": {
@@ -17,6 +26,15 @@
           "branch": null,
           "revision": "d5a7645789e62adc790c3d6b34d6f1637a46ba73",
           "version": "0.3.1"
+        }
+      },
+      {
+        "package": "BridgeClient",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/BridgeClientKMM.git",
+        "state": {
+          "branch": null,
+          "revision": "cd9019f9572b5f8d3cad69b21c4ec0b1a0f46823",
+          "version": "0.5.5"
         }
       },
       {

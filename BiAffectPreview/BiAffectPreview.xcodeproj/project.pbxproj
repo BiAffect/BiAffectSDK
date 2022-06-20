@@ -11,6 +11,7 @@
 		FF069A7A28505D20001AE136 /* MotionSensor in Frameworks */ = {isa = PBXBuildFile; productRef = FF069A7928505D20001AE136 /* MotionSensor */; };
 		FF069A7D28505D3A001AE136 /* AssessmentModel in Frameworks */ = {isa = PBXBuildFile; productRef = FF069A7C28505D3A001AE136 /* AssessmentModel */; };
 		FF069A7F28505D3A001AE136 /* AssessmentModelUI in Frameworks */ = {isa = PBXBuildFile; productRef = FF069A7E28505D3A001AE136 /* AssessmentModelUI */; };
+		FF14089928610A2000BA4CB5 /* BridgeClient in Frameworks */ = {isa = PBXBuildFile; productRef = FF14089828610A2000BA4CB5 /* BridgeClient */; };
 		FF8C8C3C284FB762008DCBB4 /* BiAffectPreviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8C8C3B284FB762008DCBB4 /* BiAffectPreviewApp.swift */; };
 		FF8C8C3E284FB762008DCBB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8C8C3D284FB762008DCBB4 /* ContentView.swift */; };
 		FF8C8C40284FB765008DCBB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF8C8C3F284FB765008DCBB4 /* Assets.xcassets */; };
@@ -22,7 +23,6 @@
 		FFBF8BC4284FC5D100D0FDBA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF8BC3284FC5D100D0FDBA /* MainView.swift */; };
 		FFBF8BC5284FC60000D0FDBA /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF8BC2284FC5BF00D0FDBA /* LaunchView.swift */; };
 		FFD8C457285BC18B000FC950 /* BiAffectSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FFD8C456285BC18B000FC950 /* BiAffectSDK */; };
-		FFE2A691285827F3009805C0 /* BridgeClient in Frameworks */ = {isa = PBXBuildFile; productRef = FFE2A690285827F3009805C0 /* BridgeClient */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +38,6 @@
 		FFBF8BC3284FC5D100D0FDBA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FFBF8BC6284FCCF000D0FDBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FFD8C455285BC140000FC950 /* BiAffectSDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BiAffectSDK; path = ..; sourceTree = "<group>"; };
-		FFE2A68F285827E4009805C0 /* BridgeClientKMM */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BridgeClientKMM; path = ../../BridgeClientKMM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,8 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFE2A691285827F3009805C0 /* BridgeClient in Frameworks */,
 				FFD8C457285BC18B000FC950 /* BiAffectSDK in Frameworks */,
+				FF14089928610A2000BA4CB5 /* BridgeClient in Frameworks */,
 				FF069A7A28505D20001AE136 /* MotionSensor in Frameworks */,
 				FF069A7828505D20001AE136 /* MobilePassiveData in Frameworks */,
 				FFBF8B8F284FBECA00D0FDBA /* PrivateKeys in Frameworks */,
@@ -121,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				FFD8C455285BC140000FC950 /* BiAffectSDK */,
-				FFE2A68F285827E4009805C0 /* BridgeClientKMM */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -148,8 +146,8 @@
 				FF069A7928505D20001AE136 /* MotionSensor */,
 				FF069A7C28505D3A001AE136 /* AssessmentModel */,
 				FF069A7E28505D3A001AE136 /* AssessmentModelUI */,
-				FFE2A690285827F3009805C0 /* BridgeClient */,
 				FFD8C456285BC18B000FC950 /* BiAffectSDK */,
+				FF14089828610A2000BA4CB5 /* BridgeClient */,
 			);
 			productName = BiAffectPreview;
 			productReference = FF8C8C38284FB762008DCBB4 /* BiAffectPreview.app */;
@@ -183,6 +181,7 @@
 				FFBF8B8D284FBECA00D0FDBA /* XCRemoteSwiftPackageReference "BiAffect" */,
 				FF069A7628505D20001AE136 /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */,
 				FF069A7B28505D3A001AE136 /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */,
+				FF140897286109C400BA4CB5 /* XCRemoteSwiftPackageReference "BridgeClientKMM" */,
 			);
 			productRefGroup = FF8C8C39284FB762008DCBB4 /* Products */;
 			projectDirPath = "";
@@ -449,6 +448,14 @@
 				minimumVersion = 0.7.2;
 			};
 		};
+		FF140897286109C400BA4CB5 /* XCRemoteSwiftPackageReference "BridgeClientKMM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sage-Bionetworks/BridgeClientKMM.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.5;
+			};
+		};
 		FFBF8B8D284FBECA00D0FDBA /* XCRemoteSwiftPackageReference "BiAffect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://syoung-smallwisdom@github.com/BiAffect/BiAffect.git";
@@ -480,6 +487,11 @@
 			package = FF069A7B28505D3A001AE136 /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */;
 			productName = AssessmentModelUI;
 		};
+		FF14089828610A2000BA4CB5 /* BridgeClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FF140897286109C400BA4CB5 /* XCRemoteSwiftPackageReference "BridgeClientKMM" */;
+			productName = BridgeClient;
+		};
 		FFBF8B8E284FBECA00D0FDBA /* PrivateKeys */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FFBF8B8D284FBECA00D0FDBA /* XCRemoteSwiftPackageReference "BiAffect" */;
@@ -488,10 +500,6 @@
 		FFD8C456285BC18B000FC950 /* BiAffectSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BiAffectSDK;
-		};
-		FFE2A690285827F3009805C0 /* BridgeClient */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = BridgeClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

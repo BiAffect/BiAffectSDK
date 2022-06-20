@@ -73,6 +73,9 @@ public struct BiAffectAssessmentView : View {
             else if state.step is GoNoGoStepObject {
                 GoNoGoStepView(state)
             }
+            else if state.step is CountdownStep {
+                CountdownStepView(state)
+            }
             else if let nodeState = state as? ContentNodeState {
                 InstructionStepView(nodeState, alignment: .center)
             }

@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "AssessmentModel",
+        "repositoryURL": "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git",
+        "state": {
+          "branch": null,
+          "revision": "09dc0463b9eb39a3cd03cdebd1813226f05c95ad",
+          "version": "0.7.4"
+        }
+      },
+      {
         "package": "JsonModel",
         "repositoryURL": "https://github.com/Sage-Bionetworks/JsonModel-Swift.git",
         "state": {

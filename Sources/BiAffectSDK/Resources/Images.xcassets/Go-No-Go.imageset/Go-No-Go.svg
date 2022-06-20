@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 110 0 L 190 0 C 195.523 0 200 4.477 200 10 L 200 190 C 200 195.523 195.523 200 190 200 L 110 200 C 104.477 200 100 195.523 100 190 L 100 10 C 100 4.477 104.477 0 110 0 Z M 104 159 L 196 159 L 196 21 L 104 21 Z M 150 170 C 144.477 170 140 174.477 140 180 C 140 185.523 144.477 190 150 190 C 155.523 190 160 185.523 160 180 C 160 174.477 155.523 170 150 170 Z" style="fill: rgb(0, 0, 0); stroke: rgb(0, 0, 0); stroke-width: 0px;"/>
+  <line style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;" x1="218" y1="94" x2="274" y2="94"/>
+  <polyline style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;" points="260 78 274 94 260 110"/>
+  <ellipse style="fill: rgb(0, 0, 0); stroke: rgb(0, 0, 0);" cx="150" cy="94" rx="16" ry="16"/>
+  <line style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;" x1="26" y1="94" x2="82" y2="94"/>
+  <polyline style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;" points="40 78 26 94 40 110"/>
+  <ellipse style="" cx="150" cy="180" rx="9" ry="9"/>
+</svg>

@@ -78,6 +78,7 @@ public struct BiAffectAssessmentView : View {
             }
             else if let nodeState = state as? ContentNodeState {
                 InstructionStepView(nodeState, alignment: .center)
+                    .surveyTintColor(.sageBlack)
             }
             else {
                 debugStepView(state)
@@ -110,7 +111,11 @@ struct BiAffectAssessmentPreview : View {
 
 struct BiAffectAssessmentView_Previews: PreviewProvider {
     static var previews: some View {
-        BiAffectAssessmentPreview(.goNoGo)
+        Group {
+            BiAffectAssessmentPreview(.goNoGo)
+            BiAffectAssessmentPreview(.goNoGo)
+                .preferredColorScheme(.dark)
+        }
     }
 }
 

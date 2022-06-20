@@ -1,46 +1,15 @@
 {
   "images" : [
     {
-      "idiom" : "iphone",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "phoneshakecircle@2x.png",
-      "idiom" : "iphone",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "phoneshakecircle@3x.png",
-      "idiom" : "iphone",
-      "scale" : "3x"
-    },
-    {
-      "idiom" : "iphone",
-      "scale" : "1x",
-      "subtype" : "retina4"
-    },
-    {
-      "idiom" : "iphone",
-      "scale" : "2x",
-      "subtype" : "retina4"
-    },
-    {
-      "idiom" : "iphone",
-      "scale" : "3x",
-      "subtype" : "retina4"
-    },
-    {
-      "idiom" : "ipad",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "phoneshakecircle@2x~ipad.png",
-      "idiom" : "ipad",
-      "scale" : "2x"
+      "filename" : "Go-No-Go.svg",
+      "idiom" : "universal"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
   }
 }

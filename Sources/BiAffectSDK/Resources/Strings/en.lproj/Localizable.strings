@@ -32,5 +32,5 @@
 */
 
 "Attempt %lld of %lld" = "Attempt %lld of %lld";
-"Errors: %lld" = "Errors: %lld";
-"Last reaction time: %.2f seconds" = "Last reaction time: %.2f seconds";
+"Errors:" = "Errors:";
+"Last reaction time:" = "Last reaction time:";

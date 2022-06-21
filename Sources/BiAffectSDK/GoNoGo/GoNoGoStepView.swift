@@ -39,13 +39,12 @@ import MobilePassiveData
 
 #if canImport(AudioToolbox)
 import AudioToolbox
-#endif
-
 func vibrateDevice() {
-    #if canImport(AudioToolbox)
     AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-    #endif
 }
+#else
+func vibrateDevice() { }
+#endif
 
 extension SoundFile {
     static let success = SoundFile(name: "sms-received5")
@@ -56,6 +55,8 @@ extension Font {
     static let instruction: Font = .latoFont(24, relativeTo: .title, weight: .regular)
     static let detail: Font = .latoFont(16, relativeTo: .footnote, weight: .regular)
 }
+
+// TODO: syoung 06/24/2022 There is no "failed too many times" exit. Should there be?
 
 struct GoNoGoStepView: View {
     @EnvironmentObject var assessmentState: AssessmentState
@@ -77,7 +78,6 @@ struct GoNoGoStepView: View {
             Spacer()
         }
         .onAppear {
-            pagedNavigation.progressHidden = true
             viewModel.onAppear(nodeState)
         }
         .onDisappear {

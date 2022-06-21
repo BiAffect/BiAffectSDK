@@ -147,8 +147,6 @@ extension GoNoGoResultObject : DocumentableStruct {
     }
 }
 
-
-
 extension GoNoGoResultObject.Response : DocumentableStruct {
     public static func codingKeys() -> [CodingKey] {
         CodingKeys.allCases

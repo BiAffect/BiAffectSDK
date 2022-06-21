@@ -78,9 +78,10 @@ final class BiAffectFactory : AssessmentFactory {
         super.init()
         
         self.nodeSerializer.add(GoNoGoStepObject())
-        self.nodeSerializer.add(TrailMakingStepObject(identifier: "trailmaking"))
+        self.nodeSerializer.add(TrailmakingStepObject())
         
         self.resultSerializer.add(GoNoGoResultObject())
+        self.resultSerializer.add(TrailmakingResultObject())
     }
     
     override func resourceBundle(for bundleInfo: DecodableBundleInfo, from decoder: Decoder) -> ResourceBundle? {
@@ -88,12 +89,3 @@ final class BiAffectFactory : AssessmentFactory {
     }
 }
 
-extension SerializableNodeType {
-    static let trailmaking: SerializableNodeType = "trailmaking"
-}
-
-final class TrailMakingStepObject : AbstractStepObject, Encodable {
-    override class func defaultType() -> SerializableNodeType {
-        .trailmaking
-    }
-}

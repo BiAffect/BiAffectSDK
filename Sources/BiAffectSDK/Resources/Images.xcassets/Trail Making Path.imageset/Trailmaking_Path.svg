@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+  <ellipse style="stroke: rgb(0, 0, 0); fill: none;" cx="23.453" cy="23.16" rx="22" ry="22"/>
+  <text style="fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 32px; white-space: pre;" x="13.257" y="34.359">1</text>
+  <ellipse style="stroke: rgb(0, 0, 0); fill: none;" cx="75.385" cy="74.328" rx="22" ry="22"/>
+  <text style="fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 32px; white-space: pre;" x="65.189" y="85.527">A</text>
+  <ellipse style="stroke: rgb(0, 0, 0); fill: none;" cx="175.374" cy="30.328" rx="22" ry="22"/>
+  <text style="fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 32px; stroke-dasharray: 2px; white-space: pre;" x="165.178" y="41.527">2</text>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-dasharray: 2px;" x1="37.83" y1="39.778" x2="58.401" y2="60.326"/>
+  <line style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0); stroke-dasharray: 2px;" x1="94.889" y1="63.877" x2="156.145" y2="41.157"/>
+</svg>

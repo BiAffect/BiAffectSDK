@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF29AC9F2862A8AE002A42AE /* TrailmakingStepObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29AC9E2862A8AE002A42AE /* TrailmakingStepObject.swift */; };
+		FF29ACA12862A92E002A42AE /* TrailmakingResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29ACA02862A92E002A42AE /* TrailmakingResultObject.swift */; };
+		FF29ACA42862BFBA002A42AE /* TrailmakingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29ACA32862BFBA002A42AE /* TrailmakingPoint.swift */; };
+		FFA2306128613D1500120300 /* TrailmakingStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA2306028613D1500120300 /* TrailmakingStepView.swift */; };
 		FFD8C45C285C30B5000FC950 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C45E285C30B5000FC950 /* Localizable.strings */; };
 		FFD8C45F285C30FC000FC950 /* Trail_Making.json in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C461285C30FC000FC950 /* Trail_Making.json */; };
 		FFD8C462285C3108000FC950 /* Go-No-Go.json in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C464285C3108000FC950 /* Go-No-Go.json */; };
@@ -30,6 +34,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FF29AC9E2862A8AE002A42AE /* TrailmakingStepObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailmakingStepObject.swift; sourceTree = "<group>"; };
+		FF29ACA02862A92E002A42AE /* TrailmakingResultObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailmakingResultObject.swift; sourceTree = "<group>"; };
+		FF29ACA32862BFBA002A42AE /* TrailmakingPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailmakingPoint.swift; sourceTree = "<group>"; };
+		FFA2306028613D1500120300 /* TrailmakingStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailmakingStepView.swift; sourceTree = "<group>"; };
 		FFD8C458285BC2D3000FC950 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FFD8C45D285C30B5000FC950 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FFD8C460285C30FC000FC950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/Trail_Making.json; sourceTree = "<group>"; };
@@ -75,6 +83,17 @@
 				FFD8C469285D6FF9000FC950 /* ShakeMotionSensor.swift */,
 			);
 			path = GoNoGo;
+			sourceTree = "<group>";
+		};
+		FFA2305F28613CF300120300 /* Trailmaking */ = {
+			isa = PBXGroup;
+			children = (
+				FFA2306028613D1500120300 /* TrailmakingStepView.swift */,
+				FF29AC9E2862A8AE002A42AE /* TrailmakingStepObject.swift */,
+				FF29ACA02862A92E002A42AE /* TrailmakingResultObject.swift */,
+				FF29ACA32862BFBA002A42AE /* TrailmakingPoint.swift */,
+			);
+			path = Trailmaking;
 			sourceTree = "<group>";
 		};
 		FFD8C465285C3135000FC950 /* Strings */ = {
@@ -136,6 +155,7 @@
 		FFE2A6B9285BA9A8009805C0 /* BiAffectSDK */ = {
 			isa = PBXGroup;
 			children = (
+				FFA2305F28613CF300120300 /* Trailmaking */,
 				FFD8C46B285D704A000FC950 /* Utils */,
 				FF736D93285BBFC800E3E1A2 /* GoNoGo */,
 				FFE2A6BA285BA9A8009805C0 /* Resources */,
@@ -265,14 +285,18 @@
 			files = (
 				FFD8C46F285D70AB000FC950 /* Task+Utils.swift in Sources */,
 				FFE2A6CE285BA9A8009805C0 /* GoNoGoStepView.swift in Sources */,
+				FF29ACA42862BFBA002A42AE /* TrailmakingPoint.swift in Sources */,
 				FFE2A6CD285BA9A8009805C0 /* BiAffectAssessmentView.swift in Sources */,
 				FFE2A6AE285BA8AA009805C0 /* ContentView.swift in Sources */,
 				FFE2A6CA285BA9A8009805C0 /* GoNoGoResultObject.swift in Sources */,
 				FFD8C46D285D7065000FC950 /* AnimatedShape.swift in Sources */,
 				FFE2A6CC285BA9A8009805C0 /* GoNoGoStepObject.swift in Sources */,
 				FFE2A6CB285BA9A8009805C0 /* BiAffectSDK.swift in Sources */,
+				FF29AC9F2862A8AE002A42AE /* TrailmakingStepObject.swift in Sources */,
 				FFD8C46A285D6FF9000FC950 /* ShakeMotionSensor.swift in Sources */,
 				FFE2A6AC285BA8AA009805C0 /* BiAffectViewBuilderApp.swift in Sources */,
+				FFA2306128613D1500120300 /* TrailmakingStepView.swift in Sources */,
+				FF29ACA12862A92E002A42AE /* TrailmakingResultObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,6 +35,8 @@ import AssessmentModel
 import AssessmentModelUI
 import JsonModel
 
+let kBaseJsonSchemaURL = URL(string: "https://biaffect.github.io/biaffectsdk/schemas/v1/")!
+
 public final class BiAffectSDK {
     public class func setup() {
         #if os(iOS)

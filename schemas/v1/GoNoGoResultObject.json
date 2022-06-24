@@ -1,0 +1,129 @@
+{
+    "$id": "https://biaffect.github.io/biaffectsdk/schemas/v1/GoNoGoResultObject.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "GoNoGoResultObject",
+    "description": "",
+    "definitions": {
+        "Response": {
+            "$id": "#Response",
+            "type": "object",
+            "title": "Response",
+            "description": "",
+            "properties": {
+                "timestamp": {
+                    "type": "number",
+                    "description": "The timestamp is the system uptime for when the stimulus was displayed.\nA false start where the participant shakes the device while waiting for\nthe stimulus to be displayed is indicated by a value of zero."
+                },
+                "resetTimestamp": {
+                    "type": "number",
+                    "description": "The reset timestamp is the system uptime for when go-no-go attempt is\nreset (ie. started)."
+                },
+                "timeToThreshold": {
+                    "type": "number",
+                    "description": "Time from when the stimulus occurred to the threshold being reached.\nFor a timeout or false start, this value will be zero."
+                },
+                "go": {
+                    "type": "boolean",
+                    "description": "YES if a go test and NO if a no go test."
+                },
+                "incorrect": {
+                    "type": "boolean",
+                    "description": "Set to YES if the incorrect response is given --i.e shaken for no go test or not shaken for a go test."
+                },
+                "samples": {
+                    "type": "array",
+                    "description": "A collection of samples.",
+                    "items": {
+                        "$ref": "#/definitions/Sample"
+                    }
+                }
+            },
+            "required": [
+                "timestamp",
+                "resetTimestamp",
+                "timeToThreshold",
+                "go",
+                "incorrect"
+            ],
+            "additionalProperties": false,
+            "examples": [{
+                "timestamp": 0,
+                "resetTimestamp": 120492.08100000001,
+                "timeToThreshold": 0.10000000000000001,
+                "go": true,
+                "incorrect": true
+            }]
+        },
+        "Sample": {
+            "$id": "#Sample",
+            "type": "object",
+            "title": "Sample",
+            "description": "",
+            "properties": {
+                "timestamp": {
+                    "type": "number",
+                    "description": "The timestamp is relative to the time the stimulus was displayed, if there was a stimulus.\nIf the participant triggered a false start, then the timestamps are equal to the system uptime."
+                },
+                "vectorMagnitude": {
+                    "type": "number",
+                    "description": "Magnitude of the acceleration event."
+                }
+            },
+            "required": [
+                "timestamp",
+                "vectorMagnitude"
+            ],
+            "additionalProperties": false,
+            "examples": [{
+                "timestamp": 0,
+                "vectorMagnitude": 0
+            }]
+        }
+    },
+    "properties": {
+        "type": {
+            "const": "gonogo"
+        },
+        "identifier": {
+            "type": "string"
+        },
+        "startDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "endDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "startUptime": {
+            "type": "number",
+            "description": "The system clock uptime when the recorder was started."
+        },
+        "results": {
+            "type": "array",
+            "description": "The list of motion samples for this run of the test.",
+            "items": {
+                "$ref": "#/definitions/Response"
+            }
+        },
+        "motionError": {
+            "$ref": "https://sage-bionetworks.github.io/mobile-client-json/schemas/v2/ResultData.json#ErrorResultObject",
+            "description": "The error returned when failed to use the motion sensors."
+        }
+    },
+    "required": [
+        "type",
+        "identifier",
+        "startDate"
+    ],
+    "additionalProperties": false,
+    "examples": [{
+        "type": "gonogo",
+        "identifier": "gonogo",
+        "startDate": "2022-06-24T13:54:19.766-07:00",
+        "results": [
+
+        ]
+    }]
+}

@@ -78,18 +78,26 @@ public final class TrailmakingResultObject : MultiplatformResultData, Serializab
     }
 }
 
-extension TrailmakingResultObject {
-    convenience init() {
-        self.init(identifier: SerializableResultType.trailmaking.rawValue)
-    }
-}
-
 extension TrailmakingResultObject : FileArchivable {
     public func buildArchivableFileData(at stepPath: String?) throws -> (fileInfo: FileInfo, data: Data)? {
         let data = try self.jsonEncodedData()
-        // TODO: syoung 06/14/2022 Build JSON schema and include in this repo
         let fileInfo = FileInfo(filename: "trailmaking.json", timestamp: self.endDate, contentType: "application/json", identifier: self.identifier, stepPath: stepPath, jsonSchema: nil)
         return (fileInfo, data)
+    }
+}
+
+extension TrailmakingResultObject : DocumentableRootObject {
+    
+    public convenience init() {
+        self.init(identifier: SerializableResultType.trailmaking.rawValue)
+    }
+
+    public var jsonSchema: URL {
+        URL(string: "\(self.className).json", relativeTo: kBaseJsonSchemaURL)!
+    }
+
+    public var documentDescription: String? {
+        "The archived result of a single trailmaking test step."
     }
 }
 
@@ -134,7 +142,7 @@ extension TrailmakingResultObject : DocumentableStruct {
                             "The number of errors generated during the test.")
         case .points:
             return .init(propertyType: .referenceArray(TrailmakingPoint.documentableType()), propertyDescription:
-                            "The list of motion samples for this run of the test.")
+                            "An array of all the trail points displayed for this run of the test.")
         }
     }
     

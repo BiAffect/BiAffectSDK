@@ -88,18 +88,26 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
     }
 }
 
-extension GoNoGoResultObject {
-    convenience init() {
-        self.init(identifier: SerializableResultType.gonogo.rawValue)
-    }
-}
-
 extension GoNoGoResultObject : FileArchivable {
     public func buildArchivableFileData(at stepPath: String?) throws -> (fileInfo: FileInfo, data: Data)? {
         let data = try self.jsonEncodedData()
-        // TODO: syoung 06/14/2022 Build JSON schema and include in this repo
         let fileInfo = FileInfo(filename: "gonogo.json", timestamp: self.endDate, contentType: "application/json", identifier: self.identifier, stepPath: stepPath, jsonSchema: nil)
         return (fileInfo, data)
+    }
+}
+
+extension GoNoGoResultObject : DocumentableRootObject {
+    
+    public convenience init() {
+        self.init(identifier: SerializableResultType.gonogo.rawValue)
+    }
+
+    public var jsonSchema: URL {
+        URL(string: "\(self.className).json", relativeTo: kBaseJsonSchemaURL)!
+    }
+
+    public var documentDescription: String? {
+        "The archived result of a single go-no-go test step."
     }
 }
 

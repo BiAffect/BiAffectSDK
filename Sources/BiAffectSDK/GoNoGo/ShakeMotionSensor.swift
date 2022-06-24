@@ -79,7 +79,7 @@ class ShakeMotionSensor : ObservableObject {
         }
     }
     
-    #if canImport(CoreMotion)
+    #if os(iOS)
     
     let motionManager: CMMotionManager = .init()
     
@@ -164,7 +164,7 @@ class ShakeMotionSensor : ObservableObject {
 fileprivate var listenForDeviceShake: Bool = false
 let deviceShaked = PassthroughSubject<TimeInterval, Never>()
 
-#if canImport(UIKit)
+#if os(iOS)
 import UIKit
 
 extension UIWindow {
@@ -174,5 +174,4 @@ extension UIWindow {
         }
      }
 }
-
 #endif

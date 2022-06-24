@@ -231,7 +231,7 @@ final class TrailmakingTests: XCTestCase {
         }
         
         XCTAssertEqual(viewModel.points.count, viewModel.currentIndex)
-        XCTAssertEqual(.finished, viewModel.testState)
+        XCTAssertEqual(.stopping, viewModel.testState)
         XCTAssertNotNil(result.runtime)
         
         guard let responses = result.responses

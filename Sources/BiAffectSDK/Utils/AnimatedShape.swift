@@ -1,6 +1,5 @@
 //
-//  OnboardingView.swift
-//  BiAffectPreview
+//  AnimatedShape.swift
 //
 //  Copyright © 2022 BiAffect. All rights reserved.
 //
@@ -32,25 +31,58 @@
 //
 
 import SwiftUI
-import BridgeClientUI
 
-struct OnboardingView: View {
-    @EnvironmentObject var bridgeManager: SingleStudyAppManager
+struct AnimatedShape<Content : Shape> : View {
+    let shape: Content
+    let color: Color
+    let lineCape: CGLineCap
     
+    @State private var percentage: CGFloat = .zero
+
     var body: some View {
-        // Currently, there is nothing done during onboarding. This would be a custom view that
-        // is shown to the participant once they have logged in such as privacy policies and
-        // permissions that are set up before launching the main app.
-        LaunchView()
+        shape
+            .trim(from: .zero, to: percentage)
+            .stroke(color, style: .init(lineWidth: 12, lineCap: lineCape))
+            .animation(.easeOut)
             .onAppear {
-                bridgeManager.isOnboardingFinished = true
+                percentage = 1.0
             }
     }
 }
 
-struct OnboardingView_Previews: PreviewProvider {
-    static var previews: some View {
-        OnboardingView()
-            .environmentObject(SingleStudyAppManager(appId: kPreviewStudyId))
+struct CheckmarkView : View {
+    var body: some View {
+        AnimatedShape(shape: Checkmark(), color: .white, lineCape: .round)
+    }
+    
+    struct Checkmark: Shape {
+        func path(in rect: CGRect) -> Path {
+            let width = rect.size.width
+            let height = rect.size.height
+            var path = Path()
+            path.move(to: .init(x: 0.2 * width, y: 0.5 * height))
+            path.addLine(to: .init(x: 0.4 * width, y: 0.75 * height))
+            path.addQuadCurve(to: .init(x: 0.8 * width, y: 0.3 * height), control: .init(x: 0.5 * width, y: 0.45 * height))
+            return path
+        }
+    }
+}
+
+struct XmarkView : View {
+    var body: some View {
+        AnimatedShape(shape: Xmark(), color: .red, lineCape: .butt)
+    }
+
+    struct Xmark: Shape {
+        func path(in rect: CGRect) -> Path {
+            let width = rect.size.width
+            let height = rect.size.height
+            var path = Path()
+            path.move(to: .init(x: 0.1 * width, y: 0.1 * height))
+            path.addLine(to: .init(x: 0.85 * width, y: 0.9 * height))
+            path.move(to: .init(x: 0.85 * width, y: 0.1 * height))
+            path.addQuadCurve(to: .init(x: 0.1 * width, y: 0.9 * height), control: .init(x: 0.4 * width, y: 0.4 * height))
+            return path
+        }
     }
 }

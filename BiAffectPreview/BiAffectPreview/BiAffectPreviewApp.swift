@@ -36,6 +36,7 @@ import BridgeClient
 import BridgeClientUI
 import MobilePassiveData
 import PrivateKeys
+import BiAffectSDK
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     

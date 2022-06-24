@@ -1,7 +1,7 @@
 //
-//  LaunchView.swift
+//  Task+Utils.swift
 //
-//  Copyright © 2021 Sage Bionetworks. All rights reserved.
+//  Copyright © 2022 BiAffect. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -30,18 +30,17 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-import SwiftUI
+import Foundation
 
-struct LaunchView: View {
-    var body: some View {
-        Image("Launching")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-    }
-}
-
-struct LaunchView_Previews: PreviewProvider {
-    static var previews: some View {
-        LaunchView()
+extension Task where Success == Never, Failure == Never {
+    static func wait(seconds: TimeInterval) async -> Bool {
+        let duration = UInt64(seconds * 1_000_000_000)
+        do {
+            try await Task.sleep(nanoseconds: duration)
+            return true
+        }
+        catch {
+            return false
+        }
     }
 }

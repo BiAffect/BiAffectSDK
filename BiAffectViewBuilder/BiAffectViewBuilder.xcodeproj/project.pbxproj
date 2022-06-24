@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FFD8C45C285C30B5000FC950 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C45E285C30B5000FC950 /* Localizable.strings */; };
+		FFD8C45F285C30FC000FC950 /* Trail_Making.json in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C461285C30FC000FC950 /* Trail_Making.json */; };
+		FFD8C462285C3108000FC950 /* Go-No-Go.json in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C464285C3108000FC950 /* Go-No-Go.json */; };
+		FFD8C46A285D6FF9000FC950 /* ShakeMotionSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD8C469285D6FF9000FC950 /* ShakeMotionSensor.swift */; };
+		FFD8C46D285D7065000FC950 /* AnimatedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD8C46C285D7065000FC950 /* AnimatedShape.swift */; };
+		FFD8C46F285D70AB000FC950 /* Task+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD8C46E285D70AB000FC950 /* Task+Utils.swift */; };
+		FFE2A6AC285BA8AA009805C0 /* BiAffectViewBuilderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6AB285BA8AA009805C0 /* BiAffectViewBuilderApp.swift */; };
+		FFE2A6AE285BA8AA009805C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6AD285BA8AA009805C0 /* ContentView.swift */; };
+		FFE2A6B0285BA8AC009805C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE2A6AF285BA8AC009805C0 /* Assets.xcassets */; };
+		FFE2A6B3285BA8AC009805C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE2A6B2285BA8AC009805C0 /* Preview Assets.xcassets */; };
+		FFE2A6C9285BA9A8009805C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE2A6BE285BA9A8009805C0 /* Images.xcassets */; };
+		FFE2A6CA285BA9A8009805C0 /* GoNoGoResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C0285BA9A8009805C0 /* GoNoGoResultObject.swift */; };
+		FFE2A6CB285BA9A8009805C0 /* BiAffectSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C1285BA9A8009805C0 /* BiAffectSDK.swift */; };
+		FFE2A6CC285BA9A8009805C0 /* GoNoGoStepObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C3285BA9A8009805C0 /* GoNoGoStepObject.swift */; };
+		FFE2A6CD285BA9A8009805C0 /* BiAffectAssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C5285BA9A8009805C0 /* BiAffectAssessmentView.swift */; };
+		FFE2A6CE285BA9A8009805C0 /* GoNoGoStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C6285BA9A8009805C0 /* GoNoGoStepView.swift */; };
+		FFE2A6D3285BAA9B009805C0 /* MobilePassiveData in Frameworks */ = {isa = PBXBuildFile; productRef = FFE2A6D2285BAA9B009805C0 /* MobilePassiveData */; };
+		FFE2A6D5285BAA9B009805C0 /* MotionSensor in Frameworks */ = {isa = PBXBuildFile; productRef = FFE2A6D4285BAA9B009805C0 /* MotionSensor */; };
+		FFE2A6DB285BAB4C009805C0 /* AssessmentModel in Frameworks */ = {isa = PBXBuildFile; productRef = FFE2A6DA285BAB4C009805C0 /* AssessmentModel */; };
+		FFE2A6DD285BAB4C009805C0 /* AssessmentModelUI in Frameworks */ = {isa = PBXBuildFile; productRef = FFE2A6DC285BAB4C009805C0 /* AssessmentModelUI */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FFD8C458285BC2D3000FC950 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FFD8C45D285C30B5000FC950 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		FFD8C460285C30FC000FC950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/Trail_Making.json; sourceTree = "<group>"; };
+		FFD8C463285C3108000FC950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = "Base.lproj/Go-No-Go.json"; sourceTree = "<group>"; };
+		FFD8C469285D6FF9000FC950 /* ShakeMotionSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeMotionSensor.swift; sourceTree = "<group>"; };
+		FFD8C46C285D7065000FC950 /* AnimatedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedShape.swift; sourceTree = "<group>"; };
+		FFD8C46E285D70AB000FC950 /* Task+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Utils.swift"; sourceTree = "<group>"; };
+		FFE2A6A8285BA8AA009805C0 /* BiAffectViewBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiAffectViewBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFE2A6AB285BA8AA009805C0 /* BiAffectViewBuilderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiAffectViewBuilderApp.swift; sourceTree = "<group>"; };
+		FFE2A6AD285BA8AA009805C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FFE2A6AF285BA8AC009805C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FFE2A6B2285BA8AC009805C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FFE2A6BE285BA9A8009805C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		FFE2A6C0285BA9A8009805C0 /* GoNoGoResultObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNoGoResultObject.swift; sourceTree = "<group>"; };
+		FFE2A6C1285BA9A8009805C0 /* BiAffectSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiAffectSDK.swift; sourceTree = "<group>"; };
+		FFE2A6C3285BA9A8009805C0 /* GoNoGoStepObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNoGoStepObject.swift; sourceTree = "<group>"; };
+		FFE2A6C5285BA9A8009805C0 /* BiAffectAssessmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiAffectAssessmentView.swift; sourceTree = "<group>"; };
+		FFE2A6C6285BA9A8009805C0 /* GoNoGoStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNoGoStepView.swift; sourceTree = "<group>"; };
+		FFE2A6D0285BA9FE009805C0 /* AssessmentModelKMM */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AssessmentModelKMM; path = ../../AssessmentModelKMM; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FFE2A6A5285BA8AA009805C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFE2A6D5285BAA9B009805C0 /* MotionSensor in Frameworks */,
+				FFE2A6DB285BAB4C009805C0 /* AssessmentModel in Frameworks */,
+				FFE2A6DD285BAB4C009805C0 /* AssessmentModelUI in Frameworks */,
+				FFE2A6D3285BAA9B009805C0 /* MobilePassiveData in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF736D93285BBFC800E3E1A2 /* GoNoGo */ = {
+			isa = PBXGroup;
+			children = (
+				FFE2A6C6285BA9A8009805C0 /* GoNoGoStepView.swift */,
+				FFE2A6C0285BA9A8009805C0 /* GoNoGoResultObject.swift */,
+				FFE2A6C3285BA9A8009805C0 /* GoNoGoStepObject.swift */,
+				FFD8C469285D6FF9000FC950 /* ShakeMotionSensor.swift */,
+			);
+			path = GoNoGo;
+			sourceTree = "<group>";
+		};
+		FFD8C465285C3135000FC950 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				FFD8C45E285C30B5000FC950 /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		FFD8C46B285D704A000FC950 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FFD8C46C285D7065000FC950 /* AnimatedShape.swift */,
+				FFD8C46E285D70AB000FC950 /* Task+Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		FFE2A69F285BA8AA009805C0 = {
+			isa = PBXGroup;
+			children = (
+				FFD8C458285BC2D3000FC950 /* README.md */,
+				FFE2A6CF285BA9FE009805C0 /* Packages */,
+				FFE2A6AA285BA8AA009805C0 /* BiAffectViewBuilder */,
+				FFE2A6A9285BA8AA009805C0 /* Products */,
+				FFE2A6D9285BAB4C009805C0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FFE2A6A9285BA8AA009805C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FFE2A6A8285BA8AA009805C0 /* BiAffectViewBuilder.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FFE2A6AA285BA8AA009805C0 /* BiAffectViewBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				FFE2A6B9285BA9A8009805C0 /* BiAffectSDK */,
+				FFE2A6AB285BA8AA009805C0 /* BiAffectViewBuilderApp.swift */,
+				FFE2A6AD285BA8AA009805C0 /* ContentView.swift */,
+				FFE2A6AF285BA8AC009805C0 /* Assets.xcassets */,
+				FFE2A6B1285BA8AC009805C0 /* Preview Content */,
+			);
+			path = BiAffectViewBuilder;
+			sourceTree = "<group>";
+		};
+		FFE2A6B1285BA8AC009805C0 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FFE2A6B2285BA8AC009805C0 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FFE2A6B9285BA9A8009805C0 /* BiAffectSDK */ = {
+			isa = PBXGroup;
+			children = (
+				FFD8C46B285D704A000FC950 /* Utils */,
+				FF736D93285BBFC800E3E1A2 /* GoNoGo */,
+				FFE2A6BA285BA9A8009805C0 /* Resources */,
+				FFE2A6C1285BA9A8009805C0 /* BiAffectSDK.swift */,
+				FFE2A6C5285BA9A8009805C0 /* BiAffectAssessmentView.swift */,
+			);
+			name = BiAffectSDK;
+			path = ../../Sources/BiAffectSDK;
+			sourceTree = "<group>";
+		};
+		FFE2A6BA285BA9A8009805C0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FFD8C465285C3135000FC950 /* Strings */,
+				FFE2A6BB285BA9A8009805C0 /* Json */,
+				FFE2A6BE285BA9A8009805C0 /* Images.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FFE2A6BB285BA9A8009805C0 /* Json */ = {
+			isa = PBXGroup;
+			children = (
+				FFD8C461285C30FC000FC950 /* Trail_Making.json */,
+				FFD8C464285C3108000FC950 /* Go-No-Go.json */,
+			);
+			path = Json;
+			sourceTree = "<group>";
+		};
+		FFE2A6CF285BA9FE009805C0 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				FFE2A6D0285BA9FE009805C0 /* AssessmentModelKMM */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		FFE2A6D9285BAB4C009805C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FFE2A6A7285BA8AA009805C0 /* BiAffectViewBuilder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFE2A6B6285BA8AC009805C0 /* Build configuration list for PBXNativeTarget "BiAffectViewBuilder" */;
+			buildPhases = (
+				FFE2A6A4285BA8AA009805C0 /* Sources */,
+				FFE2A6A5285BA8AA009805C0 /* Frameworks */,
+				FFE2A6A6285BA8AA009805C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BiAffectViewBuilder;
+			packageProductDependencies = (
+				FFE2A6D2285BAA9B009805C0 /* MobilePassiveData */,
+				FFE2A6D4285BAA9B009805C0 /* MotionSensor */,
+				FFE2A6DA285BAB4C009805C0 /* AssessmentModel */,
+				FFE2A6DC285BAB4C009805C0 /* AssessmentModelUI */,
+			);
+			productName = BiAffectViewBuilder;
+			productReference = FFE2A6A8285BA8AA009805C0 /* BiAffectViewBuilder.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FFE2A6A0285BA8AA009805C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					FFE2A6A7285BA8AA009805C0 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = FFE2A6A3285BA8AA009805C0 /* Build configuration list for PBXProject "BiAffectViewBuilder" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FFE2A69F285BA8AA009805C0;
+			packageReferences = (
+				FFE2A6D1285BAA9B009805C0 /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */,
+			);
+			productRefGroup = FFE2A6A9285BA8AA009805C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FFE2A6A7285BA8AA009805C0 /* BiAffectViewBuilder */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FFE2A6A6285BA8AA009805C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFD8C462285C3108000FC950 /* Go-No-Go.json in Resources */,
+				FFD8C45C285C30B5000FC950 /* Localizable.strings in Resources */,
+				FFE2A6C9285BA9A8009805C0 /* Images.xcassets in Resources */,
+				FFD8C45F285C30FC000FC950 /* Trail_Making.json in Resources */,
+				FFE2A6B3285BA8AC009805C0 /* Preview Assets.xcassets in Resources */,
+				FFE2A6B0285BA8AC009805C0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FFE2A6A4285BA8AA009805C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFD8C46F285D70AB000FC950 /* Task+Utils.swift in Sources */,
+				FFE2A6CE285BA9A8009805C0 /* GoNoGoStepView.swift in Sources */,
+				FFE2A6CD285BA9A8009805C0 /* BiAffectAssessmentView.swift in Sources */,
+				FFE2A6AE285BA8AA009805C0 /* ContentView.swift in Sources */,
+				FFE2A6CA285BA9A8009805C0 /* GoNoGoResultObject.swift in Sources */,
+				FFD8C46D285D7065000FC950 /* AnimatedShape.swift in Sources */,
+				FFE2A6CC285BA9A8009805C0 /* GoNoGoStepObject.swift in Sources */,
+				FFE2A6CB285BA9A8009805C0 /* BiAffectSDK.swift in Sources */,
+				FFD8C46A285D6FF9000FC950 /* ShakeMotionSensor.swift in Sources */,
+				FFE2A6AC285BA8AA009805C0 /* BiAffectViewBuilderApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FFD8C45E285C30B5000FC950 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFD8C45D285C30B5000FC950 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		FFD8C461285C30FC000FC950 /* Trail_Making.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFD8C460285C30FC000FC950 /* Base */,
+			);
+			name = Trail_Making.json;
+			sourceTree = "<group>";
+		};
+		FFD8C464285C3108000FC950 /* Go-No-Go.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFD8C463285C3108000FC950 /* Base */,
+			);
+			name = "Go-No-Go.json";
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FFE2A6B4285BA8AC009805C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FFE2A6B5285BA8AC009805C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FFE2A6B7285BA8AC009805C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BiAffectViewBuilder/Preview Content\"";
+				DEVELOPMENT_TEAM = KA9Z8R6M6K;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uic.psychiatry.BiAffectViewBuilder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FFE2A6B8285BA8AC009805C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"BiAffectViewBuilder/Preview Content\"";
+				DEVELOPMENT_TEAM = KA9Z8R6M6K;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.uic.psychiatry.BiAffectViewBuilder;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FFE2A6A3285BA8AA009805C0 /* Build configuration list for PBXProject "BiAffectViewBuilder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFE2A6B4285BA8AC009805C0 /* Debug */,
+				FFE2A6B5285BA8AC009805C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FFE2A6B6285BA8AC009805C0 /* Build configuration list for PBXNativeTarget "BiAffectViewBuilder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFE2A6B7285BA8AC009805C0 /* Debug */,
+				FFE2A6B8285BA8AC009805C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FFE2A6D1285BAA9B009805C0 /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sage-Bionetworks/MobilePassiveData-SDK.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FFE2A6D2285BAA9B009805C0 /* MobilePassiveData */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFE2A6D1285BAA9B009805C0 /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */;
+			productName = MobilePassiveData;
+		};
+		FFE2A6D4285BAA9B009805C0 /* MotionSensor */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFE2A6D1285BAA9B009805C0 /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */;
+			productName = MotionSensor;
+		};
+		FFE2A6DA285BAB4C009805C0 /* AssessmentModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AssessmentModel;
+		};
+		FFE2A6DC285BAB4C009805C0 /* AssessmentModelUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AssessmentModelUI;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = FFE2A6A0285BA8AA009805C0 /* Project object */;
+}

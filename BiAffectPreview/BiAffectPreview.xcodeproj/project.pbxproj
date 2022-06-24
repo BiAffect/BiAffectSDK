@@ -11,43 +11,33 @@
 		FF069A7A28505D20001AE136 /* MotionSensor in Frameworks */ = {isa = PBXBuildFile; productRef = FF069A7928505D20001AE136 /* MotionSensor */; };
 		FF069A7D28505D3A001AE136 /* AssessmentModel in Frameworks */ = {isa = PBXBuildFile; productRef = FF069A7C28505D3A001AE136 /* AssessmentModel */; };
 		FF069A7F28505D3A001AE136 /* AssessmentModelUI in Frameworks */ = {isa = PBXBuildFile; productRef = FF069A7E28505D3A001AE136 /* AssessmentModelUI */; };
-		FF069A81285252F7001AE136 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FF069A80285252F6001AE136 /* README.md */; };
+		FF14089928610A2000BA4CB5 /* BridgeClient in Frameworks */ = {isa = PBXBuildFile; productRef = FF14089828610A2000BA4CB5 /* BridgeClient */; };
 		FF8C8C3C284FB762008DCBB4 /* BiAffectPreviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8C8C3B284FB762008DCBB4 /* BiAffectPreviewApp.swift */; };
 		FF8C8C3E284FB762008DCBB4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8C8C3D284FB762008DCBB4 /* ContentView.swift */; };
 		FF8C8C40284FB765008DCBB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF8C8C3F284FB765008DCBB4 /* Assets.xcassets */; };
 		FF8C8C43284FB765008DCBB4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF8C8C42284FB765008DCBB4 /* Preview Assets.xcassets */; };
-		FFB9645B2852752F000BF8CB /* BridgeClient in Frameworks */ = {isa = PBXBuildFile; productRef = FFB9645A2852752F000BF8CB /* BridgeClient */; };
-		FFBF8B89284FBDC800D0FDBA /* Trail_Making.json in Resources */ = {isa = PBXBuildFile; fileRef = FFBF8B85284FBDC700D0FDBA /* Trail_Making.json */; };
-		FFBF8B8A284FBDC800D0FDBA /* Go-No-Go.json in Resources */ = {isa = PBXBuildFile; fileRef = FFBF8B86284FBDC700D0FDBA /* Go-No-Go.json */; };
-		FFBF8B8B284FBDC800D0FDBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFBF8B87284FBDC700D0FDBA /* Images.xcassets */; };
-		FFBF8B8C284FBDC800D0FDBA /* BiAffectSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF8B88284FBDC700D0FDBA /* BiAffectSDK.swift */; };
 		FFBF8B8F284FBECA00D0FDBA /* PrivateKeys in Frameworks */ = {isa = PBXBuildFile; productRef = FFBF8B8E284FBECA00D0FDBA /* PrivateKeys */; };
 		FFBF8BAE284FC49000D0FDBA /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFBF8BAD284FC49000D0FDBA /* Launch.storyboard */; };
 		FFBF8BBE284FC58200D0FDBA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF8BBD284FC58200D0FDBA /* LoginView.swift */; };
 		FFBF8BC0284FC5A700D0FDBA /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF8BBF284FC5A700D0FDBA /* OnboardingView.swift */; };
 		FFBF8BC4284FC5D100D0FDBA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF8BC3284FC5D100D0FDBA /* MainView.swift */; };
 		FFBF8BC5284FC60000D0FDBA /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF8BC2284FC5BF00D0FDBA /* LaunchView.swift */; };
-		FFBF8BC9284FFADC00D0FDBA /* BiAffectAssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBF8BC8284FFADC00D0FDBA /* BiAffectAssessmentView.swift */; };
+		FFD8C457285BC18B000FC950 /* BiAffectSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FFD8C456285BC18B000FC950 /* BiAffectSDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FF069A80285252F6001AE136 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FF8C8C38284FB762008DCBB4 /* BiAffectPreview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiAffectPreview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF8C8C3B284FB762008DCBB4 /* BiAffectPreviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiAffectPreviewApp.swift; sourceTree = "<group>"; };
 		FF8C8C3D284FB762008DCBB4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FF8C8C3F284FB765008DCBB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF8C8C42284FB765008DCBB4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FFBF8B85284FBDC700D0FDBA /* Trail_Making.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Trail_Making.json; sourceTree = "<group>"; };
-		FFBF8B86284FBDC700D0FDBA /* Go-No-Go.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Go-No-Go.json"; sourceTree = "<group>"; };
-		FFBF8B87284FBDC700D0FDBA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		FFBF8B88284FBDC700D0FDBA /* BiAffectSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiAffectSDK.swift; sourceTree = "<group>"; };
 		FFBF8BAD284FC49000D0FDBA /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Launch.storyboard; path = "../../../MobileToolboxApp-iOS/MobileToolboxApp/Resources/Launch.storyboard"; sourceTree = "<group>"; };
 		FFBF8BBD284FC58200D0FDBA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FFBF8BBF284FC5A700D0FDBA /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		FFBF8BC2284FC5BF00D0FDBA /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		FFBF8BC3284FC5D100D0FDBA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		FFBF8BC6284FCCF000D0FDBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		FFBF8BC8284FFADC00D0FDBA /* BiAffectAssessmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiAffectAssessmentView.swift; sourceTree = "<group>"; };
+		FFD8C455285BC140000FC950 /* BiAffectSDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BiAffectSDK; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFB9645B2852752F000BF8CB /* BridgeClient in Frameworks */,
+				FFD8C457285BC18B000FC950 /* BiAffectSDK in Frameworks */,
+				FF14089928610A2000BA4CB5 /* BridgeClient in Frameworks */,
 				FF069A7A28505D20001AE136 /* MotionSensor in Frameworks */,
 				FF069A7828505D20001AE136 /* MobilePassiveData in Frameworks */,
 				FFBF8B8F284FBECA00D0FDBA /* PrivateKeys in Frameworks */,
@@ -70,7 +61,7 @@
 		FF8C8C2F284FB762008DCBB4 = {
 			isa = PBXGroup;
 			children = (
-				FF069A80285252F6001AE136 /* README.md */,
+				FFE2A68E285827E4009805C0 /* Packages */,
 				FF8C8C3A284FB762008DCBB4 /* BiAffectPreview */,
 				FF8C8C39284FB762008DCBB4 /* Products */,
 				FFBF8BAA284FC18A00D0FDBA /* Frameworks */,
@@ -88,11 +79,10 @@
 		FF8C8C3A284FB762008DCBB4 /* BiAffectPreview */ = {
 			isa = PBXGroup;
 			children = (
+				FFBF8BC1284FC5BE00D0FDBA /* Views */,
 				FFBF8BC6284FCCF000D0FDBA /* Info.plist */,
-				FFBF8B82284FBDC700D0FDBA /* BiAffectSDK */,
 				FF8C8C3B284FB762008DCBB4 /* BiAffectPreviewApp.swift */,
 				FF8C8C3D284FB762008DCBB4 /* ContentView.swift */,
-				FFBF8BC1284FC5BE00D0FDBA /* Views */,
 				FFBF8BAD284FC49000D0FDBA /* Launch.storyboard */,
 				FF8C8C3F284FB765008DCBB4 /* Assets.xcassets */,
 				FF8C8C41284FB765008DCBB4 /* Preview Content */,
@@ -106,35 +96,6 @@
 				FF8C8C42284FB765008DCBB4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		FFBF8B82284FBDC700D0FDBA /* BiAffectSDK */ = {
-			isa = PBXGroup;
-			children = (
-				FFBF8B83284FBDC700D0FDBA /* Resources */,
-				FFBF8BC7284FFAB500D0FDBA /* Views */,
-				FFBF8B88284FBDC700D0FDBA /* BiAffectSDK.swift */,
-			);
-			name = BiAffectSDK;
-			path = ../../Sources/BiAffectSDK;
-			sourceTree = "<group>";
-		};
-		FFBF8B83284FBDC700D0FDBA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				FFBF8B84284FBDC700D0FDBA /* Json */,
-				FFBF8B87284FBDC700D0FDBA /* Images.xcassets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		FFBF8B84284FBDC700D0FDBA /* Json */ = {
-			isa = PBXGroup;
-			children = (
-				FFBF8B85284FBDC700D0FDBA /* Trail_Making.json */,
-				FFBF8B86284FBDC700D0FDBA /* Go-No-Go.json */,
-			);
-			path = Json;
 			sourceTree = "<group>";
 		};
 		FFBF8BAA284FC18A00D0FDBA /* Frameworks */ = {
@@ -155,12 +116,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		FFBF8BC7284FFAB500D0FDBA /* Views */ = {
+		FFE2A68E285827E4009805C0 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				FFBF8BC8284FFADC00D0FDBA /* BiAffectAssessmentView.swift */,
+				FFD8C455285BC140000FC950 /* BiAffectSDK */,
 			);
-			path = Views;
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,7 +146,8 @@
 				FF069A7928505D20001AE136 /* MotionSensor */,
 				FF069A7C28505D3A001AE136 /* AssessmentModel */,
 				FF069A7E28505D3A001AE136 /* AssessmentModelUI */,
-				FFB9645A2852752F000BF8CB /* BridgeClient */,
+				FFD8C456285BC18B000FC950 /* BiAffectSDK */,
+				FF14089828610A2000BA4CB5 /* BridgeClient */,
 			);
 			productName = BiAffectPreview;
 			productReference = FF8C8C38284FB762008DCBB4 /* BiAffectPreview.app */;
@@ -219,7 +181,7 @@
 				FFBF8B8D284FBECA00D0FDBA /* XCRemoteSwiftPackageReference "BiAffect" */,
 				FF069A7628505D20001AE136 /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */,
 				FF069A7B28505D3A001AE136 /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */,
-				FFB964592852752F000BF8CB /* XCRemoteSwiftPackageReference "BridgeClientKMM" */,
+				FF140897286109C400BA4CB5 /* XCRemoteSwiftPackageReference "BridgeClientKMM" */,
 			);
 			productRefGroup = FF8C8C39284FB762008DCBB4 /* Products */;
 			projectDirPath = "";
@@ -235,10 +197,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFBF8B8A284FBDC800D0FDBA /* Go-No-Go.json in Resources */,
-				FFBF8B8B284FBDC800D0FDBA /* Images.xcassets in Resources */,
-				FFBF8B89284FBDC800D0FDBA /* Trail_Making.json in Resources */,
-				FF069A81285252F7001AE136 /* README.md in Resources */,
 				FF8C8C43284FB765008DCBB4 /* Preview Assets.xcassets in Resources */,
 				FF8C8C40284FB765008DCBB4 /* Assets.xcassets in Resources */,
 				FFBF8BAE284FC49000D0FDBA /* Launch.storyboard in Resources */,
@@ -252,11 +210,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFBF8B8C284FBDC800D0FDBA /* BiAffectSDK.swift in Sources */,
 				FFBF8BC4284FC5D100D0FDBA /* MainView.swift in Sources */,
 				FF8C8C3E284FB762008DCBB4 /* ContentView.swift in Sources */,
 				FFBF8BC5284FC60000D0FDBA /* LaunchView.swift in Sources */,
-				FFBF8BC9284FFADC00D0FDBA /* BiAffectAssessmentView.swift in Sources */,
 				FFBF8BC0284FC5A700D0FDBA /* OnboardingView.swift in Sources */,
 				FFBF8BBE284FC58200D0FDBA /* LoginView.swift in Sources */,
 				FF8C8C3C284FB762008DCBB4 /* BiAffectPreviewApp.swift in Sources */,
@@ -489,15 +445,15 @@
 			repositoryURL = "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.7.1;
+				minimumVersion = 0.7.2;
 			};
 		};
-		FFB964592852752F000BF8CB /* XCRemoteSwiftPackageReference "BridgeClientKMM" */ = {
+		FF140897286109C400BA4CB5 /* XCRemoteSwiftPackageReference "BridgeClientKMM" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sage-Bionetworks/BridgeClientKMM.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.4;
+				minimumVersion = 0.5.5;
 			};
 		};
 		FFBF8B8D284FBECA00D0FDBA /* XCRemoteSwiftPackageReference "BiAffect" */ = {
@@ -531,15 +487,19 @@
 			package = FF069A7B28505D3A001AE136 /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */;
 			productName = AssessmentModelUI;
 		};
-		FFB9645A2852752F000BF8CB /* BridgeClient */ = {
+		FF14089828610A2000BA4CB5 /* BridgeClient */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FFB964592852752F000BF8CB /* XCRemoteSwiftPackageReference "BridgeClientKMM" */;
+			package = FF140897286109C400BA4CB5 /* XCRemoteSwiftPackageReference "BridgeClientKMM" */;
 			productName = BridgeClient;
 		};
 		FFBF8B8E284FBECA00D0FDBA /* PrivateKeys */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FFBF8B8D284FBECA00D0FDBA /* XCRemoteSwiftPackageReference "BiAffect" */;
 			productName = PrivateKeys;
+		};
+		FFD8C456285BC18B000FC950 /* BiAffectSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BiAffectSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

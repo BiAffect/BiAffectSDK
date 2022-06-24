@@ -36,6 +36,16 @@ import AssessmentModelUI
 import JsonModel
 import SharedMobileUI
 
+extension BiAffectAssessmentView : AssessmentDisplayView {
+    public static func instantiateAssessmentState(_ identifier: String, config: Data?, restoredResult: Data?, interruptionHandling: InterruptionHandling?) throws -> AssessmentState {
+        guard let taskId = BiAffectIdentifier(rawValue: identifier)
+        else {
+            throw DecodingError.dataCorrupted(.init(codingPath: [], debugDescription: "This view does not support \(identifier)"))
+        }
+        return try taskId.instantiateAssessmentState()
+    }
+}
+
 /// Displays an assessment built using the views and model objects defined within this library.
 public struct BiAffectAssessmentView : View {
     @StateObject var viewModel: AssessmentViewModel = .init()
@@ -46,45 +56,42 @@ public struct BiAffectAssessmentView : View {
     }
     
     public var body: some View {
-        ZStack(alignment: .top) {
-            stepView(state: assessmentState.currentStep)
-            PauseMenu(viewModel: viewModel)
-                .opacity(assessmentState.showingPauseActions ? 1 : 0)
-                .animation(.easeInOut, value: assessmentState.showingPauseActions)
-        }
-        .environmentObject(assessmentState)
-        .environmentObject(viewModel.navigationViewModel)
-        .onAppear {
-            viewModel.initialize(assessmentState)
-        }
+        AssessmentWrapperView<StepView>(assessmentState, viewModel: viewModel)
     }
     
-    @ViewBuilder
-    private func stepView(state: StepState?) -> some View {
-        if state == nil {
-            ProgressView()
+    struct StepView : View, StepFactoryView {
+        @ObservedObject var state: StepState
+        
+        init(_ state: StepState) {
+            self.state = state
         }
-        else if let step = state?.step as? OverviewStep {
-            TitlePageView(step)
+        
+        var body: some View {
+            if let step = state.step as? CompletionStep {
+                CompletionStepView(step)
+            }
+            else if state.step is GoNoGoStepObject {
+                GoNoGoStepView(state)
+            }
+            else if state.step is CountdownStep {
+                CountdownStepView(state)
+            }
+            else if let nodeState = state as? ContentNodeState {
+                InstructionStepView(nodeState, alignment: .center)
+            }
+            else {
+                debugStepView(state)
+            }
         }
-        else if let step = state?.step as? CompletionStep {
-            CompletionStepView(step)
-        }
-        else if let nodeState = state as? ContentNodeState {
-            InstructionStepView(nodeState)
-        }
-        else {
-            debugStepView(state!)
-        }
-    }
-    
-    @ViewBuilder
-    private func debugStepView(_ state: StepState) -> some View {
-        VStack {
-            Spacer()
-            Text(state.id)
-            Spacer()
-            SurveyNavigationView()
+        
+        @ViewBuilder
+        private func debugStepView(_ state: StepState) -> some View {
+            VStack {
+                Spacer()
+                Text(state.id)
+                Spacer()
+                SurveyNavigationView()
+            }
         }
     }
 }
@@ -104,5 +111,11 @@ struct BiAffectAssessmentPreview : View {
 struct BiAffectAssessmentView_Previews: PreviewProvider {
     static var previews: some View {
         BiAffectAssessmentPreview(.goNoGo)
+    }
+}
+
+extension AssessmentObject {
+    convenience init(previewStep: Step) {
+        self.init(identifier: previewStep.identifier, children: [previewStep])
     }
 }

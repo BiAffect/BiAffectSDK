@@ -24,7 +24,7 @@ let package = Package(
                  from: "1.4.9"),
         .package(name: "AssessmentModel",
                  url: "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git",
-                 from: "0.7.1"),
+                 from: "0.7.4"),
         .package(name: "MobilePassiveData",
                  url: "https://github.com/Sage-Bionetworks/MobilePassiveData-SDK.git",
                  from: "1.2.4"),

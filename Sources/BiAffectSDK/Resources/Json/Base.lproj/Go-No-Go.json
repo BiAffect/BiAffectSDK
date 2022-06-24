@@ -1,40 +1,46 @@
 {
     "type": "assessment",
     "identifier": "Go-No-Go",
-    "versionString": "1.0.0",
     "steps": [{
             "identifier": "introduction",
-            "type": "permission",
-            "permissionType": "motion",
-            "optional": false,
-            "deniedMessage": "Permission to use the motion sensors is required for this assessment.",
+            "type": "overview",
             "title": "Go No Go Test",
             "detail": "This activity evaluates the time it takes for you to respond to a visual cue without making false reactions.",
             "image": {
                 "type": "fetchable",
-                "imageName": "Go-No-Go"
+                "imageName": "Go-No-Go",
+                "placementType": "iconAfter"
+            },
+            "actions" : {
+                "goForward" : {
+                  "buttonTitle" : "Next",
+                  "type" : "default"
+                }
             }
         },
         {
             "identifier": "instructions",
-            "type": "instruction",
+            "type": "overview",
             "title": "Go No Go Test",
             "detail": "Shake the device in any direction as soon as the blue dot appears on screen. Do not shake for a green dot. You will be asked to do this 9 times.",
             "image": {
                 "type": "fetchable",
-                "imageName": "Go-No-Go"
+                "imageName": "Go-No-Go",
+                "placementType": "iconAfter"
             },
             "actions" : {
                 "goForward" : {
                   "buttonTitle" : "Start",
                   "type" : "default"
                 }
-            }
+            },
+            "shouldHideActions" : ["pause"]
         },
         {
             "identifier": "gonogo",
             "type": "gonogo",
-            "detail": "Quickly shake the device when the blue dot appears. Do not shake for a green dot."
+            "detail": "Quickly shake the device when the blue dot appears. Do not shake for a green dot.",
+            "numberOfAttempts": 9
         },
         {
             "identifier": "completion",

@@ -1,7 +1,8 @@
 //
-//  LaunchView.swift
+//  BiAffectViewBuilderApp.swift
+//  BiAffectViewBuilder
 //
-//  Copyright © 2021 Sage Bionetworks. All rights reserved.
+//  Copyright © 2022 BiAffect. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without modification,
 // are permitted provided that the following conditions are met:
@@ -32,16 +33,15 @@
 
 import SwiftUI
 
-struct LaunchView: View {
-    var body: some View {
-        Image("Launching")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
+@main
+struct BiAffectViewBuilderApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
     }
 }
 
-struct LaunchView_Previews: PreviewProvider {
-    static var previews: some View {
-        LaunchView()
-    }
+extension Bundle {
+    static let module: Bundle = .main
 }

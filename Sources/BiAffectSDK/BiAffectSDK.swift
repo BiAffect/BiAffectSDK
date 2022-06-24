@@ -46,7 +46,7 @@ public final class BiAffectSDK {
 }
 
 public enum BiAffectIdentifier : String, CaseIterable {
-    case trailmaking = "Trail Making", goNoGo = "Go-No-Go"
+    case trailmaking = "Trail_Making", goNoGo = "Go-No-Go"
     
     public func title() -> Text {
         switch self {
@@ -62,7 +62,7 @@ public enum BiAffectIdentifier : String, CaseIterable {
     }
     
     public func instantiateAssessmentState() throws -> AssessmentState {
-        let filename = self.rawValue.replacingOccurrences(of: " ", with: "_")
+        let filename = self.rawValue
         guard let url = Bundle.module.url(forResource: filename, withExtension: "json")
         else {
             throw ValidationError.unexpectedNullObject("Could not find JSON file \(filename).")

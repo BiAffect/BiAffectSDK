@@ -1,6 +1,7 @@
 {
     "type": "assessment",
-    "identifier": "Trail Making",
+    "identifier": "Trail_Making",
+    "schemaIdentifier": "Trail Making",
     "steps": [{
             "identifier": "introduction",
             "type": "overview",

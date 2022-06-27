@@ -1,4 +1,6 @@
 //
+//  TrailmakingStepObject.swift
+//
 //  Copyright © 2022 BiAffect. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without modification,
@@ -28,28 +30,44 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-import XCTest
-@testable import BiAffectSDK
+import Foundation
+import JsonModel
+import AssessmentModel
 
-final class BiAffectSDKTests: XCTestCase {
-    
-    func testAssessmentDecoding_GoNoGo() {
-        do {
-            let identifier = BiAffectIdentifier.goNoGo
-            let _ = try identifier.instantiateAssessmentState()
-        }
-        catch {
-            XCTFail("Failed to build assessment. \(error)")
-        }
+extension SerializableNodeType {
+    static let trailmaking: SerializableNodeType = "trailmaking"
+}
+
+struct TrailmakingStepObject : SerializableNode, Step, Codable {
+    private enum CodingKeys : String, OrderedEnumCodingKey {
+        case serializableType = "type", identifier
     }
     
-    func testAssessmentDecoding_TrailMaking() {
-        do {
-            let identifier = BiAffectIdentifier.trailmaking
-            let _ = try identifier.instantiateAssessmentState()
-        }
-        catch {
-            XCTFail("Failed to build assessment. \(error)")
-        }
+    private(set) var serializableType: SerializableNodeType = .trailmaking
+    let identifier: String
+    
+    init() {
+        self.identifier = SerializableNodeType.gonogo.rawValue
+    }
+    
+    func instantiateResult() -> ResultData {
+        TrailmakingResultObject(identifier: self.identifier)
+    }
+    
+    // Step implementations - ignored
+    
+    var comment: String? { nil }
+    
+    func button(_ buttonType: ButtonType, node: Node) -> ButtonActionInfo? {
+        nil
+    }
+    
+    func shouldHideButton(_ buttonType: ButtonType, node: Node) -> Bool? {
+        nil
+    }
+    
+    func spokenInstruction(at timeInterval: TimeInterval) -> String? {
+        nil
     }
 }
+

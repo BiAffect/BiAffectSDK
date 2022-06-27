@@ -35,6 +35,8 @@ import AssessmentModel
 import AssessmentModelUI
 import JsonModel
 
+let kBaseJsonSchemaURL = URL(string: "https://biaffect.github.io/biaffectsdk/schemas/v1/")!
+
 public final class BiAffectSDK {
     public class func setup() {
         #if os(iOS)
@@ -44,7 +46,7 @@ public final class BiAffectSDK {
 }
 
 public enum BiAffectIdentifier : String, CaseIterable {
-    case trailmaking = "Trail Making", goNoGo = "Go-No-Go"
+    case trailmaking = "Trail_Making", goNoGo = "Go-No-Go"
     
     public func title() -> Text {
         switch self {
@@ -60,7 +62,7 @@ public enum BiAffectIdentifier : String, CaseIterable {
     }
     
     public func instantiateAssessmentState() throws -> AssessmentState {
-        let filename = self.rawValue.replacingOccurrences(of: " ", with: "_")
+        let filename = self.rawValue
         guard let url = Bundle.module.url(forResource: filename, withExtension: "json")
         else {
             throw ValidationError.unexpectedNullObject("Could not find JSON file \(filename).")
@@ -78,9 +80,10 @@ final class BiAffectFactory : AssessmentFactory {
         super.init()
         
         self.nodeSerializer.add(GoNoGoStepObject())
-        self.nodeSerializer.add(TrailMakingStepObject(identifier: "trailmaking"))
+        self.nodeSerializer.add(TrailmakingStepObject())
         
         self.resultSerializer.add(GoNoGoResultObject())
+        self.resultSerializer.add(TrailmakingResultObject())
     }
     
     override func resourceBundle(for bundleInfo: DecodableBundleInfo, from decoder: Decoder) -> ResourceBundle? {
@@ -88,12 +91,3 @@ final class BiAffectFactory : AssessmentFactory {
     }
 }
 
-extension SerializableNodeType {
-    static let trailmaking: SerializableNodeType = "trailmaking"
-}
-
-final class TrailMakingStepObject : AbstractStepObject, Encodable {
-    override class func defaultType() -> SerializableNodeType {
-        .trailmaking
-    }
-}

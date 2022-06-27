@@ -36,6 +36,8 @@ import AssessmentModelUI
 import JsonModel
 import SharedMobileUI
 
+// TODO: syoung 06/24/2022 What kind of interruption handling should this include (background app, phone call, text message, etc.)?
+
 extension BiAffectAssessmentView : AssessmentDisplayView {
     public static func instantiateAssessmentState(_ identifier: String, config: Data?, restoredResult: Data?, interruptionHandling: InterruptionHandling?) throws -> AssessmentState {
         guard let taskId = BiAffectIdentifier(rawValue: identifier)
@@ -73,11 +75,15 @@ public struct BiAffectAssessmentView : View {
             else if state.step is GoNoGoStepObject {
                 GoNoGoStepView(state)
             }
+            else if state.step is TrailmakingStepObject {
+                TrailmakingStepView(state)
+            }
             else if state.step is CountdownStep {
                 CountdownStepView(state)
             }
             else if let nodeState = state as? ContentNodeState {
                 InstructionStepView(nodeState, alignment: .center)
+                    .surveyTintColor(.sageBlack)
             }
             else {
                 debugStepView(state)
@@ -110,7 +116,11 @@ struct BiAffectAssessmentPreview : View {
 
 struct BiAffectAssessmentView_Previews: PreviewProvider {
     static var previews: some View {
-        BiAffectAssessmentPreview(.goNoGo)
+        Group {
+            BiAffectAssessmentPreview(.goNoGo)
+            BiAffectAssessmentPreview(.goNoGo)
+                .preferredColorScheme(.dark)
+        }
     }
 }
 

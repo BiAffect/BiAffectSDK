@@ -1,6 +1,7 @@
 {
     "type": "assessment",
-    "identifier": "Trail Making",
+    "identifier": "Trail_Making",
+    "schemaIdentifier": "Trail Making",
     "steps": [{
             "identifier": "introduction",
             "type": "overview",
@@ -10,29 +11,29 @@
                 "type": "fetchable",
                 "imageName": "Trail Making",
                 "placementType": "iconAfter"
-            },
-            "actions" : {
-                "goForward" : {
-                  "buttonTitle" : "Next",
-                  "type" : "default"
-                }
             }
         },
         {
-            "identifier": "instructions",
+            "identifier": "instructions1",
             "type": "overview",
             "title": "Trail Making Test",
-            "detail": "After the countdown, tap dots in alternating order between numbers and letters. Begin by tapping the first number '1' followed by tapping the first letter 'A', and then '2' – 'B' – '3' – 'C'… until you reach the number '7'.\n\nDo this as quickly as you can without making mistakes.",
+            "detail": "After the countdown, tap dots in alternating order between numbers and letters. Begin by tapping the first number '1' followed by tapping the first letter 'A', and then '2' – 'B' – '3' – 'C'… until you reach the number '7'.",
+            "image": {
+                "type": "fetchable",
+                "imageName": "Trail Making Path",
+                "placementType": "iconAfter"
+            },
+            "shouldHideActions" : ["pause"]
+        },
+        {
+            "identifier": "instructions2",
+            "type": "overview",
+            "title": "Trail Making Test",
+            "detail": "Tap each dot as quickly as you can without making mistakes.",
             "image": {
                 "type": "fetchable",
                 "imageName": "Trail Making",
                 "placementType": "iconAfter"
-            },
-            "actions": {
-                "goForward": {
-                    "buttonTitle": "Start",
-                    "type": "default"
-                }
             },
             "shouldHideActions" : ["pause"]
         },

@@ -11,6 +11,8 @@
 		FF29ACA12862A92E002A42AE /* TrailmakingResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29ACA02862A92E002A42AE /* TrailmakingResultObject.swift */; };
 		FF29ACA42862BFBA002A42AE /* TrailmakingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29ACA32862BFBA002A42AE /* TrailmakingPoint.swift */; };
 		FFA2306128613D1500120300 /* TrailmakingStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA2306028613D1500120300 /* TrailmakingStepView.swift */; };
+		FFBC90FF286A42C700029A59 /* AssessmentModel in Frameworks */ = {isa = PBXBuildFile; productRef = FFBC90FE286A42C700029A59 /* AssessmentModel */; };
+		FFBC9101286A42C700029A59 /* AssessmentModelUI in Frameworks */ = {isa = PBXBuildFile; productRef = FFBC9100286A42C700029A59 /* AssessmentModelUI */; };
 		FFD8C45C285C30B5000FC950 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C45E285C30B5000FC950 /* Localizable.strings */; };
 		FFD8C45F285C30FC000FC950 /* Trail_Making.json in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C461285C30FC000FC950 /* Trail_Making.json */; };
 		FFD8C462285C3108000FC950 /* Go-No-Go.json in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C464285C3108000FC950 /* Go-No-Go.json */; };
@@ -29,8 +31,6 @@
 		FFE2A6CE285BA9A8009805C0 /* GoNoGoStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C6285BA9A8009805C0 /* GoNoGoStepView.swift */; };
 		FFE2A6D3285BAA9B009805C0 /* MobilePassiveData in Frameworks */ = {isa = PBXBuildFile; productRef = FFE2A6D2285BAA9B009805C0 /* MobilePassiveData */; };
 		FFE2A6D5285BAA9B009805C0 /* MotionSensor in Frameworks */ = {isa = PBXBuildFile; productRef = FFE2A6D4285BAA9B009805C0 /* MotionSensor */; };
-		FFE2A6DB285BAB4C009805C0 /* AssessmentModel in Frameworks */ = {isa = PBXBuildFile; productRef = FFE2A6DA285BAB4C009805C0 /* AssessmentModel */; };
-		FFE2A6DD285BAB4C009805C0 /* AssessmentModelUI in Frameworks */ = {isa = PBXBuildFile; productRef = FFE2A6DC285BAB4C009805C0 /* AssessmentModelUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,7 +56,6 @@
 		FFE2A6C3285BA9A8009805C0 /* GoNoGoStepObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNoGoStepObject.swift; sourceTree = "<group>"; };
 		FFE2A6C5285BA9A8009805C0 /* BiAffectAssessmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiAffectAssessmentView.swift; sourceTree = "<group>"; };
 		FFE2A6C6285BA9A8009805C0 /* GoNoGoStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNoGoStepView.swift; sourceTree = "<group>"; };
-		FFE2A6D0285BA9FE009805C0 /* AssessmentModelKMM */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AssessmentModelKMM; path = ../../AssessmentModelKMM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +64,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFE2A6D5285BAA9B009805C0 /* MotionSensor in Frameworks */,
-				FFE2A6DB285BAB4C009805C0 /* AssessmentModel in Frameworks */,
-				FFE2A6DD285BAB4C009805C0 /* AssessmentModelUI in Frameworks */,
+				FFBC90FF286A42C700029A59 /* AssessmentModel in Frameworks */,
+				FFBC9101286A42C700029A59 /* AssessmentModelUI in Frameworks */,
 				FFE2A6D3285BAA9B009805C0 /* MobilePassiveData in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,7 +187,6 @@
 		FFE2A6CF285BA9FE009805C0 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				FFE2A6D0285BA9FE009805C0 /* AssessmentModelKMM */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -219,8 +217,8 @@
 			packageProductDependencies = (
 				FFE2A6D2285BAA9B009805C0 /* MobilePassiveData */,
 				FFE2A6D4285BAA9B009805C0 /* MotionSensor */,
-				FFE2A6DA285BAB4C009805C0 /* AssessmentModel */,
-				FFE2A6DC285BAB4C009805C0 /* AssessmentModelUI */,
+				FFBC90FE286A42C700029A59 /* AssessmentModel */,
+				FFBC9100286A42C700029A59 /* AssessmentModelUI */,
 			);
 			productName = BiAffectViewBuilder;
 			productReference = FFE2A6A8285BA8AA009805C0 /* BiAffectViewBuilder.app */;
@@ -252,6 +250,7 @@
 			mainGroup = FFE2A69F285BA8AA009805C0;
 			packageReferences = (
 				FFE2A6D1285BAA9B009805C0 /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */,
+				FFBC90FD286A42C700029A59 /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */,
 			);
 			productRefGroup = FFE2A6A9285BA8AA009805C0 /* Products */;
 			projectDirPath = "";
@@ -526,6 +525,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		FFBC90FD286A42C700029A59 /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.7.5;
+			};
+		};
 		FFE2A6D1285BAA9B009805C0 /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Sage-Bionetworks/MobilePassiveData-SDK.git";
@@ -537,6 +544,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		FFBC90FE286A42C700029A59 /* AssessmentModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFBC90FD286A42C700029A59 /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */;
+			productName = AssessmentModel;
+		};
+		FFBC9100286A42C700029A59 /* AssessmentModelUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFBC90FD286A42C700029A59 /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */;
+			productName = AssessmentModelUI;
+		};
 		FFE2A6D2285BAA9B009805C0 /* MobilePassiveData */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FFE2A6D1285BAA9B009805C0 /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */;
@@ -546,14 +563,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = FFE2A6D1285BAA9B009805C0 /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */;
 			productName = MotionSensor;
-		};
-		FFE2A6DA285BAB4C009805C0 /* AssessmentModel */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AssessmentModel;
-		};
-		FFE2A6DC285BAB4C009805C0 /* AssessmentModelUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AssessmentModelUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

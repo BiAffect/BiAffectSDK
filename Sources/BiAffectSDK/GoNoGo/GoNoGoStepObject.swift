@@ -49,7 +49,8 @@ struct GoNoGoStepObject : SerializableNode, Step, Codable {
              _minimumStimulusInterval = "minimumStimulusInterval",
              _thresholdAcceleration = "thresholdAcceleration",
              _numberOfAttempts = "numberOfAttempts",
-             _timeout = "timeout"
+             _timeout = "timeout",
+             _maxTotalAttempts = "maxTotalAttempts"
     }
     
     private(set) var serializableType: SerializableNodeType = .gonogo
@@ -74,6 +75,10 @@ struct GoNoGoStepObject : SerializableNode, Step, Codable {
     /// this many child results if the task is completed.
     var numberOfAttempts: Int { _numberOfAttempts ?? 9 }
     private(set) var _numberOfAttempts: Int?
+    
+    /// The max number of attempts to try before quitting.
+    var maxTotalAttempts: Int { _maxTotalAttempts ?? 18 }
+    private(set) var _maxTotalAttempts: Int?
     
     /// The interval permitted after the stimulus until the test fails, if the threshold is not reached.
     var timeout: TimeInterval { _timeout ?? 3.0 }

@@ -56,8 +56,6 @@ extension Font {
     static let detail: Font = .latoFont(16, relativeTo: .footnote, weight: .regular)
 }
 
-// TODO: syoung 06/24/2022 There is no "failed too many times" exit. Should there be?
-
 struct GoNoGoStepView: View {
     @EnvironmentObject var assessmentState: AssessmentState
     @EnvironmentObject var pagedNavigation: PagedNavigationViewModel
@@ -169,6 +167,7 @@ struct GoNoGoStepView: View {
         @Published var instructions: String = "Hello, World"
         @Published var attemptCount: Int = 1
         @Published var maxSuccessCount: Int = 9
+        @Published var maxAttemptCount: Int = 18
         @Published var errorCount: Int = 0
         @Published var lastReactionTime: SecondDuration?
         @Published var go: Bool = false
@@ -220,6 +219,7 @@ struct GoNoGoStepView: View {
             self.instructions = step.detail
             self.maxSuccessCount = step.numberOfAttempts
             self.shakeSensor.thresholdAcceleration = step.thresholdAcceleration
+            self.maxAttemptCount = step.maxTotalAttempts
             result.startUptime = shakeSensor.clock.startUptime
             assessmentState.outputDirectory = shakeSensor.outputDirectory
             
@@ -325,7 +325,7 @@ struct GoNoGoStepView: View {
         }
         
         func startNext() {
-            if successCount >= maxSuccessCount {
+            if successCount >= maxSuccessCount || result.responses.count >= maxAttemptCount {
                 Task {
                     let motionResult = try await shakeSensor.stop()
                     self.assessmentResult.asyncResults = [motionResult]

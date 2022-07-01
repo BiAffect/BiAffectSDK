@@ -78,7 +78,7 @@ struct GoNoGoStepView: View {
             Spacer()
         }
         .onAppear {
-            viewModel.onAppear(nodeState)
+            viewModel.onAppear(nodeState, assessmentState)
         }
         .onDisappear {
             viewModel.onDisappear()
@@ -93,6 +93,9 @@ struct GoNoGoStepView: View {
         }
         .onChange(of: assessmentState.showingPauseActions) { newValue in
             viewModel.paused = newValue
+        }
+        .onReceive(viewModel.shakeSensor.errorNotification) { error in
+            viewModel.onMotionRecorderError(error)
         }
     }
 
@@ -167,12 +170,11 @@ struct GoNoGoStepView: View {
         @Published var attemptCount: Int = 1
         @Published var maxSuccessCount: Int = 9
         @Published var errorCount: Int = 0
-        @Published var lastReactionTime: TimeInterval?
+        @Published var lastReactionTime: SecondDuration?
         @Published var go: Bool = false
         @Published var correct: Bool = false
         @Published var didTimeout: Bool = false
         @Published var testState: TestState = .idle
-        @Published var motionDenied: Bool = false
         @Published var showingDot: Bool = false
         @Published var showingResponse: Bool = false
 
@@ -182,8 +184,10 @@ struct GoNoGoStepView: View {
         
         @Published var paused: Bool = false {
             didSet {
+                guard shakeSensor.status == .running else { return }
                 if paused {
-                    shakeSensor.state = .paused
+                    // pause the clock and stop sampling
+                    shakeSensor.pause()
                 }
                 else {
                     reset()
@@ -191,6 +195,7 @@ struct GoNoGoStepView: View {
             }
         }
         
+        var assessmentResult: AssessmentResult!
         var result: GoNoGoResultObject!
         var step: GoNoGoStepObject!
         var successCount: Int = 0
@@ -198,7 +203,7 @@ struct GoNoGoStepView: View {
         var waitTask: Task<Void, Never>?
         let shakeSensor: ShakeMotionSensor = .init()
         
-        func onAppear(_ nodeState: StepState) {
+        func onAppear(_ nodeState: StepState, _ assessmentState: AssessmentState) {
             guard let result = nodeState.result as? GoNoGoResultObject,
                   let step = nodeState.step as? GoNoGoStepObject
             else {
@@ -209,30 +214,49 @@ struct GoNoGoStepView: View {
             guard !isVisible else { return }
             isVisible = true
             
+            self.assessmentResult = assessmentState.assessmentResult
             self.result = result
             self.step = step
             self.instructions = step.detail
             self.maxSuccessCount = step.numberOfAttempts
             self.shakeSensor.thresholdAcceleration = step.thresholdAcceleration
+            result.startUptime = shakeSensor.clock.startUptime
+            assessmentState.outputDirectory = shakeSensor.outputDirectory
             
-            shakeSensor.start()
-            reset()
+            Task {
+                do {
+                    try await shakeSensor.start()
+                    reset()
+                } catch {
+                    result.motionError = .init(identifier: "motion", error: error)
+                    testState = .error
+                }
+            }
         }
         
         func onDisappear() {
             guard isVisible else { return }
             isVisible = false
             waitTask?.cancel()
-            shakeSensor.stop()
+            shakeSensor.cancel()
         }
         
-        func onDeviceShaked(_ timestamp: TimeInterval) {
-            guard isVisible, !showingResponse, !paused else { return }
-            didFinishAttempt(timestamp)
+        func onDeviceShaked(_ timestamp: SystemUptime) {
+            Task {
+                let uptime = await shakeSensor.clock.relativeUptime(to: timestamp)
+                guard isVisible, !showingResponse, !paused else { return }
+                didFinishAttempt(uptime)
+            }
+        }
+        
+        func onMotionRecorderError(_ error: Error) {
+            guard isVisible, testState == .running else { return }
+            result.motionError = .init(identifier: "motion", error: error)
+            testState = .error
         }
         
         func reset() {
-            guard isVisible, !paused else { return }
+            guard isVisible, !paused, shakeSensor.status == .running else { return }
             waitTask?.cancel()
             
             shakeSensor.reset()
@@ -243,6 +267,7 @@ struct GoNoGoStepView: View {
             attemptCount = min(max(1, successCount + 1), maxSuccessCount)
             
             let stimulusDelay = calculateStimulusDelay()
+            
             waitTask = Task {
                 guard await Task.wait(seconds: stimulusDelay) else { return }
                 showStimulus()
@@ -250,7 +275,8 @@ struct GoNoGoStepView: View {
         }
         
         func showStimulus() {
-            shakeSensor.stimulusUptime = ProcessInfo.processInfo.systemUptime
+            shakeSensor.stimulusUptime = SystemClock.uptime()
+            shakeSensor.dotType = go ? .blue : .green
             showingDot = true
             waitTask = Task {
                 guard await Task.wait(seconds: step.timeout) else { return }
@@ -275,6 +301,7 @@ struct GoNoGoStepView: View {
             let timeToThreshold = thresholdUptime.map { correct ? $0 - startUptime : 0 } ?? 0
             
             // Update display
+            shakeSensor.dotType = .result
             showingDot = correct
             showingResponse = true
             if go && correct {
@@ -282,12 +309,13 @@ struct GoNoGoStepView: View {
             }
 
             // Add response to result
-            result.responses.append(.init(timestamp: startUptime,
-                                          resetTimestamp: shakeSensor.resetUptime ?? 0,
+            result.responses.append(.init(stepPath: shakeSensor.currentStepPath,
+                                          timestamp: startUptime,
+                                          resetTimestamp: shakeSensor.resetUptime,
                                           timeToThreshold: timeToThreshold,
                                           go: go,
                                           incorrect: !correct,
-                                          samples: shakeSensor.processSamples(startUptime)))
+                                          samples: shakeSensor.processSamples()))
 
             // Show response for 2.5 seconds before continuing
             waitTask = Task {
@@ -298,7 +326,11 @@ struct GoNoGoStepView: View {
         
         func startNext() {
             if successCount >= maxSuccessCount {
-                testState = .finished
+                Task {
+                    let motionResult = try await shakeSensor.stop()
+                    self.assessmentResult.asyncResults = [motionResult]
+                    testState = .finished
+                }
             }
             else {
                 reset()

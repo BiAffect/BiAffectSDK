@@ -32,6 +32,7 @@
 
 import Foundation
 import JsonModel
+import MobilePassiveData
 
 extension SerializableResultType {
     static let gonogo: SerializableResultType = "gonogo"
@@ -46,7 +47,7 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
     public let identifier: String
     public var startDateTime: Date
     public var endDateTime: Date?
-    public var startUptime: TimeInterval?
+    public var startUptime: ClockUptime?
     public var responses: [Response]
     public var motionError: ErrorResultObject?
 
@@ -69,11 +70,12 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
     
     public struct Response : Codable, Hashable {
         private enum CodingKeys : String, OrderedEnumCodingKey {
-            case timestamp, resetTimestamp, timeToThreshold, go, incorrect, samples
+            case stepPath, timestamp, resetTimestamp, timeToThreshold, go, incorrect, samples
         }
-        public let timestamp: TimeInterval
-        public let resetTimestamp: TimeInterval
-        public let timeToThreshold: TimeInterval
+        public let stepPath: String?
+        public let timestamp: ClockUptime
+        public let resetTimestamp: ClockUptime
+        public let timeToThreshold: SecondDuration
         public let go: Bool
         public let incorrect: Bool
         public let samples: [Sample]?
@@ -169,6 +171,9 @@ extension GoNoGoResultObject.Response : DocumentableStruct {
             throw DocumentableError.invalidCodingKey(codingKey, "\(codingKey) is not recognized for this class")
         }
         switch key {
+        case .stepPath:
+            return .init(propertyType: .primitive(.string), propertyDescription:
+                            "A marker that matches the 'stepPath' in the 'motion.json' file with raw motion sensor data.")
         case .timestamp:
             return .init(propertyType: .primitive(.number), propertyDescription:
                             """
@@ -201,7 +206,7 @@ extension GoNoGoResultObject.Response : DocumentableStruct {
     }
     
     public static func examples() -> [GoNoGoResultObject.Response] {
-        [.init(timestamp: 0, resetTimestamp: 120492.081, timeToThreshold: 0.1, go: true, incorrect: true, samples: nil)]
+        [.init(stepPath: "0", timestamp: 0, resetTimestamp: 120492.081, timeToThreshold: 0.1, go: true, incorrect: true, samples: nil)]
     }
 }
 

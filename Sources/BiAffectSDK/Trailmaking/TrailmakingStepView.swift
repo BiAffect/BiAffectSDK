@@ -34,6 +34,7 @@ import SwiftUI
 import AssessmentModel
 import AssessmentModelUI
 import SharedMobileUI
+import MobilePassiveData
 
 // TODO: syoung 06/24/2022 There is no "taking too long" exit. Should there be?
 // TODO: syoung 06/24/2022 Is it intensional to not show any response after selecting first button?
@@ -97,7 +98,7 @@ struct TrailmakingStepView: View {
             }
         }
         .onChange(of: assessmentState.showingPauseActions) { newValue in
-            viewModel.paused = newValue
+            viewModel.clock.isPaused = newValue
         }
         .onReceive(timer) { _ in
             viewModel.onTimerUpdated()
@@ -113,29 +114,13 @@ struct TrailmakingStepView: View {
         @Published var testState: TestState = .idle
         @Published var currentIndex: Int = 0
         
-        @Published var paused: Bool = false {
-            didSet {
-                if paused {
-                    pauseUptime = ProcessInfo.processInfo.systemUptime
-                }
-                else if let uptime = pauseUptime, startUptime > 0 {
-                    let timestamp = ProcessInfo.processInfo.systemUptime
-                    pauseInterval += (timestamp - uptime)
-                    pauseUptime = nil
-                    result?.pauseInterval = pauseInterval
-                }
-            }
-        }
+        var clock: SimpleClock = .init()
         
         enum TestState : Int, Comparable {
             case idle, running, stopping, finished, error
         }
         
         var result: TrailmakingResultObject!
-        var startUptime: TimeInterval = 0
-        var pauseInterval: TimeInterval = 0
-        var pauseUptime: TimeInterval?
-        var stopUptime: TimeInterval?
         
         func onAppear(_ nodeState: StepState) {
             guard let result = nodeState.result as? TrailmakingResultObject
@@ -147,6 +132,7 @@ struct TrailmakingStepView: View {
             
             self.result = result
             testState = .running
+            
             reset()
         }
         
@@ -157,12 +143,9 @@ struct TrailmakingStepView: View {
             result.points = points
             result.numberOfErrors = nil
             result.responses = []
-            result.pauseInterval = nil
             
             // reset the test
-            startUptime = ProcessInfo.processInfo.systemUptime
-            pauseInterval = 0
-            pauseUptime = nil
+            clock.reset()
             runtime = .init()
             lastIncorrectTap = -1
             numberOfErrors = 0
@@ -172,8 +155,7 @@ struct TrailmakingStepView: View {
         func onTap(at index: Int) {
             guard testState == .running else { return }
             
-            let now = ProcessInfo.processInfo.systemUptime
-            let timestamp = now - startUptime
+            let timestamp = clock.runningDuration()
             let correct = index == currentIndex
             result.responses?.append(.init(timestamp: timestamp, index: index, incorrect: !correct))
             
@@ -181,8 +163,8 @@ struct TrailmakingStepView: View {
                 currentIndex += 1
                 lastIncorrectTap = -1
                 if currentIndex >= points.count {
-                    result.runtime = timestamp - pauseInterval
-                    stopUptime = now
+                    result.runtime = timestamp
+                    result.pauseInterval = clock.pauseCumulation
                     testState = .stopping
                 }
             }
@@ -195,17 +177,15 @@ struct TrailmakingStepView: View {
         
         func onTimerUpdated() {
             
-            // Check if stopping and exit early if final result has been shown
-            if testState == .stopping,
-               let stopUptime = stopUptime,
-               ProcessInfo.processInfo.systemUptime - stopUptime >= 2.0 {
+            // Check if stopping and update state if the final result has been displayed for at least 2 seconds
+            if testState == .stopping, clock.stoppedDuration() >= 2.0 {
                 testState = .finished
             }
             
-            // Otherwise, do nothing unless running and not paused
-            guard !paused, testState == .running else { return }
-            let duration = ProcessInfo.processInfo.systemUptime - startUptime - pauseInterval
-            runtime.second = Int(duration)
+            // Exit early unless running and not paused
+            if !clock.isPaused, testState == .running {
+                runtime.second = Int(clock.runningDuration())
+            }
         }
     }
 }

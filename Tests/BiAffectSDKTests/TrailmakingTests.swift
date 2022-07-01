@@ -195,7 +195,7 @@ final class TrailmakingTests: XCTestCase {
         XCTAssertEqual(.running, viewModel.testState)
         XCTAssertEqual(viewModel.points, result.points)
         XCTAssertEqual([], result.responses)
-        XCTAssertNotEqual(0, viewModel.startUptime)
+        XCTAssertNotEqual(0, viewModel.clock.startTime)
         
         // tap each button
         for ii in 0..<viewModel.points.count {
@@ -260,21 +260,19 @@ final class TrailmakingTests: XCTestCase {
         
         // Pause
         let firstInterval = try await pause(viewModel: viewModel)
-        XCTAssertEqual(firstInterval, viewModel.pauseInterval, accuracy: 0.1)
-        XCTAssertEqual(viewModel.pauseInterval, result.pauseInterval)
+        XCTAssertEqual(firstInterval, viewModel.clock.pauseCumulation, accuracy: 0.1)
         
         // Pause again
         let secondInterval = try await pause(viewModel: viewModel)
-        XCTAssertEqual((firstInterval + secondInterval), viewModel.pauseInterval, accuracy: 0.1)
-        XCTAssertEqual(viewModel.pauseInterval, result.pauseInterval)
+        XCTAssertEqual((firstInterval + secondInterval), viewModel.clock.pauseCumulation, accuracy: 0.1)
     }
     
     @MainActor
     func pause(viewModel: TrailmakingStepView.ViewModel, seconds: UInt64 = 1) async throws -> TimeInterval {
         let before = ProcessInfo.processInfo.systemUptime
-        viewModel.paused = true
+        viewModel.clock.isPaused = true
         try await Task.sleep(nanoseconds: seconds * 1_000_000_000)
-        viewModel.paused = false
+        viewModel.clock.isPaused = false
         let after = ProcessInfo.processInfo.systemUptime
         return after - before
     }

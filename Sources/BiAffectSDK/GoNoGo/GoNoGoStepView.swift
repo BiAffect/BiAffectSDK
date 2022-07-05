@@ -37,15 +37,6 @@ import SharedMobileUI
 import JsonModel
 import MobilePassiveData
 
-#if canImport(AudioToolbox)
-import AudioToolbox
-func vibrateDevice() {
-    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-}
-#else
-func vibrateDevice() { }
-#endif
-
 extension SoundFile {
     static let success = SoundFile(name: "sms-received5")
     static let failure = SoundFile(name: "jbl_cancel")
@@ -152,7 +143,7 @@ struct GoNoGoStepView: View {
                                 soundPlayer.playSound(.failure)
                             }
                             else {
-                                vibrateDevice()
+                                soundPlayer.vibrateDevice()
                             }
                         }
                 }
@@ -220,7 +211,7 @@ struct GoNoGoStepView: View {
             self.maxSuccessCount = step.numberOfAttempts
             self.shakeSensor.thresholdAcceleration = step.thresholdAcceleration
             self.maxAttemptCount = step.maxTotalAttempts
-            result.startUptime = shakeSensor.clock.startUptime
+            result.startUptime = shakeSensor.clock.startTime
             assessmentState.outputDirectory = shakeSensor.outputDirectory
             
             Task {
@@ -242,11 +233,9 @@ struct GoNoGoStepView: View {
         }
         
         func onDeviceShaked(_ timestamp: SystemUptime) {
-            Task {
-                let uptime = await shakeSensor.clock.relativeUptime(to: timestamp)
-                guard isVisible, !showingResponse, !paused else { return }
-                didFinishAttempt(uptime)
-            }
+            let uptime = shakeSensor.clock.relativeUptime(to: timestamp)
+            guard isVisible, !showingResponse, !paused else { return }
+            didFinishAttempt(uptime)
         }
         
         func onMotionRecorderError(_ error: Error) {

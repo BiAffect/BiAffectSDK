@@ -98,7 +98,7 @@ struct TrailmakingStepView: View {
             }
         }
         .onChange(of: assessmentState.showingPauseActions) { newValue in
-            viewModel.clock.isPaused = newValue
+            viewModel.clock.pause()
         }
         .onReceive(timer) { _ in
             viewModel.onTimerUpdated()

@@ -100,7 +100,7 @@ final class ShakeMotionSensor : MotionRecorder {
         guard status <= .running, dotType >= .none, !clock.isPaused else { return }
         
         // Get the relative clock time and exit early if this is old
-        let uptime = await clock.relativeUptime(to: timestamp)
+        let uptime = clock.relativeUptime(to: timestamp)
         guard uptime > resetUptime else { return }
         
         // Add the sample if showing the stimulus

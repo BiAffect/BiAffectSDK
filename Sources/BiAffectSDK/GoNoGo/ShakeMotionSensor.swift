@@ -40,6 +40,10 @@ import JsonModel
 import CoreMotion
 #endif
 
+fileprivate let recordSchema = DocumentableRootArray(rootDocumentType: MotionRecord.self,
+                                          jsonSchema: .init(string: "ShakeSample.json", relativeTo: kBaseJsonSchemaURL)!,
+                                          documentDescription: "A list of motion sensor records.")
+
 fileprivate let motionRecorderConfig = MotionRecorderConfigurationObject(identifier: "motion",
                                                              recorderTypes: [.accelerometer, .gyro, .userAcceleration],
                                                              frequency: 100)
@@ -136,9 +140,11 @@ final class ShakeMotionSensor : MotionRecorder {
         }
     }
     
+    override var schemaDoc: DocumentableRootArray? { recordSchema }
+    
     struct ShakeSample : SampleRecord, Codable, Hashable {
         private enum CodingKeys : String, OrderedEnumCodingKey {
-            case stepPath, uptime, timestamp, sensorType, x, y, z, vectorMagnitude
+            case stepPath, uptime, timestamp, timestampDate, sensorType, x, y, z, vectorMagnitude
         }
         
         let stepPath: String
@@ -152,7 +158,7 @@ final class ShakeMotionSensor : MotionRecorder {
         
         private(set) var timestampDate: Date? = nil
     }
-    
+
     #if os(iOS)
     
     override func samples(from data: CMDeviceMotion, frame: CMAttitudeReferenceFrame, stepPath: String, uptime: ClockUptime, timestamp: SecondDuration) -> [SampleRecord] {

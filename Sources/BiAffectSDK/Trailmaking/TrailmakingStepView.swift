@@ -98,7 +98,12 @@ struct TrailmakingStepView: View {
             }
         }
         .onChange(of: assessmentState.showingPauseActions) { newValue in
-            viewModel.clock.pause()
+            if newValue {
+                viewModel.clock.pause()
+            }
+            else {
+                viewModel.clock.resume()
+            }
         }
         .onReceive(timer) { _ in
             viewModel.onTimerUpdated()
@@ -132,7 +137,6 @@ struct TrailmakingStepView: View {
             
             self.result = result
             testState = .running
-            
             reset()
         }
         
@@ -166,6 +170,7 @@ struct TrailmakingStepView: View {
                     result.runtime = timestamp
                     result.pauseInterval = clock.pauseCumulation
                     testState = .stopping
+                    clock.stop()
                 }
             }
             else {

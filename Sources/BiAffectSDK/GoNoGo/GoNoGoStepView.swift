@@ -192,6 +192,7 @@ struct GoNoGoStepView: View {
         var isVisible: Bool = false
         var waitTask: Task<Void, Never>?
         let shakeSensor: ShakeMotionSensor = .init()
+        var lastStimulusDelay: SecondDuration = 0
         
         func onAppear(_ nodeState: StepState, _ assessmentState: AssessmentState) {
             guard let result = nodeState.result as? GoNoGoResultObject,
@@ -256,6 +257,7 @@ struct GoNoGoStepView: View {
             attemptCount = min(max(1, successCount + 1), maxSuccessCount)
             
             let stimulusDelay = calculateStimulusDelay()
+            lastStimulusDelay = stimulusDelay
             
             waitTask = Task {
                 guard await Task.wait(seconds: stimulusDelay) else { return }
@@ -264,7 +266,7 @@ struct GoNoGoStepView: View {
         }
         
         func showStimulus() {
-            shakeSensor.stimulusUptime = SystemClock.uptime()
+            shakeSensor.stimulusUptime = shakeSensor.clock.now()
             shakeSensor.dotType = go ? .blue : .green
             showingDot = true
             waitTask = Task {
@@ -302,6 +304,7 @@ struct GoNoGoStepView: View {
                                           timestamp: startUptime,
                                           resetTimestamp: shakeSensor.resetUptime,
                                           timeToThreshold: timeToThreshold,
+                                          stimulusDelay: lastStimulusDelay,
                                           go: go,
                                           incorrect: !correct,
                                           samples: shakeSensor.processSamples()))

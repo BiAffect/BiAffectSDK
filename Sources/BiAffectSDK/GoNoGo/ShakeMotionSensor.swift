@@ -57,8 +57,8 @@ final class ShakeMotionSensor : MotionRecorder {
     }
     
     var thresholdAcceleration: Double = 0.5
-    var resetUptime: ClockUptime = SystemClock.uptime()
-    var stimulusUptime: ClockUptime?
+    var resetUptime: SystemUptime = .greatestFiniteMagnitude
+    var stimulusUptime: SystemUptime?
     
     private var resetCount: Int = 0
     private var thresholdUptime: SystemUptime?  // SystemTime
@@ -87,7 +87,7 @@ final class ShakeMotionSensor : MotionRecorder {
         guard status <= .running else { return }
         
         resetCount += 1
-        resetUptime = SystemClock.uptime()
+        resetUptime = clock.now()
         thresholdUptime = nil
         stimulusUptime = nil
         samples.removeAll()
@@ -97,7 +97,7 @@ final class ShakeMotionSensor : MotionRecorder {
     }
     
     @MainActor func onMotionReceived(_ vectorMagnitude: Double, timestamp: SystemUptime) async {
-        guard status <= .running, dotType >= .none, !clock.isPaused else { return }
+        guard status <= .running, dotType >= .none, !isPaused else { return }
         
         // Get the relative clock time and exit early if this is old
         let uptime = clock.relativeUptime(to: timestamp)

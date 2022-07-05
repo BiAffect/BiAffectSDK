@@ -47,7 +47,7 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
     public let identifier: String
     public var startDateTime: Date
     public var endDateTime: Date?
-    public var startUptime: ClockUptime?
+    public var startUptime: SystemUptime?
     public var responses: [Response]
     public var motionError: ErrorResultObject?
 
@@ -70,12 +70,13 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
     
     public struct Response : Codable, Hashable {
         private enum CodingKeys : String, OrderedEnumCodingKey {
-            case stepPath, timestamp, resetTimestamp, timeToThreshold, go, incorrect, samples
+            case stepPath, timestamp, resetTimestamp, timeToThreshold, stimulusDelay, go, incorrect, samples
         }
         public let stepPath: String?
         public let timestamp: ClockUptime
         public let resetTimestamp: ClockUptime
         public let timeToThreshold: SecondDuration
+        public let stimulusDelay: SecondDuration
         public let go: Bool
         public let incorrect: Bool
         public let samples: [Sample]?
@@ -193,6 +194,9 @@ extension GoNoGoResultObject.Response : DocumentableStruct {
                             Time from when the stimulus occurred to the threshold being reached.
                             For a timeout or false start, this value will be zero.
                             """)
+        case .stimulusDelay:
+            return .init(propertyType: .primitive(.number), propertyDescription:
+                            "The delay (in seconds) from reset until the stimulus is shown.")
         case .go:
             return .init(propertyType: .primitive(.boolean), propertyDescription:
                             "YES if a go test and NO if a no go test.")
@@ -206,7 +210,7 @@ extension GoNoGoResultObject.Response : DocumentableStruct {
     }
     
     public static func examples() -> [GoNoGoResultObject.Response] {
-        [.init(stepPath: "0", timestamp: 0, resetTimestamp: 120492.081, timeToThreshold: 0.1, go: true, incorrect: true, samples: nil)]
+        [.init(stepPath: "0", timestamp: 0, resetTimestamp: 120492.081, timeToThreshold: 0.1, stimulusDelay: 7.3, go: true, incorrect: true, samples: nil)]
     }
 }
 

@@ -270,9 +270,9 @@ final class TrailmakingTests: XCTestCase {
     @MainActor
     func pause(viewModel: TrailmakingStepView.ViewModel, seconds: UInt64 = 1) async throws -> TimeInterval {
         let before = ProcessInfo.processInfo.systemUptime
-        viewModel.clock.isPaused = true
+        viewModel.clock.pause()
         try await Task.sleep(nanoseconds: seconds * 1_000_000_000)
-        viewModel.clock.isPaused = false
+        viewModel.clock.resume()
         let after = ProcessInfo.processInfo.systemUptime
         return after - before
     }

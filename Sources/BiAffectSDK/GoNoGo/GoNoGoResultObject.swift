@@ -73,8 +73,8 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
             case stepPath, timestamp, resetTimestamp, timeToThreshold, stimulusDelay, go, incorrect, samples
         }
         public let stepPath: String?
-        public let timestamp: ClockUptime
-        public let resetTimestamp: ClockUptime
+        public let timestamp: SystemUptime
+        public let resetTimestamp: SystemUptime
         public let timeToThreshold: SecondDuration
         public let stimulusDelay: SecondDuration
         public let go: Bool

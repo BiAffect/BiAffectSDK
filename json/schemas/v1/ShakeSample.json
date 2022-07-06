@@ -1,0 +1,102 @@
+{
+  "$id" : "https://biaffect.github.io/biaffectsdk/schemas/v1/ShakeSample.json",
+  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "type" : "array",
+  "title" : "ShakeSample",
+  "description" : "An array of motion sensor samples.",
+  "items" : {
+    "type" : "object",
+    "properties" : {
+      "uptime" : {
+        "type" : "number",
+        "description" : "Clock time. This is the machine clock for the device and runs even when the device is asleep (unlike the processor system uptime)."
+      },
+      "timestamp" : {
+        "type" : "number",
+        "description" : "A duration in seconds relative to when the recorder was started."
+      },
+      "stepPath" : {
+        "type" : "string",
+        "description" : "An identifier marking the response attempt including display state."
+      },
+      "timestampDate" : {
+        "type" : "string",
+        "description" : "The date timestamp when step path was changed.",
+        "format" : "date-time"
+      },
+      "sensorType" : {
+        "type" : "string",
+        "description" : "The sensor type for this record sample. If `null` then this sample is a `stepPath` change marker.",
+        "enum" : [
+          "accelerometer",
+          "gyro",
+          "userAcceleration"
+        ]
+      },
+      "x" : {
+        "type" : "number",
+        "description" : "The `x` component of the vector measurement for this sensor sample."
+      },
+      "y" : {
+        "type" : "number",
+        "description" : "The `y` component of the vector measurement for this sensor sample."
+      },
+      "z" : {
+        "type" : "number",
+        "description" : "The `z` component of the vector measurement for this sensor sample."
+      },
+      "vectorMagnitude" : {
+        "type" : "number",
+        "description" : "The calculated vector magnitude used to determine whether or not the device was shaken. (`sensorType==userAcceleration`)"
+      }
+    },
+    "required" : [
+      "stepPath",
+      "uptime",
+      "timestamp"
+    ],
+    "additionalProperties" : false,
+    "examples" : [
+        {
+          "stepPath" : "starting",
+          "timestamp" : 0,
+          "timestampDate" : "2022-06-29T12:41:20.029-07:00",
+          "uptime" : 1289650.419528791
+        },
+        {
+          "stepPath" : "attempt/3/showing/blue",
+          "timestamp" : 28.606888458365574,
+          "timestampDate" : "2022-06-29T12:41:48.636-07:00",
+          "uptime" : 1289679.0264153329
+        },
+        {
+          "stepPath" : "attempt/3/showing/blue",
+          "uptime" : 1289679.0275513744,
+          "timestamp" : 28.608022583415732,
+          "sensorType" : "userAcceleration",
+          "x" : -0.00084100663661956787,
+          "y" : 0.0043393969535827637,
+          "z" : 0.010767042636871338,
+          "vectorMagnitude" : 0.011639023379468177
+        },
+        {
+          "uptime" : 1289679.0255373744,
+          "timestamp" : 28.606008583330549,
+          "stepPath" : "attempt/3/showing/blue",
+          "sensorType" : "accelerometer",
+          "x" : 0.06011962890625,
+          "y" : -0.43389892578125,
+          "z" : -0.8861541748046875
+        },
+        {
+          "uptime" : 1289679.0335633743,
+          "timestamp" : 28.614034583326429,
+          "stepPath" : "attempt/3/showing/blue",
+          "sensorType" : "gyro",
+          "x" : -0.011590609326958656,
+          "y" : 0.00079788308357819915,
+          "z" : 0.0056229983456432819
+        }
+    ]
+  }
+}

@@ -23,6 +23,10 @@
                     "type": "number",
                     "description": "Time from when the stimulus occurred to the threshold being reached.\nFor a timeout or false start, this value will be zero."
                 },
+                "stimulusDelay": {
+                    "type": "number",
+                    "description": "The delay (in seconds) from reset until the stimulus is shown."
+                },
                 "go": {
                     "type": "boolean",
                     "description": "YES if a go test and NO if a no go test."
@@ -49,8 +53,9 @@
             "additionalProperties": false,
             "examples": [{
                 "timestamp": 0,
-                "resetTimestamp": 120492.08100000001,
-                "timeToThreshold": 0.10000000000000001,
+                "resetTimestamp": 120492.081,
+                "timeToThreshold": 0.1,
+                "stimulusDelay": 7.3,
                 "go": true,
                 "incorrect": true
             }]

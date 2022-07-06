@@ -33,92 +33,85 @@
 import SwiftUI
 import Combine
 import MobilePassiveData
+import MotionSensor
+import JsonModel
 
 #if canImport(CoreMotion)
 import CoreMotion
 #endif
 
-@MainActor
-class ShakeMotionSensor : ObservableObject {
-    @Published var resetUptime: TimeInterval?
-    @Published var motionError: Error?
-    @Published var state: State = .idle
-    
-    enum State: Int {
-        case idle, started, listening, paused, stopped
+fileprivate let recordSchema = DocumentableRootArray(rootDocumentType: MotionRecord.self,
+                                          jsonSchema: .init(string: "ShakeSample.json", relativeTo: kBaseJsonSchemaURL)!,
+                                          documentDescription: "A list of motion sensor records.")
+
+fileprivate let motionRecorderConfig = MotionRecorderConfigurationObject(identifier: "motion",
+                                                             recorderTypes: [.accelerometer, .gyro, .userAcceleration],
+                                                             frequency: 100)
+
+fileprivate func createOutputDirectory() -> URL {
+    URL(fileURLWithPath: UUID().uuidString, isDirectory: true, relativeTo: FileManager.default.temporaryDirectory)
+}
+
+final class ShakeMotionSensor : MotionRecorder {
+
+    var dotType: DisplayState = .starting {
+        didSet {
+            self.moveTo(stepPath: "attempt/\(resetCount)/showing/\(dotType)")
+        }
     }
     
     var thresholdAcceleration: Double = 0.5
-    var thresholdUptime: TimeInterval?
-    var stimulusUptime: TimeInterval?
-    var samplesSinceStimulus: Int = 0
-    var samples: [GoNoGoResultObject.Sample] = []
+    var resetUptime: SystemUptime = .greatestFiniteMagnitude
+    var stimulusUptime: SystemUptime?
     
-    func processSamples(_ stimulusUptime: TimeInterval) -> [GoNoGoResultObject.Sample] {
-        let ret: [GoNoGoResultObject.Sample] = samples.compactMap {
-            $0.timestamp >= stimulusUptime ?
-                .init(timestamp: $0.timestamp - stimulusUptime, vectorMagnitude: $0.vectorMagnitude) : nil
+    private var resetCount: Int = 0
+    private var thresholdUptime: SystemUptime?  // SystemTime
+    private var samplesSinceStimulus: Int = 0
+    private var samples: [GoNoGoResultObject.Sample] = []
+    
+    enum DisplayState: String, CaseIterable, Comparable, Codable {
+        case starting, result, none, blue, green
+        static func < (lhs: ShakeMotionSensor.DisplayState, rhs: ShakeMotionSensor.DisplayState) -> Bool {
+            allCases.firstIndex(of: lhs)! < allCases.firstIndex(of: rhs)!
         }
-        samples.removeAll()
-        return ret
     }
     
-    func reset() {
-        guard state != .stopped else { return }
+    init(outputDirectory: URL = createOutputDirectory(), sectionIdentifier: String? = nil) {
+        super.init(configuration: motionRecorderConfig,
+                   outputDirectory: outputDirectory,
+                   initialStepPath: "starting",
+                   sectionIdentifier: sectionIdentifier)
+    }
+    
+    @MainActor func processSamples() -> [GoNoGoResultObject.Sample] {
+        samples
+    }
+    
+    @MainActor func reset() {
+        guard status <= .running else { return }
         
-        resetUptime = ProcessInfo.processInfo.systemUptime
+        resetCount += 1
+        resetUptime = clock.now()
         thresholdUptime = nil
         stimulusUptime = nil
         samples.removeAll()
         samplesSinceStimulus = 0
+        dotType = .none
+        resume()
+    }
+    
+    @MainActor func onMotionReceived(_ vectorMagnitude: Double, timestamp: SystemUptime) async {
+        guard status <= .running, dotType >= .none, !isPaused else { return }
         
-        // Wait 0.5 seconds before listening for the participant to shake the device.
-        Task {
-            guard await Task.wait(seconds: 0.5) else { return }
-            state = .listening
+        // Get the relative clock time and exit early if this is old
+        let uptime = clock.relativeUptime(to: timestamp)
+        guard uptime > resetUptime else { return }
+        
+        // Add the sample if showing the stimulus
+        if let stimulusUptime = stimulusUptime, uptime > stimulusUptime {
+            let sample: GoNoGoResultObject.Sample = .init(timestamp: uptime - stimulusUptime, vectorMagnitude: vectorMagnitude)
+            samples.append(sample)
         }
-    }
-    
-    #if os(iOS)
-    
-    let motionManager: CMMotionManager = .init()
-    
-    init() {
-        motionManager.deviceMotionUpdateInterval = 0.01
-    }
-    
-    deinit {
-        motionManager.stopDeviceMotionUpdates()
-    }
-    
-    func start() {
-        guard state == .idle else { return }
-        state = .started
-        listenForDeviceShake = true
-        motionManager.startDeviceMotionUpdates(to: .main) { [weak self] (motion, error) in
-            if let motion = motion {
-                self?.onMotionReceived(motion)
-            }
-            else {
-                self?.motionError = error
-            }
-        }
-    }
-    
-    func onMotionReceived(_ motion: CMDeviceMotion) {
-        // Turn off listening for device "shake" b/c motion sensors are more precise.
-        // This allows running the test if using the simulator or if permission to use
-        // motion sensors has not been given.
-        listenForDeviceShake = false
-        
-        // Ignore if not runnning
-        guard state == .listening else { return }
-        
-        // Process the sample
-        let v = motion.userAcceleration
-        let vectorMagnitude = sqrt(((v.x * v.x) + (v.y * v.y) + (v.z * v.z)))
-        let sample: GoNoGoResultObject.Sample = .init(timestamp: motion.timestamp, vectorMagnitude: vectorMagnitude)
-        samples.append(sample)
         
         let showingStimulus = stimulusUptime != nil
         let isShaking = vectorMagnitude > thresholdAcceleration
@@ -127,7 +120,7 @@ class ShakeMotionSensor : ObservableObject {
         guard showingStimulus else {
             if isShaking {
                 // If the user jumps the gun, stop the test right away and exit.
-                deviceShaked.send(motion.timestamp)
+                deviceShaked.send(timestamp)
             }
             return
         }
@@ -137,39 +130,66 @@ class ShakeMotionSensor : ObservableObject {
         
         // Check if we should mark the threshold timestamp.
         if isShaking, thresholdUptime == nil {
-            thresholdUptime = motion.timestamp
+            thresholdUptime = timestamp
         }
         
         // Finally, if there have been 100 samples since showing the stimulus and the
         // device was shaking during that time, then send the message.
         if samplesSinceStimulus >= 100, let timestamp = thresholdUptime {
-            state = .paused
             deviceShaked.send(timestamp)
         }
     }
     
-    func stop() {
-        state = .stopped
-        listenForDeviceShake = false
-        motionManager.stopDeviceMotionUpdates()
+    override var schemaDoc: DocumentableRootArray? { recordSchema }
+    
+    struct ShakeSample : SampleRecord, Codable, Hashable {
+        private enum CodingKeys : String, OrderedEnumCodingKey {
+            case stepPath, uptime, timestamp, timestampDate, sensorType, x, y, z, vectorMagnitude
+        }
+        
+        let stepPath: String
+        let uptime: ClockUptime
+        let timestamp: SecondDuration?
+        let sensorType: MotionRecorderType?
+        let x: Double?
+        let y: Double?
+        let z: Double?
+        let vectorMagnitude: Double?
+        
+        private(set) var timestampDate: Date? = nil
+    }
+
+    #if os(iOS)
+    
+    override func samples(from data: CMDeviceMotion, frame: CMAttitudeReferenceFrame, stepPath: String, uptime: ClockUptime, timestamp: SecondDuration) -> [SampleRecord] {
+        let v = data.userAcceleration
+        let vectorMagnitude = sqrt(((v.x * v.x) + (v.y * v.y) + (v.z * v.z)))
+        Task {
+            await onMotionReceived(vectorMagnitude, timestamp: data.timestamp)
+        }
+        return [
+            ShakeSample(stepPath: stepPath,
+                        uptime: uptime,
+                        timestamp: timestamp,
+                        sensorType: .userAcceleration,
+                        x: v.x,
+                        y: v.y,
+                        z: v.z,
+                        vectorMagnitude: vectorMagnitude)
+        ]
     }
     
-    #else
-    // If running on a Mac (unit tests) then these methods do nothing.
-    func start() { }
-    func stop() { }
     #endif
 }
 
-fileprivate var listenForDeviceShake: Bool = false
 let deviceShaked = PassthroughSubject<TimeInterval, Never>()
 
-#if os(iOS)
+#if os(iOS) && targetEnvironment(simulator)
 import UIKit
 
 extension UIWindow {
      open override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
-        if motion == .motionShake, listenForDeviceShake {
+        if motion == .motionShake {
             deviceShaked.send(event?.timestamp ?? ProcessInfo.processInfo.systemUptime)
         }
      }

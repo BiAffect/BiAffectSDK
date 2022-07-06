@@ -59,9 +59,9 @@ public struct BiAffectAssessmentView : View {
     public var body: some View {
         AssessmentWrapperView<StepView>(assessmentState, viewModel: viewModel)
             .alert(isPresented: $didResignActive) {
-                Alert(title: Text("This activity has been interrupted and cannot continue."),
+                Alert(title: Text("This activity has been interrupted and cannot continue.", bundle: .module),
                       message: nil,
-                      dismissButton: .default(Text("OK"), action: {
+                      dismissButton: .default(Text("OK", bundle: .module), action: {
                     assessmentState.status = .continueLater
                 }))
             }

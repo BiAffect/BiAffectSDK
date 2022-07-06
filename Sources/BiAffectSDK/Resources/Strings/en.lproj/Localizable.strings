@@ -34,3 +34,6 @@
 "Attempt %lld of %lld" = "Attempt %lld of %lld";
 "Errors:" = "Errors:";
 "Last reaction time:" = "Last reaction time:";
+"OK" = "OK";
+"This activity has been interrupted and cannot continue." = "This activity has been interrupted and cannot continue.";
+"%.2f seconds" = "%.2f seconds";

@@ -101,7 +101,7 @@ struct GoNoGoStepView: View {
                 VStack(alignment: .leading, spacing: 6) {
                     Text("Attempt \(viewModel.attemptCount) of \(viewModel.maxSuccessCount)", bundle: .module)
                     HStack {
-                        Text("Last reaction time:")
+                        Text("Last reaction time:", bundle: .module)
                         Text("\(viewModel.lastReactionTime ?? 0, specifier: "%.2f") seconds", bundle: .module)
                             .opacity(viewModel.lastReactionTime == nil ? 0 : 1)
                     }

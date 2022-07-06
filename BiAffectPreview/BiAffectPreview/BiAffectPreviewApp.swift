@@ -46,9 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         bridgeManager.appWillFinishLaunching(launchOptions)
        
-        // Set up authorization for motion sensor handling
-        BiAffectSDK.setup()
-       
         // Set up notifications handling
         UIApplication.shared.applicationIconBadgeNumber = 0
         UNUserNotificationCenter.current().delegate = bridgeManager.localNotificationManager

@@ -36,8 +36,6 @@ import AssessmentModelUI
 import JsonModel
 import SharedMobileUI
 
-// TODO: syoung 06/24/2022 What kind of interruption handling should this include (background app, phone call, text message, etc.)?
-
 extension BiAffectAssessmentView : AssessmentDisplayView {
     public static func instantiateAssessmentState(_ identifier: String, config: Data?, restoredResult: Data?, interruptionHandling: InterruptionHandling?) throws -> AssessmentState {
         guard let taskId = BiAffectIdentifier(rawValue: identifier)
@@ -52,6 +50,7 @@ extension BiAffectAssessmentView : AssessmentDisplayView {
 public struct BiAffectAssessmentView : View {
     @StateObject var viewModel: AssessmentViewModel = .init()
     @ObservedObject var assessmentState: AssessmentState
+    @State var didResignActive = false
     
     public init(_ assessmentState: AssessmentState) {
         self.assessmentState = assessmentState
@@ -59,6 +58,18 @@ public struct BiAffectAssessmentView : View {
     
     public var body: some View {
         AssessmentWrapperView<StepView>(assessmentState, viewModel: viewModel)
+            .alert(isPresented: $didResignActive) {
+                Alert(title: Text("This activity has been interrupted and cannot continue.", bundle: .module),
+                      message: nil,
+                      dismissButton: .default(Text("OK", bundle: .module), action: {
+                    assessmentState.status = .continueLater
+                }))
+            }
+        #if os(iOS)
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+                didResignActive = true
+            }
+        #endif
     }
     
     struct StepView : View, StepFactoryView {

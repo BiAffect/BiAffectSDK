@@ -1,0 +1,19 @@
+{
+  "scheduledOn" : "2022-06-13T08:00:00.000-07:00",
+  "appName" : "BiAffectPreview",
+  "deviceTypeIdentifier" : "iPhone9,4",
+  "deviceInfo" : "iPhone 7 Plus; iOS\/15.5",
+  "scheduleIdentifier" : "3QQIrVfGIfIwQKnmI603mA",
+  "appVersion" : "version 1.0, build 1",
+  "files" : [
+    {
+      "contentType" : "application\/json",
+      "identifier" : "Trail_Making",
+      "timestamp" : "2022-07-11T10:02:21.895-07:00",
+      "jsonSchema" : "https:\/\/sage-bionetworks.github.io\/mobile-client-json\/schemas\/v2\/AssessmentResultObject.json",
+      "filename" : "assessmentResult.json"
+    }
+  ],
+  "activityLabel" : "Trail Making Test",
+  "scheduledActivityGuid" : "wPXY6P2touDElPZEgmA1Pw"
+}

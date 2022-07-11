@@ -1,0 +1,166 @@
+{
+  "type" : "trailmaking",
+  "identifier" : "trailmaking",
+  "startDate" : "2022-07-11T10:02:02.890-07:00",
+  "endDate" : "2022-07-11T10:02:21.894-07:00",
+  "points" : [
+    {
+      "index" : 0,
+      "label" : "1",
+      "x" : 0.41047299999999998,
+      "y" : 0.061029
+    },
+    {
+      "index" : 1,
+      "label" : "A",
+      "x" : 0.83783799999999997,
+      "y" : 0.066259999999999999
+    },
+    {
+      "index" : 2,
+      "label" : "2",
+      "x" : 0.73648599999999997,
+      "y" : 0.770706
+    },
+    {
+      "index" : 3,
+      "label" : "B",
+      "x" : 0.90878400000000004,
+      "y" : 0.48561500000000002
+    },
+    {
+      "index" : 4,
+      "label" : "3",
+      "x" : 0.86993200000000004,
+      "y" : 0.90322599999999997
+    },
+    {
+      "index" : 5,
+      "label" : "C",
+      "x" : 0.081081,
+      "y" : 0.94943299999999997
+    },
+    {
+      "index" : 6,
+      "label" : "4",
+      "x" : 0.14695900000000001,
+      "y" : 0.78029599999999999
+    },
+    {
+      "index" : 7,
+      "label" : "D",
+      "x" : 0.087837999999999999,
+      "y" : 0.088055999999999995
+    },
+    {
+      "index" : 8,
+      "label" : "5",
+      "x" : 0.26013500000000001,
+      "y" : 0.20575399999999999
+    },
+    {
+      "index" : 9,
+      "label" : "E",
+      "x" : 0.50337799999999999,
+      "y" : 0.25196200000000002
+    },
+    {
+      "index" : 10,
+      "label" : "6",
+      "x" : 0.44594600000000001,
+      "y" : 0.63208399999999998
+    },
+    {
+      "index" : 11,
+      "label" : "F",
+      "x" : 0.67398599999999997,
+      "y" : 0.17611199999999999
+    },
+    {
+      "index" : 12,
+      "label" : "7",
+      "x" : 0.63344599999999995,
+      "y" : 0.63382700000000003
+    }
+  ],
+  "numberOfErrors" : 2,
+  "taps" : [
+    {
+      "timestamp" : 2.3544673332944512,
+      "index" : 0,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 3.0724589999299496,
+      "index" : 1,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 5.6066032499074936,
+      "index" : 3,
+      "incorrect" : true
+    },
+    {
+      "timestamp" : 7.0886518750339746,
+      "index" : 2,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 8.3572889999486506,
+      "index" : 3,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 9.0220225832890719,
+      "index" : 4,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 9.7566283750347793,
+      "index" : 5,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 10.173567458288744,
+      "index" : 6,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 11.55614541657269,
+      "index" : 7,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 11.956510166637599,
+      "index" : 8,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 13.008795500034466,
+      "index" : 9,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 13.841565041569993,
+      "index" : 10,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 15.523570499848574,
+      "index" : 12,
+      "incorrect" : true
+    },
+    {
+      "timestamp" : 16.289998583262786,
+      "index" : 11,
+      "incorrect" : false
+    },
+    {
+      "timestamp" : 16.923690499970689,
+      "index" : 12,
+      "incorrect" : false
+    }
+  ],
+  "pauseInterval" : 0,
+  "runtime" : 16.923690499970689
+}

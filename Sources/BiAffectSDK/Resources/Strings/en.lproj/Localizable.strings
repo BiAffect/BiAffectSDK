@@ -31,7 +31,7 @@
  
 */
 
-"Attempt %lld of %lld" = "Attempt %lld of %lld";
+"Successful Attempt %lld of %lld" = "Successful Attempt %lld of %lld";
 "Errors:" = "Errors:";
 "Last reaction time:" = "Last reaction time:";
 "OK" = "OK";

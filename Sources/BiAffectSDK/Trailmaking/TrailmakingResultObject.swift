@@ -39,9 +39,12 @@ extension SerializableResultType {
 
 public final class TrailmakingResultObject : MultiplatformResultData, SerializableResultData {
     private enum CodingKeys : String, OrderedEnumCodingKey {
-        case serializableType = "type", identifier, startDateTime = "startDate", endDateTime = "endDate", points, numberOfErrors, responses = "taps", pauseInterval, runtime
+        case serializableType = "type", identifier, _jsonSchema = "$schema", startDateTime = "startDate", endDateTime = "endDate", points, numberOfErrors, responses = "taps", pauseInterval, runtime
     }
     public private(set) var serializableType: SerializableResultType = .trailmaking
+    
+    public var jsonSchema: URL { _jsonSchema ?? jsonURL() }
+    private var _jsonSchema: URL?
 
     public let identifier: String
     public var startDateTime: Date = Date()
@@ -54,6 +57,11 @@ public final class TrailmakingResultObject : MultiplatformResultData, Serializab
 
     init(identifier: String) {
         self.identifier = identifier
+        self._jsonSchema = jsonURL()
+    }
+    
+    func jsonURL() -> URL {
+        URL(string: "\(self.className).json", relativeTo: kBaseJsonSchemaURL)!
     }
     
     public func deepCopy() -> TrailmakingResultObject {
@@ -81,7 +89,7 @@ public final class TrailmakingResultObject : MultiplatformResultData, Serializab
 extension TrailmakingResultObject : FileArchivable {
     public func buildArchivableFileData(at stepPath: String?) throws -> (fileInfo: FileInfo, data: Data)? {
         let data = try self.jsonEncodedData()
-        let fileInfo = FileInfo(filename: "trailmaking.json", timestamp: self.endDate, contentType: "application/json", identifier: self.identifier, stepPath: stepPath, jsonSchema: nil)
+        let fileInfo = FileInfo(filename: "trailmaking.json", timestamp: self.endDate, contentType: "application/json", identifier: self.identifier, stepPath: stepPath, jsonSchema: jsonSchema)
         return (fileInfo, data)
     }
 }
@@ -90,10 +98,6 @@ extension TrailmakingResultObject : DocumentableRootObject {
     
     public convenience init() {
         self.init(identifier: SerializableResultType.trailmaking.rawValue)
-    }
-
-    public var jsonSchema: URL {
-        URL(string: "\(self.className).json", relativeTo: kBaseJsonSchemaURL)!
     }
 
     public var documentDescription: String? {
@@ -125,6 +129,8 @@ extension TrailmakingResultObject : DocumentableStruct {
         case .serializableType:
             return .init(constValue: SerializableResultType.gonogo)
         case .identifier:
+            return .init(propertyType: .primitive(.string))
+        case ._jsonSchema:
             return .init(propertyType: .primitive(.string))
         case .startDateTime, .endDateTime:
             return .init(propertyType: .format(.dateTime))

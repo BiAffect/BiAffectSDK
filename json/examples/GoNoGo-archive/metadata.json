@@ -2,22 +2,23 @@
   "files" : [
     {
       "identifier" : "motion",
-      "jsonSchema" : "https:\/\/biaffect.github.io\/biaffectsdk\/json\/schemas\/v1\/ShakeSample.json",
+      "jsonSchema" : "https://biaffect.github.io/biaffectsdk/json/schemas/v1/ShakeSample.json",
       "filename" : "motion.json",
       "timestamp" : "2022-07-11T09:57:24.752-07:00",
-      "contentType" : "application\/json"
+      "contentType" : "application/json"
     },
     {
       "timestamp" : "2022-07-11T09:59:39.597-07:00",
-      "contentType" : "application\/json",
+      "contentType" : "application/json",
       "identifier" : "gonogo",
-      "filename" : "gonogo.json"
+      "filename" : "gonogo.json",
+      "jsonSchema" : "https://biaffect.github.io/biaffectsdk/json/schemas/v1/GoNoGoResultObject.json",
     }
   ],
   "deviceTypeIdentifier" : "iPhone9,4",
   "appName" : "BiAffectPreview",
   "scheduledOn" : "2022-06-13T08:00:00.000-07:00",
-  "deviceInfo" : "iPhone 7 Plus; iOS\/15.5",
+  "deviceInfo" : "iPhone 7 Plus; iOS/15.5",
   "activityLabel" : "Go No Go",
   "scheduledActivityGuid" : "n_I6-ooP0PNz3kKDlwYw8A",
   "scheduleIdentifier" : "3QQIrVfGIfIwQKnmI603mA",

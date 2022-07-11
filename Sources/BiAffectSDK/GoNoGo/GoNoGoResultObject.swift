@@ -40,9 +40,12 @@ extension SerializableResultType {
 
 public final class GoNoGoResultObject : MultiplatformResultData, SerializableResultData {
     private enum CodingKeys : String, OrderedEnumCodingKey {
-        case serializableType = "type", identifier, startDateTime = "startDate", endDateTime = "endDate", startUptime, responses = "results", motionError
+        case serializableType = "type", identifier, _jsonSchema = "$schema", startDateTime = "startDate", endDateTime = "endDate", startUptime, responses = "results", motionError
     }
     public private(set) var serializableType: SerializableResultType = .gonogo
+    
+    public var jsonSchema: URL { _jsonSchema ?? jsonURL() }
+    private var _jsonSchema: URL?
 
     public let identifier: String
     public var startDateTime: Date
@@ -56,6 +59,11 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
         self.startDateTime = Date()
         self.endDateTime = nil
         self.responses = []
+        self._jsonSchema = jsonURL()
+    }
+    
+    func jsonURL() -> URL {
+        URL(string: "\(self.className).json", relativeTo: kBaseJsonSchemaURL)!
     }
     
     public func deepCopy() -> GoNoGoResultObject {
@@ -94,7 +102,7 @@ public final class GoNoGoResultObject : MultiplatformResultData, SerializableRes
 extension GoNoGoResultObject : FileArchivable {
     public func buildArchivableFileData(at stepPath: String?) throws -> (fileInfo: FileInfo, data: Data)? {
         let data = try self.jsonEncodedData()
-        let fileInfo = FileInfo(filename: "gonogo.json", timestamp: self.endDate, contentType: "application/json", identifier: self.identifier, stepPath: stepPath, jsonSchema: nil)
+        let fileInfo = FileInfo(filename: "gonogo.json", timestamp: self.endDate, contentType: "application/json", identifier: self.identifier, stepPath: stepPath, jsonSchema: jsonSchema)
         return (fileInfo, data)
     }
 }
@@ -103,10 +111,6 @@ extension GoNoGoResultObject : DocumentableRootObject {
     
     public convenience init() {
         self.init(identifier: SerializableResultType.gonogo.rawValue)
-    }
-
-    public var jsonSchema: URL {
-        URL(string: "\(self.className).json", relativeTo: kBaseJsonSchemaURL)!
     }
 
     public var documentDescription: String? {
@@ -138,6 +142,8 @@ extension GoNoGoResultObject : DocumentableStruct {
         case .serializableType:
             return .init(constValue: SerializableResultType.gonogo)
         case .identifier:
+            return .init(propertyType: .primitive(.string))
+        case ._jsonSchema:
             return .init(propertyType: .primitive(.string))
         case .startDateTime, .endDateTime:
             return .init(propertyType: .format(.dateTime))

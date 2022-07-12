@@ -36,15 +36,23 @@ import AssessmentModelUI
 import SharedMobileUI
 import MobilePassiveData
 
-// TODO: syoung 06/24/2022 There is no "taking too long" exit. Should there be?
-// TODO: syoung 06/24/2022 Is it intensional to not show any response after selecting first button?
+#if canImport(AudioToolbox)
+import AudioToolbox
+fileprivate func vibrateDevice() {
+    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+}
+#else
+fileprivate func vibrateDevice() {}
+#endif
+
+fileprivate let kTimeoutMinutes = 2
 
 struct TrailmakingStepView: View {
     @EnvironmentObject var assessmentState: AssessmentState
     @EnvironmentObject var pagedNavigation: PagedNavigationViewModel
     @ObservedObject var nodeState: StepState
     @StateObject var viewModel: ViewModel = .init()
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     init(_ nodeState: StepState) {
         self.nodeState = nodeState
@@ -98,12 +106,7 @@ struct TrailmakingStepView: View {
             }
         }
         .onChange(of: assessmentState.showingPauseActions) { newValue in
-            if newValue {
-                viewModel.clock.pause()
-            }
-            else {
-                viewModel.clock.resume()
-            }
+            viewModel.isPaused = newValue
         }
         .onReceive(timer) { _ in
             viewModel.onTimerUpdated()
@@ -118,11 +121,24 @@ struct TrailmakingStepView: View {
         @Published var numberOfErrors: Int = 0
         @Published var testState: TestState = .idle
         @Published var currentIndex: Int = 0
+        @Published var isPaused: Bool = false {
+            didSet {
+                guard testState == .running else { return }
+                if isPaused {
+                    clock.pause()
+                }
+                else {
+                    clock.resume()
+                }
+            }
+        }
         
         var clock: SimpleClock = .init()
+        var timeoutCounter: Int = 0
+        var lastActionTimestamp: SecondDuration = 0
         
         enum TestState : Int, Comparable {
-            case idle, running, stopping, finished, error
+            case idle, running, stopping, finished, error, timedOut
         }
         
         var result: TrailmakingResultObject!
@@ -150,6 +166,8 @@ struct TrailmakingStepView: View {
             
             // reset the test
             clock.reset()
+            timeoutCounter = 0
+            lastActionTimestamp = 0
             runtime = .init()
             lastIncorrectTap = -1
             numberOfErrors = 0
@@ -162,6 +180,8 @@ struct TrailmakingStepView: View {
             let timestamp = clock.runningDuration()
             let correct = index == currentIndex
             result.responses?.append(.init(timestamp: timestamp, index: index, incorrect: !correct))
+            lastActionTimestamp = timestamp
+            timeoutCounter = 0
             
             if correct {
                 currentIndex += 1
@@ -187,9 +207,19 @@ struct TrailmakingStepView: View {
                 testState = .finished
             }
             
-            // Exit early unless running and not paused
-            if !clock.isPaused, testState == .running {
-                runtime.second = Int(clock.runningDuration())
+            // Update the runtime
+            else if !clock.isPaused, testState == .running {
+                let timestamp = clock.runningDuration()
+                runtime.second = Int(timestamp)
+                if timestamp - lastActionTimestamp > 60 {
+                    timeoutCounter += 1
+                    lastActionTimestamp = timestamp
+                    vibrateDevice()
+                    if timeoutCounter >= kTimeoutMinutes {
+                        result.timedOut = true
+                        testState = .timedOut
+                    }
+                }
             }
         }
     }

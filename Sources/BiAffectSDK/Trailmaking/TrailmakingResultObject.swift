@@ -39,7 +39,7 @@ extension SerializableResultType {
 
 public final class TrailmakingResultObject : MultiplatformResultData, SerializableResultData {
     private enum CodingKeys : String, OrderedEnumCodingKey {
-        case serializableType = "type", identifier, _jsonSchema = "$schema", startDateTime = "startDate", endDateTime = "endDate", points, numberOfErrors, responses = "taps", pauseInterval, runtime
+        case serializableType = "type", identifier, _jsonSchema = "$schema", startDateTime = "startDate", endDateTime = "endDate", points, numberOfErrors, responses = "taps", pauseInterval, runtime, timedOut
     }
     public private(set) var serializableType: SerializableResultType = .trailmaking
     
@@ -54,6 +54,7 @@ public final class TrailmakingResultObject : MultiplatformResultData, Serializab
     public var responses: [Response]?
     public var pauseInterval: TimeInterval?
     public var runtime: TimeInterval?
+    public var timedOut: Bool?
 
     init(identifier: String) {
         self.identifier = identifier
@@ -73,6 +74,7 @@ public final class TrailmakingResultObject : MultiplatformResultData, Serializab
         copy.points = self.points
         copy.pauseInterval = self.pauseInterval
         copy.runtime = self.runtime
+        copy.timedOut = self.timedOut
         return copy
     }
     
@@ -149,6 +151,9 @@ extension TrailmakingResultObject : DocumentableStruct {
         case .points:
             return .init(propertyType: .referenceArray(TrailmakingPoint.documentableType()), propertyDescription:
                             "An array of all the trail points displayed for this run of the test.")
+        case .timedOut:
+            return .init(propertyType: .primitive(.number), propertyDescription:
+                            "If `true` then the test timed out.")
         }
     }
     

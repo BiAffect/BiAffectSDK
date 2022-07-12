@@ -37,10 +37,22 @@ import SharedMobileUI
 import JsonModel
 import MobilePassiveData
 
-extension SoundFile {
-    static let success = SoundFile(name: "sms-received5")
-    static let failure = SoundFile(name: "jbl_cancel")
+#if canImport(AudioToolbox)
+import AudioToolbox
+fileprivate func playSuccess() {
+    AudioServicesPlayAlertSound(SystemSoundID(1013))
 }
+fileprivate func playFailure() {
+    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+}
+fileprivate func playTimeout() {
+    // do nothing - no sound or vibration should play on timeout
+}
+#else
+fileprivate func playSuccess() {}
+fileprivate func playFailure() {}
+fileprivate func playTimeout() {}
+#endif
 
 extension Font {
     static let instruction: Font = .latoFont(24, relativeTo: .title, weight: .regular)
@@ -52,7 +64,6 @@ struct GoNoGoStepView: View {
     @EnvironmentObject var pagedNavigation: PagedNavigationViewModel
     @ObservedObject var nodeState: StepState
     @StateObject var viewModel: ViewModel = .init()
-    let soundPlayer: AudioFileSoundPlayer = .init()
     
     init(_ nodeState: StepState) {
         self.nodeState = nodeState
@@ -99,7 +110,7 @@ struct GoNoGoStepView: View {
                 Text(viewModel.instructions)
                     .font(.instruction)
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Attempt \(viewModel.attemptCount) of \(viewModel.maxSuccessCount)", bundle: .module)
+                    Text("Successful Attempt \(viewModel.attemptCount) of \(viewModel.maxSuccessCount)", bundle: .module)
                     HStack {
                         Text("Last reaction time:", bundle: .module)
                         Text("\(viewModel.lastReactionTime ?? 0, specifier: "%.2f") seconds", bundle: .module)
@@ -133,17 +144,17 @@ struct GoNoGoStepView: View {
                 if viewModel.correct {
                     CheckmarkView()
                         .onAppear {
-                            soundPlayer.playSound(.success)
+                            playSuccess()
                         }
                 }
                 else {
                     XmarkView()
                         .onAppear {
                             if viewModel.didTimeout {
-                                soundPlayer.playSound(.failure)
+                                playTimeout()
                             }
                             else {
-                                soundPlayer.vibrateDevice()
+                                playFailure()
                             }
                         }
                 }

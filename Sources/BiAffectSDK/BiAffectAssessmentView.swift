@@ -73,6 +73,7 @@ public struct BiAffectAssessmentView : View {
     }
     
     struct StepView : View, StepFactoryView {
+        @EnvironmentObject var pagedNavigation: PagedNavigationViewModel
         @ObservedObject var state: StepState
         
         init(_ state: StepState) {
@@ -80,6 +81,15 @@ public struct BiAffectAssessmentView : View {
         }
         
         var body: some View {
+            stepView()
+                .onAppear {
+                    // Always hide the progress view
+                    pagedNavigation.progressHidden = true
+                }
+        }
+        
+        @ViewBuilder
+        private func stepView() -> some View {
             if let step = state.step as? CompletionStep {
                 CompletionStepView(step)
             }
@@ -97,17 +107,12 @@ public struct BiAffectAssessmentView : View {
                     .surveyTintColor(.sageBlack)
             }
             else {
-                debugStepView(state)
-            }
-        }
-        
-        @ViewBuilder
-        private func debugStepView(_ state: StepState) -> some View {
-            VStack {
-                Spacer()
-                Text(state.id)
-                Spacer()
-                SurveyNavigationView()
+                VStack {
+                    Spacer()
+                    Text(state.id)
+                    Spacer()
+                    SurveyNavigationView()
+                }
             }
         }
     }

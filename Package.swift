@@ -54,7 +54,9 @@ let package = Package(
         
         .target(
             name: "KeyLogger",
-            dependencies: []),
+            dependencies: [
+                .product(name: "JsonModel", package: "JsonModel"),
+            ]),
         .testTarget(
             name: "KeyLoggerTests",
             dependencies: [

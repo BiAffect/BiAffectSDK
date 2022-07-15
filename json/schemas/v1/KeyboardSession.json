@@ -117,6 +117,13 @@
             "items": {
                 "$ref": "#/definitions/Keylog"
             }
+        },
+        "associatedFiles": {
+            "type": "array",
+            "description": "Other files created during this session",
+            "items": {
+                "$ref": "https://sage-bionetworks.github.io/mobile-client-json/schemas/v2/ResultData.json#FileResultObject",
+            }
         }
     },
     "required": [

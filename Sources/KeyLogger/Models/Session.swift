@@ -34,13 +34,14 @@
 
 import Foundation
 import SwiftUI
+import JsonModel
 
 let kBaseJsonSchemaURL = URL(string: "https://biaffect.github.io/biaffectsdk/json/schemas/v1/")!
 
 /// A serializable state object used to track keyboard sesson state.
 public class Session : Codable {
     private enum CodingKeys : String, CodingKey {
-        case uptime, _timestamp = "timestamp", jsonSchema = "$schema", duration, keylogs
+        case uptime, _timestamp = "timestamp", jsonSchema = "$schema", duration, keylogs, associatedFiles
     }
     
     public private(set) var jsonSchema: URL = URL(string: "KeyboardSession.json", relativeTo: kBaseJsonSchemaURL)!
@@ -54,6 +55,7 @@ public class Session : Codable {
     internal let _timestamp: TimeInterval
     public private(set) var duration: TimeInterval
     public private(set) var keylogs: [Keylog]
+    public var associatedFiles: [FileResultObject]?
     
     public convenience init(_ keylog: Keylog) {
         self.init(uptime: keylog.uptime, timeInterval: keylog._timestamp, duration: 0.0, keylogs: [keylog])

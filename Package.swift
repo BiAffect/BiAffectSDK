@@ -15,6 +15,9 @@ let package = Package(
         .library(
             name: "BiAffectSDK",
             targets: ["BiAffectSDK"]),
+        .library(
+            name: "KeyLogger",
+            targets: ["KeyLogger"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -48,5 +51,17 @@ let package = Package(
         .testTarget(
             name: "BiAffectSDKTests",
             dependencies: ["BiAffectSDK"]),
+        
+        .target(
+            name: "KeyLogger",
+            dependencies: [
+                .product(name: "JsonModel", package: "JsonModel"),
+            ]),
+        .testTarget(
+            name: "KeyLoggerTests",
+            dependencies: [
+                "KeyLogger",
+                .product(name: "JsonModel", package: "JsonModel"),
+            ]),
     ]
 )

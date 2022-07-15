@@ -1,0 +1,134 @@
+{
+    "$id": "https://biaffect.github.io/biaffectsdk/schemas/v1/KeyboardSession.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "KeyboardSession",
+    "description": "",
+    "definitions": {
+        "Keylog": {
+            "$id": "#Keylog",
+            "type": "object",
+            "title": "Keylog",
+            "description": "",
+            "properties": {
+                "uptime": {
+                    "type": "number",
+                    "description": "System Clock. The processor system uptime used as a timestamp for motion records."
+                },
+                "timestamp": {
+                    "type": "number",
+                    "description": "Time interval (in seconds) since 1970."
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Description of the key pressed."
+                    "enum" : [
+                      "alphanum",
+                      "punctuation",
+                      "emoji",
+                      "backspace",
+                      "suggestion",
+                      "autocorrection",
+                      "@",
+                      "#",
+                      "other"
+                    ]
+                }
+                "duration": {
+                    "type": "number",
+                    "description": "Residence Time. Time interval the finger is kept on the key."
+                },
+                "distanceFromPrevious": {
+                    "type": "number",
+                    "description": "Distance (in universal size called gridpoint which is independent of screen resolutions) of touch from the previous KeyLog touch position."
+                },
+                "distanceFromCenter": {
+                    "type": "number",
+                    "description": "Distance (in universal size called gridpoint which is independent of screen resolutions) of touch from key center."
+                },
+                "force": {
+                    "$ref": "#/definitions/Force"
+                },
+                "radius": {
+                    "$ref": "#/definitions/Radius"
+                }
+            },
+            "required": [
+                "timestamp",
+                "value"
+            ],
+            "additionalProperties": false
+        },
+        "Force": {
+            "$id": "#Force",
+            "type": "object",
+            "title": "Force",
+            "description": "",
+            "properties": {
+                "value": {
+                    "type": "number",
+                },
+                "max": {
+                    "type": "number",
+                }
+            },
+            "required": [
+                "value",
+                "max"
+            ],
+            "additionalProperties": false
+        },
+        "Radius": {
+            "$id": "#Radius",
+            "type": "object",
+            "title": "Radius",
+            "description": "",
+            "properties": {
+                "value": {
+                    "type": "number",
+                },
+                "tolerance": {
+                    "type": "number",
+                }
+            },
+            "required": [
+                "value",
+                "tolerance"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "properties": {
+        "uptime": {
+            "type": "number",
+            "description": "System Clock. The processor system uptime used as a timestamp for motion records."
+        },
+        "timestamp": {
+            "type": "number",
+            "description": "Time interval (in seconds) since 1970."
+        },
+        "duration": {
+            "type": "number",
+            "format": "The duration of the session"
+        },
+        "keylogs": {
+            "type": "array",
+            "description": "The list of keylog items for this session.",
+            "items": {
+                "$ref": "#/definitions/Keylog"
+            }
+        },
+        "associatedFiles": {
+            "type": "array",
+            "description": "Other files created during this session",
+            "items": {
+                "$ref": "https://sage-bionetworks.github.io/mobile-client-json/schemas/v2/ResultData.json#FileResultObject",
+            }
+        }
+    },
+    "required": [
+        "timestamp",
+        "duration",
+        "keylogs",
+    ]
+}

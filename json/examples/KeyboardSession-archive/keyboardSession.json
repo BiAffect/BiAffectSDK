@@ -1,0 +1,507 @@
+{
+  "$schema" : "https://biaffect.github.io/biaffectsdk/json/schemas/v1/KeyboardSession.json",
+  "associatedFiles" : [
+    {
+      "type" : "file",
+      "identifier" : "motion",
+      "startDate" : "2022-07-15T14:45:01.085-07:00",
+      "endDate" : "2022-07-15T14:45:51.952-07:00",
+      "relativePath" : "motion.json",
+      "contentType" : "application/json",
+      "startUptime" : 1579461.2372061252,
+      "jsonSchema" : "https://sage-bionetworks.github.io/mobile-client-json/schemas/v2/MotionRecord.json"
+    }
+  ],
+  "duration" : 44.37026729574427,
+  "keylogs" : [
+    {
+      "distanceFromCenter" : 22.754735209328203,
+      "duration" : 0.084887166740372777,
+      "timestamp" : 1657921501.081933,
+      "uptime" : 1579461.1722536066,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 4.6785613558767141,
+      "distanceFromPrevious" : 275.05737153208923,
+      "duration" : 0.066908291541039944,
+      "timestamp" : 1657921501.429131,
+      "uptime" : 1579461.5194529609,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 12.023122480265952,
+      "distanceFromPrevious" : 168.38580990906789,
+      "duration" : 0.098582666832953691,
+      "timestamp" : 1657921501.743948,
+      "uptime" : 1579461.834272763,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 24.459149617270025,
+      "distanceFromPrevious" : 154.2710566699167,
+      "duration" : 0.064978874986991286,
+      "timestamp" : 1657921501.9829521,
+      "uptime" : 1579462.0732800835,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 7.7315989160812446,
+      "distanceFromPrevious" : 182.08088204067252,
+      "duration" : 0.066887125140056014,
+      "timestamp" : 1657921502.5623,
+      "uptime" : 1579462.6526332053,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 10.734168250427249,
+      "distanceFromPrevious" : 264.21561681292263,
+      "duration" : 0.065344833536073565,
+      "timestamp" : 1657921502.810889,
+      "uptime" : 1579462.9012248882,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 40.610959112042664,
+      "distanceFromPrevious" : 191.42767964823935,
+      "duration" : 0.04825783334672451,
+      "timestamp" : 1657921503.1468868,
+      "uptime" : 1579463.2372265419,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 15.391204867817057,
+      "distanceFromPrevious" : 272.02982917856247,
+      "duration" : 0.099891791585832834,
+      "timestamp" : 1657921503.795604,
+      "uptime" : 1579463.885949675,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 7.6084817148392379,
+      "distanceFromPrevious" : 37.028518729123221,
+      "duration" : 0.066719125024974346,
+      "timestamp" : 1657921503.9956589,
+      "uptime" : 1579464.086007175,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 33.118051346334205,
+      "distanceFromPrevious" : 213.07536127352077,
+      "duration" : 0.066454083425924182,
+      "timestamp" : 1657921504.2226219,
+      "uptime" : 1579464.3129726714,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 4.0688493718384917,
+      "distanceFromPrevious" : 158.8461916543221,
+      "duration" : 0.11519829160533845,
+      "timestamp" : 1657921505.0111089,
+      "uptime" : 1579465.101467425,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 9.9442942043833948,
+      "distanceFromPrevious" : 47.239332462698883,
+      "duration" : 0.098452916601672769,
+      "timestamp" : 1657921505.2109451,
+      "uptime" : 1579465.3013051751,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 24.774547660970217,
+      "distanceFromPrevious" : 75.789904288196539,
+      "duration" : 0.082013333216309547,
+      "timestamp" : 1657921505.3945961,
+      "uptime" : 1579465.4849580964,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 36.852930071586457,
+      "distanceFromPrevious" : 175.84652399180371,
+      "duration" : 0.08174008340574801,
+      "timestamp" : 1657921505.8883581,
+      "uptime" : 1579465.9787253751,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 7.6956088229128632,
+      "distanceFromPrevious" : 240.9160732251863,
+      "duration" : 0.09846720821224153,
+      "timestamp" : 1657921506.511204,
+      "uptime" : 1579466.601577925,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 5.6568542494923877,
+      "distanceFromPrevious" : 164.05859964568464,
+      "duration" : 0.098534249933436513,
+      "timestamp" : 1657921506.894696,
+      "uptime" : 1579466.9850738314,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 3.0731853475448623,
+      "distanceFromPrevious" : 163.77661445603653,
+      "duration" : 0.081867083208635449,
+      "timestamp" : 1657921507.0611041,
+      "uptime" : 1579467.151483461,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 13.920418422060532,
+      "distanceFromPrevious" : 275.03616666079171,
+      "duration" : 0.081921499921008945,
+      "timestamp" : 1657921508.094996,
+      "uptime" : 1579468.1853860917,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 4.5338152760268846,
+      "distanceFromPrevious" : 130.39171752837677,
+      "duration" : 0.081698958296328783,
+      "timestamp" : 1657921508.5119791,
+      "uptime" : 1579468.6023728417,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 46.084764546894313,
+      "distanceFromPrevious" : 37.431421170265011,
+      "duration" : 0.098578708479180932,
+      "timestamp" : 1657921509.065218,
+      "uptime" : 1579469.1556170939,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 12.866834238181765,
+      "distanceFromPrevious" : 172.39650432782639,
+      "duration" : 0.083275875076651573,
+      "timestamp" : 1657921509.463058,
+      "uptime" : 1579469.5534610918,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 14.067302300193992,
+      "distanceFromPrevious" : 157.78079535116458,
+      "duration" : 0.099969499977305532,
+      "timestamp" : 1657921509.729986,
+      "uptime" : 1579469.8203918834,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 50.856280141105572,
+      "distanceFromPrevious" : 186.76306823826044,
+      "duration" : 0.083355166483670473,
+      "timestamp" : 1657921510.0896699,
+      "uptime" : 1579470.1800802501,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 6.6164710847995831,
+      "distanceFromPrevious" : 182.98057001817884,
+      "duration" : 0.10140670812688768,
+      "timestamp" : 1657921512.330416,
+      "uptime" : 1579472.4208491289,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 19.090438031089114,
+      "distanceFromPrevious" : 64.007812023221035,
+      "duration" : 0.11528783338144422,
+      "timestamp" : 1657921512.629637,
+      "uptime" : 1579472.7200730501,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 17.669816030339952,
+      "distanceFromPrevious" : 60.57960067087388,
+      "duration" : 0.13330199988558888,
+      "timestamp" : 1657921513.030411,
+      "uptime" : 1579473.1208506334,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 4.7140502430538751,
+      "distanceFromPrevious" : 112.23091745294462,
+      "duration" : 0.083768750075250864,
+      "timestamp" : 1657921514.0818849,
+      "uptime" : 1579474.1723350917,
+      "value" : "alphanum"
+    },
+    {
+      "timestamp" : 1657921515.2456899,
+      "uptime" : 1579475.3361520465,
+      "value" : "suggestion"
+    },
+    {
+      "distanceFromCenter" : 13.812234621870267,
+      "duration" : 0.084975000005215406,
+      "timestamp" : 1657921516.5642929,
+      "uptime" : 1579476.6547683775,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 15.162091469876799,
+      "distanceFromPrevious" : 69.334129500097518,
+      "duration" : 0.081858000019565225,
+      "timestamp" : 1657921516.8291559,
+      "uptime" : 1579476.9196347944,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 2.7487383173495248,
+      "distanceFromPrevious" : 88.814413244698073,
+      "duration" : 0.10000991681590676,
+      "timestamp" : 1657921517.2640948,
+      "uptime" : 1579477.3545776333,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 12.405201237424102,
+      "distanceFromPrevious" : 233.60388844387671,
+      "duration" : 0.08177766646258533,
+      "timestamp" : 1657921518.94559,
+      "uptime" : 1579479.0360895882,
+      "value" : "backspace"
+    },
+    {
+      "distanceFromCenter" : 7.673914703609956,
+      "distanceFromPrevious" : 276.31222066994826,
+      "duration" : 0.081849458394572139,
+      "timestamp" : 1657921519.3628988,
+      "uptime" : 1579479.4534021334,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 35.385568598425053,
+      "distanceFromPrevious" : 200.14132891733965,
+      "duration" : 0.081959249917417765,
+      "timestamp" : 1657921519.813916,
+      "uptime" : 1579479.9044237188,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 19.880198355357283,
+      "distanceFromPrevious" : 198.1584690666721,
+      "duration" : 0.099424666725099087,
+      "timestamp" : 1657921520.5503922,
+      "uptime" : 1579480.6409087609,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 4.8074017006186693,
+      "distanceFromPrevious" : 102.48685201867202,
+      "duration" : 0.044785041827708483,
+      "timestamp" : 1657921520.9201698,
+      "uptime" : 1579481.0106910781,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 12.445446549292694,
+      "distanceFromPrevious" : 79.691769399859595,
+      "duration" : 0.11541554168798029,
+      "timestamp" : 1657921521.316412,
+      "uptime" : 1579481.4069365365,
+      "value" : "alphanum"
+    },
+    {
+      "timestamp" : 1657921523.0466321,
+      "uptime" : 1579483.1371734261,
+      "value" : "suggestion"
+    },
+    {
+      "distanceFromCenter" : 4.9553449585168581,
+      "duration" : 0.13307500001974404,
+      "timestamp" : 1657921528.7053089,
+      "uptime" : 1579488.7959104141,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 12.823598364804026,
+      "distanceFromPrevious" : 184.77883837934533,
+      "duration" : 0.094536875141784549,
+      "timestamp" : 1657921529.014816,
+      "uptime" : 1579489.1054186162,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 12.692951436430635,
+      "distanceFromPrevious" : 198.18313087061881,
+      "duration" : 0.082051166798919439,
+      "timestamp" : 1657921529.2318239,
+      "uptime" : 1579489.3224280791,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 38.869077394205334,
+      "distanceFromPrevious" : 197.71696942852427,
+      "duration" : 0.083276374964043498,
+      "timestamp" : 1657921529.7088909,
+      "uptime" : 1579489.7995016298,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 4.1766482005432941,
+      "distanceFromPrevious" : 182.16598502238384,
+      "duration" : 0.081604458391666412,
+      "timestamp" : 1657921530.4523249,
+      "uptime" : 1579490.5429417761,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 17.143190102144956,
+      "distanceFromPrevious" : 66.057221444679087,
+      "duration" : 0.098397500114515424,
+      "timestamp" : 1657921530.7675619,
+      "uptime" : 1579490.8581822345,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 9.0061711005786815,
+      "distanceFromPrevious" : 95.733414991197648,
+      "duration" : 0.11495374981313944,
+      "timestamp" : 1657921531.065136,
+      "uptime" : 1579491.1557590016,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 7.340900562749642,
+      "distanceFromPrevious" : 228.66763072649411,
+      "duration" : 0.11674649990163743,
+      "timestamp" : 1657921531.25052,
+      "uptime" : 1579491.3411449646,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 42.44767719848798,
+      "distanceFromPrevious" : 202.15780660487616,
+      "duration" : 0.083346708212047815,
+      "timestamp" : 1657921531.4978471,
+      "uptime" : 1579491.5884737188,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 6.2893175198631956,
+      "distanceFromPrevious" : 203.79210605442694,
+      "duration" : 0.11629358329810202,
+      "timestamp" : 1657921531.9827828,
+      "uptime" : 1579492.0734148417,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 11.822776276016656,
+      "distanceFromPrevious" : 368.63863738087059,
+      "duration" : 0.098508874885737896,
+      "timestamp" : 1657921532.147779,
+      "uptime" : 1579492.2384123001,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 11.318619095891204,
+      "distanceFromPrevious" : 281.00217866184988,
+      "duration" : 0.081715000094845891,
+      "timestamp" : 1657921532.3827701,
+      "uptime" : 1579492.4734061949,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 15.902479309809339,
+      "distanceFromPrevious" : 135.26680462088999,
+      "duration" : 0.050143999978899956,
+      "timestamp" : 1657921532.7727151,
+      "uptime" : 1579492.8633552864,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 5.4670722252787733,
+      "distanceFromPrevious" : 128.98104704710971,
+      "duration" : 0.098056958289816976,
+      "timestamp" : 1657921534.7489781,
+      "uptime" : 1579494.839637835,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 21.084497231185846,
+      "distanceFromPrevious" : 120.52708640663089,
+      "duration" : 0.065224833320826292,
+      "timestamp" : 1657921535.032311,
+      "uptime" : 1579495.1229749182,
+      "value" : "alphanum"
+    },
+    {
+      "timestamp" : 1657921535.905158,
+      "uptime" : 1579495.9958322328,
+      "value" : "suggestion"
+    },
+    {
+      "distanceFromCenter" : 3.4318717734584983,
+      "duration" : 0.066505833296105266,
+      "timestamp" : 1657921536.970607,
+      "uptime" : 1579497.0612901556,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 3.7267858765814252,
+      "distanceFromPrevious" : 239.87264773715401,
+      "duration" : 0.08181558339856565,
+      "timestamp" : 1657921537.349087,
+      "uptime" : 1579497.4397722366,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 8.0622627952896586,
+      "distanceFromPrevious" : 123.49583354585178,
+      "duration" : 0.081959666451439261,
+      "timestamp" : 1657921537.5332429,
+      "uptime" : 1579497.623930872,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 4.4845523127352207,
+      "distanceFromPrevious" : 117.67846060083691,
+      "duration" : 0.08203566656447947,
+      "timestamp" : 1657921537.9214411,
+      "uptime" : 1579498.0121339948,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 24.083199294972289,
+      "distanceFromPrevious" : 234.13790115934796,
+      "duration" : 0.13375620846636593,
+      "timestamp" : 1657921539.7248211,
+      "uptime" : 1579499.8155330911,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 13.399825051661583,
+      "distanceFromPrevious" : 151.4687390306575,
+      "duration" : 0.083382458193227649,
+      "timestamp" : 1657921540.201134,
+      "uptime" : 1579500.2918495017,
+      "value" : "alphanum"
+    },
+    {
+      "distanceFromCenter" : 18.862072647498561,
+      "distanceFromPrevious" : 48.599270736044545,
+      "duration" : 0.10008391668088734,
+      "timestamp" : 1657921540.6358371,
+      "uptime" : 1579500.7265567668,
+      "value" : "alphanum"
+    },
+    {
+      "timestamp" : 1657921542.7171669,
+      "uptime" : 1579502.8079068798,
+      "value" : "suggestion"
+    },
+    {
+      "distanceFromCenter" : 36.530039510260536,
+      "duration" : 0.049337291624397039,
+      "timestamp" : 1657921545.402863,
+      "uptime" : 1579505.493631063,
+      "value" : "alphanum"
+    }
+  ],
+  "timestamp" : 1657921501.081933,
+  "uptime" : 1579461.1722536066
+}

@@ -40,8 +40,8 @@ import JsonModel
 import CoreMotion
 #endif
 
-fileprivate let recordSchema = DocumentableRootArray(rootDocumentType: MotionRecord.self,
-                                          jsonSchema: .init(string: "ShakeSample.json", relativeTo: kBaseJsonSchemaURL)!,
+fileprivate let recordSchema = DocumentableRootArray(rootDocumentType: MotionSample.self,
+                                          jsonSchema: .init(string: "MotionSample.json", relativeTo: kBaseJsonSchemaURL)!,
                                           documentDescription: "A list of motion sensor records.")
 
 fileprivate let motionRecorderConfig = MotionRecorderConfigurationObject(identifier: "motion",
@@ -141,23 +141,6 @@ final class ShakeMotionSensor : MotionRecorder {
     }
     
     override var schemaDoc: DocumentableRootArray? { recordSchema }
-    
-    struct ShakeSample : SampleRecord, Codable, Hashable {
-        private enum CodingKeys : String, OrderedEnumCodingKey {
-            case stepPath, uptime, timestamp, timestampDate, sensorType, x, y, z, vectorMagnitude
-        }
-        
-        let stepPath: String
-        let uptime: ClockUptime
-        let timestamp: SecondDuration?
-        let sensorType: MotionRecorderType?
-        let x: Double?
-        let y: Double?
-        let z: Double?
-        let vectorMagnitude: Double?
-        
-        private(set) var timestampDate: Date? = nil
-    }
 
     #if os(iOS)
     
@@ -168,7 +151,7 @@ final class ShakeMotionSensor : MotionRecorder {
             await onMotionReceived(vectorMagnitude, timestamp: data.timestamp)
         }
         return [
-            ShakeSample(stepPath: stepPath,
+            MotionSample(stepPath: stepPath,
                         uptime: uptime,
                         timestamp: timestamp,
                         sensorType: .userAcceleration,
@@ -195,3 +178,94 @@ extension UIWindow {
      }
 }
 #endif
+
+struct MotionSample : SampleRecord, Codable, Hashable {
+    private enum CodingKeys : String, OrderedEnumCodingKey {
+        case stepPath, uptime, timestamp, timestampDate, sensorType, x, y, z, vectorMagnitude
+    }
+    
+    let stepPath: String
+    let uptime: ClockUptime
+    let timestamp: SecondDuration?
+    let sensorType: MotionRecorderType?
+    let x: Double?
+    let y: Double?
+    let z: Double?
+    let vectorMagnitude: Double?
+    
+    private(set) var timestampDate: Date? = nil
+}
+
+extension MotionSample : DocumentableStruct {
+    public static func codingKeys() -> [CodingKey] {
+        return CodingKeys.allCases
+    }
+
+    public static func isRequired(_ codingKey: CodingKey) -> Bool {
+        (codingKey as? CodingKeys) == CodingKeys.stepPath
+    }
+    
+    public static func documentProperty(for codingKey: CodingKey) throws -> DocumentProperty {
+        guard let key = codingKey as? CodingKeys else {
+            throw DocumentableError.invalidCodingKey(codingKey, "\(codingKey) is not recognized for this class")
+        }
+        switch key {
+        case .uptime:
+            return .init(propertyType: .primitive(.number), propertyDescription: "System clock time.")
+        case .timestamp:
+            return .init(propertyType: .primitive(.number), propertyDescription: "Time that the system has been awake since last reboot.")
+        case .stepPath:
+            return .init(propertyType: .primitive(.string), propertyDescription: "An identifier marking the current step.")
+        case .timestampDate:
+            return .init(propertyType: .format(.dateTime), propertyDescription: "The date timestamp when the measurement was taken (if available).")
+        case .sensorType:
+            return .init(propertyType: .reference(MotionRecorderType.documentableType()), propertyDescription: "The sensor type for this record sample.")
+        case .x:
+            return .init(propertyType: .primitive(.number), propertyDescription: "The `x` component of the vector measurement for this sensor sample.")
+        case .y:
+            return .init(propertyType: .primitive(.number), propertyDescription: "The `y` component of the vector measurement for this sensor sample.")
+        case .z:
+            return .init(propertyType: .primitive(.number), propertyDescription: "The `z` component of the vector measurement for this sensor sample.")
+        case .vectorMagnitude:
+            return .init(propertyType: .primitive(.number), propertyDescription: "The calculated vector magnitude used to determine whether or not the device was shaken. (`sensorType==userAcceleration`)")
+        }
+    }
+
+    public static func examples() -> [MotionSample] {
+        let json = """
+        [
+            {
+              "uptime" : 1350727.0347595001,
+              "timestamp" : 0.22008016658946872,
+              "stepPath" : "attempt/1/showing/none",
+              "sensorType" : "gyro",
+              "x" : 0.043036416172981262,
+              "y" : -0.038228876888751984,
+              "z" : 0.012300875037908554
+            },
+            {
+              "uptime" : 1350727.0347595001,
+              "timestamp" : 0.22008016658946872,
+              "stepPath" : "attempt/1/showing/none",
+              "sensorType" : "accelerometer",
+              "x" : 0.0980987548828125,
+              "y" : -0.483734130859375,
+              "z" : -0.8672332763671875
+            },
+            {
+              "stepPath" : "attempt/1/showing/none",
+              "uptime" : 1350727.0408015,
+              "timestamp" : 0.22612216649577022,
+              "sensorType" : "userAcceleration",
+              "x" : 0.001909300684928894,
+              "y" : -0.0058466494083404541,
+              "z" : 0.0059053897857666016,
+              "vectorMagnitude" : 0.008526568297466116
+            }
+        ]
+        """.data(using: .utf8)! // our data in native (JSON) format
+        let decoder = BiAffectFactory().createJSONDecoder()
+        return try! decoder.decode([MotionSample].self, from: json)
+    }
+}
+

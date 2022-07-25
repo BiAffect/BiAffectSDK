@@ -9,7 +9,7 @@
     "properties" : {
       "uptime" : {
         "type" : "number",
-        "description" : "Clock time. This is the machine clock for the device and runs even when the device is asleep (unlike the processor system uptime)."
+        "description" : "Clock time. This is the system uptime that is reported with a sample while the app is in the foreground."
       },
       "timestamp" : {
         "type" : "number",

@@ -58,18 +58,6 @@ public struct BiAffectAssessmentView : View {
     
     public var body: some View {
         AssessmentWrapperView<StepView>(assessmentState, viewModel: viewModel)
-            .alert(isPresented: $didResignActive) {
-                Alert(title: Text("This activity has been interrupted and cannot continue.", bundle: .module),
-                      message: nil,
-                      dismissButton: .default(Text("OK", bundle: .module), action: {
-                    assessmentState.status = .continueLater
-                }))
-            }
-        #if os(iOS)
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
-                didResignActive = true
-            }
-        #endif
     }
     
     struct StepView : View, StepFactoryView {
@@ -95,9 +83,11 @@ public struct BiAffectAssessmentView : View {
             }
             else if state.step is GoNoGoStepObject {
                 GoNoGoStepView(state)
+                    .modifier(AppBackgroundListener())
             }
             else if state.step is TrailmakingStepObject {
                 TrailmakingStepView(state)
+                    .modifier(AppBackgroundListener())
             }
             else if state.step is CountdownStep {
                 CountdownStepView(state)
@@ -115,6 +105,27 @@ public struct BiAffectAssessmentView : View {
                 }
             }
         }
+    }
+}
+
+struct AppBackgroundListener : ViewModifier {
+    @EnvironmentObject var assessmentState: AssessmentState
+    @State var didResignActive = false
+
+    func body(content: Content) -> some View {
+        content
+            .alert(isPresented: $didResignActive) {
+                Alert(title: Text("This activity has been interrupted and cannot continue.", bundle: .module),
+                      message: nil,
+                      dismissButton: .default(Text("OK", bundle: .module), action: {
+                    assessmentState.status = .continueLater
+                }))
+            }
+        #if os(iOS)
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+                didResignActive = true
+            }
+        #endif
     }
 }
 

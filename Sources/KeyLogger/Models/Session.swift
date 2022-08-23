@@ -44,6 +44,8 @@ public class Session : Codable {
         case uptime, _timestamp = "timestamp", jsonSchema = "$schema", duration, keylogs, associatedFiles
     }
     
+    public static let AssessmentIdentifier = "KeyboardSession"
+    
     public private(set) var jsonSchema: URL = URL(string: "KeyboardSession.json", relativeTo: kBaseJsonSchemaURL)!
     
     /// System clock time

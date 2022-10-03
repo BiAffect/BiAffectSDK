@@ -43,7 +43,7 @@ public struct Statistic : Codable, Hashable {
     public let backspaces : Int
     public let duration: TimeInterval
     
-    init(date: Date, keys: Int = 0, autocorrections: Int = 0, suggestions: Int = 0, backspaces: Int = 0, duration: TimeInterval = 0) {
+    public init(date: Date, keys: Int = 0, autocorrections: Int = 0, suggestions: Int = 0, backspaces: Int = 0, duration: TimeInterval = 0) {
         self.date = date
         self.keys = keys
         self.autocorrections = autocorrections

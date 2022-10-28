@@ -32,6 +32,7 @@
 
 import Foundation
 import JsonModel
+import ResultModel
 import AssessmentModel
 
 extension SerializableNodeType {

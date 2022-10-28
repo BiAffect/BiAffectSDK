@@ -35,6 +35,7 @@
 import Foundation
 import SwiftUI
 import JsonModel
+import ResultModel
 
 let kBaseJsonSchemaURL = URL(string: "https://biaffect.github.io/biaffectsdk/json/schemas/v1/")!
 

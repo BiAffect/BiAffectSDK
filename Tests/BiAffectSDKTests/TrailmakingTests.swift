@@ -33,6 +33,7 @@
 import XCTest
 @testable import BiAffectSDK
 import JsonModel
+import ResultModel
 import AssessmentModelUI
 
 final class TrailmakingTests: XCTestCase {

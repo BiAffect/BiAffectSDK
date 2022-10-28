@@ -35,6 +35,7 @@ import AssessmentModel
 import AssessmentModelUI
 import SharedMobileUI
 import JsonModel
+import ResultModel
 import MobilePassiveData
 
 #if canImport(AudioToolbox)

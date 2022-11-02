@@ -32,6 +32,7 @@
 
 import Foundation
 import JsonModel
+import ResultModel
 
 extension SerializableResultType {
     static let trailmaking: SerializableResultType = "trailmaking"

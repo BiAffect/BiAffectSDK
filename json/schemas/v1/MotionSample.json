@@ -1,8 +1,8 @@
 {
-  "$id" : "https://biaffect.github.io/biaffectsdk/schemas/v1/ShakeSample.json",
+  "$id" : "https://biaffect.github.io/biaffectsdk/schemas/v1/MotionSample.json",
   "$schema" : "http://json-schema.org/draft-07/schema#",
   "type" : "array",
-  "title" : "ShakeSample",
+  "title" : "MotionSample",
   "description" : "An array of motion sensor samples.",
   "items" : {
     "type" : "object",

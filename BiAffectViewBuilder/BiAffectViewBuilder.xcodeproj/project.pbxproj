@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF04023029930C4D0062DF9C /* AssessmentModel in Frameworks */ = {isa = PBXBuildFile; productRef = FF04022F29930C4D0062DF9C /* AssessmentModel */; };
+		FF04023229930C4D0062DF9C /* AssessmentModelUI in Frameworks */ = {isa = PBXBuildFile; productRef = FF04023129930C4D0062DF9C /* AssessmentModelUI */; };
+		FF04023529930CF30062DF9C /* MobilePassiveData in Frameworks */ = {isa = PBXBuildFile; productRef = FF04023429930CF30062DF9C /* MobilePassiveData */; };
+		FF04023729930CF30062DF9C /* MotionSensor in Frameworks */ = {isa = PBXBuildFile; productRef = FF04023629930CF30062DF9C /* MotionSensor */; };
 		FF29AC9F2862A8AE002A42AE /* TrailmakingStepObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29AC9E2862A8AE002A42AE /* TrailmakingStepObject.swift */; };
 		FF29ACA12862A92E002A42AE /* TrailmakingResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29ACA02862A92E002A42AE /* TrailmakingResultObject.swift */; };
 		FF29ACA42862BFBA002A42AE /* TrailmakingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29ACA32862BFBA002A42AE /* TrailmakingPoint.swift */; };
@@ -27,13 +31,11 @@
 		FFE2A6CC285BA9A8009805C0 /* GoNoGoStepObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C3285BA9A8009805C0 /* GoNoGoStepObject.swift */; };
 		FFE2A6CD285BA9A8009805C0 /* BiAffectAssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C5285BA9A8009805C0 /* BiAffectAssessmentView.swift */; };
 		FFE2A6CE285BA9A8009805C0 /* GoNoGoStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C6285BA9A8009805C0 /* GoNoGoStepView.swift */; };
-		FFF4295C286F667A00361337 /* AssessmentModel in Frameworks */ = {isa = PBXBuildFile; productRef = FFF4295B286F667A00361337 /* AssessmentModel */; };
-		FFF4295E286F667A00361337 /* AssessmentModelUI in Frameworks */ = {isa = PBXBuildFile; productRef = FFF4295D286F667A00361337 /* AssessmentModelUI */; };
-		FFF42960286F667A00361337 /* MobilePassiveData in Frameworks */ = {isa = PBXBuildFile; productRef = FFF4295F286F667A00361337 /* MobilePassiveData */; };
-		FFF42962286F667A00361337 /* MotionSensor in Frameworks */ = {isa = PBXBuildFile; productRef = FFF42961286F667A00361337 /* MotionSensor */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FF04022C29930AD60062DF9C /* BiAffectSDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BiAffectSDK; path = ..; sourceTree = "<group>"; };
+		FF04022D29930B920062DF9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FF29AC9E2862A8AE002A42AE /* TrailmakingStepObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailmakingStepObject.swift; sourceTree = "<group>"; };
 		FF29ACA02862A92E002A42AE /* TrailmakingResultObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailmakingResultObject.swift; sourceTree = "<group>"; };
 		FF29ACA32862BFBA002A42AE /* TrailmakingPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailmakingPoint.swift; sourceTree = "<group>"; };
@@ -56,8 +58,6 @@
 		FFE2A6C3285BA9A8009805C0 /* GoNoGoStepObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNoGoStepObject.swift; sourceTree = "<group>"; };
 		FFE2A6C5285BA9A8009805C0 /* BiAffectAssessmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiAffectAssessmentView.swift; sourceTree = "<group>"; };
 		FFE2A6C6285BA9A8009805C0 /* GoNoGoStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNoGoStepView.swift; sourceTree = "<group>"; };
-		FFF42959286F660E00361337 /* AssessmentModelKMM */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AssessmentModelKMM; path = ../../AssessmentModelKMM; sourceTree = "<group>"; };
-		FFF4295A286F663A00361337 /* MobilePassiveData-SDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "MobilePassiveData-SDK"; path = "../../MobilePassiveData-SDK"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,10 +65,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFF42962286F667A00361337 /* MotionSensor in Frameworks */,
-				FFF4295E286F667A00361337 /* AssessmentModelUI in Frameworks */,
-				FFF42960286F667A00361337 /* MobilePassiveData in Frameworks */,
-				FFF4295C286F667A00361337 /* AssessmentModel in Frameworks */,
+				FF04023729930CF30062DF9C /* MotionSensor in Frameworks */,
+				FF04023229930C4D0062DF9C /* AssessmentModelUI in Frameworks */,
+				FF04023529930CF30062DF9C /* MobilePassiveData in Frameworks */,
+				FF04023029930C4D0062DF9C /* AssessmentModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				FFD8C458285BC2D3000FC950 /* README.md */,
-				FFE2A6CF285BA9FE009805C0 /* Packages */,
+				FF04022C29930AD60062DF9C /* BiAffectSDK */,
 				FFE2A6AA285BA8AA009805C0 /* BiAffectViewBuilder */,
 				FFE2A6A9285BA8AA009805C0 /* Products */,
 				FFE2A6D9285BAB4C009805C0 /* Frameworks */,
@@ -136,6 +136,7 @@
 		FFE2A6AA285BA8AA009805C0 /* BiAffectViewBuilder */ = {
 			isa = PBXGroup;
 			children = (
+				FF04022D29930B920062DF9C /* Info.plist */,
 				FFE2A6B9285BA9A8009805C0 /* BiAffectSDK */,
 				FFE2A6AB285BA8AA009805C0 /* BiAffectViewBuilderApp.swift */,
 				FFE2A6AD285BA8AA009805C0 /* ContentView.swift */,
@@ -186,15 +187,6 @@
 			path = Json;
 			sourceTree = "<group>";
 		};
-		FFE2A6CF285BA9FE009805C0 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				FFF42959286F660E00361337 /* AssessmentModelKMM */,
-				FFF4295A286F663A00361337 /* MobilePassiveData-SDK */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		FFE2A6D9285BAB4C009805C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,10 +211,10 @@
 			);
 			name = BiAffectViewBuilder;
 			packageProductDependencies = (
-				FFF4295B286F667A00361337 /* AssessmentModel */,
-				FFF4295D286F667A00361337 /* AssessmentModelUI */,
-				FFF4295F286F667A00361337 /* MobilePassiveData */,
-				FFF42961286F667A00361337 /* MotionSensor */,
+				FF04022F29930C4D0062DF9C /* AssessmentModel */,
+				FF04023129930C4D0062DF9C /* AssessmentModelUI */,
+				FF04023429930CF30062DF9C /* MobilePassiveData */,
+				FF04023629930CF30062DF9C /* MotionSensor */,
 			);
 			productName = BiAffectViewBuilder;
 			productReference = FFE2A6A8285BA8AA009805C0 /* BiAffectViewBuilder.app */;
@@ -253,6 +245,8 @@
 			);
 			mainGroup = FFE2A69F285BA8AA009805C0;
 			packageReferences = (
+				FF04022E29930C4D0062DF9C /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */,
+				FF04023329930CF30062DF9C /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */,
 			);
 			productRefGroup = FFE2A6A9285BA8AA009805C0 /* Products */;
 			projectDirPath = "";
@@ -456,6 +450,7 @@
 				DEVELOPMENT_TEAM = KA9Z8R6M6K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BiAffectViewBuilder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -485,6 +480,7 @@
 				DEVELOPMENT_TEAM = KA9Z8R6M6K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BiAffectViewBuilder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -526,21 +522,44 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		FF04022E29930C4D0062DF9C /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.11.0;
+			};
+		};
+		FF04023329930CF30062DF9C /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Sage-Bionetworks/MobilePassiveData-SDK.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		FFF4295B286F667A00361337 /* AssessmentModel */ = {
+		FF04022F29930C4D0062DF9C /* AssessmentModel */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = FF04022E29930C4D0062DF9C /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */;
 			productName = AssessmentModel;
 		};
-		FFF4295D286F667A00361337 /* AssessmentModelUI */ = {
+		FF04023129930C4D0062DF9C /* AssessmentModelUI */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = FF04022E29930C4D0062DF9C /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */;
 			productName = AssessmentModelUI;
 		};
-		FFF4295F286F667A00361337 /* MobilePassiveData */ = {
+		FF04023429930CF30062DF9C /* MobilePassiveData */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = FF04023329930CF30062DF9C /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */;
 			productName = MobilePassiveData;
 		};
-		FFF42961286F667A00361337 /* MotionSensor */ = {
+		FF04023629930CF30062DF9C /* MotionSensor */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = FF04023329930CF30062DF9C /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */;
 			productName = MotionSensor;
 		};
 /* End XCSwiftPackageProductDependency section */

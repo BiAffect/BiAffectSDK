@@ -83,6 +83,9 @@ public class Keylog : Codable {
         
         /// Backspace
         case backspace
+
+        /// Space
+        case space
         
         /// Suggestion
         case suggestion
@@ -110,6 +113,9 @@ public class Keylog : Codable {
             }
             else if key == "#" {
                 self = .hashtag
+            }
+            else if key == " " {
+                self = .space
             }
             else if CharacterSet.symbols.contains(char) {
                 self = .punctuation

@@ -13,14 +13,16 @@ public struct Statistic : Codable, Hashable {
     public let autocorrections : Int
     public let suggestions : Int
     public let backspaces : Int
+    public let spaces : Int
     public let duration: TimeInterval
     
-    public init(date: Date, keys: Int = 0, autocorrections: Int = 0, suggestions: Int = 0, backspaces: Int = 0, duration: TimeInterval = 0) {
+    public init(date: Date, keys: Int = 0, autocorrections: Int = 0, suggestions: Int = 0, backspaces: Int = 0, spaces: Int = 0, duration: TimeInterval = 0) {
         self.date = date
         self.keys = keys
         self.autocorrections = autocorrections
         self.suggestions = suggestions
         self.backspaces = backspaces
+        self.spaces = spaces
         self.duration = duration
     }
     
@@ -29,6 +31,7 @@ public struct Statistic : Codable, Hashable {
         self.duration = session.duration
         
         var keys = 0
+	var spaces = 0
         var autocorrections = 0
         var suggestions = 0
         var backspaces = 0
@@ -38,6 +41,8 @@ public struct Statistic : Codable, Hashable {
             switch $0.keyType {
             case .alphanum, .punctuation, .emoji:
                 keys += 1
+            case .space:
+                spaces += 1
             case .autocorrection:
                 autocorrections += 1
             case .suggestion:
@@ -53,6 +58,7 @@ public struct Statistic : Codable, Hashable {
         self.autocorrections = autocorrections
         self.suggestions = suggestions
         self.backspaces = backspaces
+        self.spaces = spaces
     }
 }
 
@@ -68,6 +74,7 @@ extension Statistic {
               autocorrections: lhs.autocorrections + rhs.autocorrections,
               suggestions: lhs.suggestions + rhs.suggestions,
               backspaces: lhs.backspaces + rhs.backspaces,
+              spaces: lhs.spaces + rhs.spaces,
               duration: lhs.duration + rhs.duration)
     }
 }

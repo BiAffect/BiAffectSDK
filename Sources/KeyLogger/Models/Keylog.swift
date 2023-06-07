@@ -72,11 +72,20 @@ public class Keylog : Codable {
     
     /// General types of key which is pressed
     public enum KeyType : String {
-        /// It represents a character or number.
-        case alphanum
+        /// It represents a character.
+        case alphabetical
         
-        /// It can be a point, a comma or another special character.
+        /// Numbers
+        case numerical
+        
+        /// It can be a point, a comma or another special character on the bottom row of both symbols pages of the keyboard.
         case punctuation
+        
+        /// Symbols Page 1: a key from the middle row of the first symbols page of the keyboard, except for the @ symbol
+        case symbols1
+        
+        /// Symbols Page 2: a key from the topmost two row of the first symbols page of the keyboard, except for the # symbol
+        case symbols2
         
         /// Emoji
         case emoji
@@ -106,7 +115,11 @@ public class Keylog : Codable {
             }
             
             if CharacterSet.alphanumerics.contains(char) {
-                self = .alphanum
+                self = .alphabetical
+            }
+            else if key == "1" || key == "2" || key == "3" || key == "4" || key == "5" || key == "6" || key == "7" || key == "8" || key == "9" || key == "0" {
+char) {
+                self = .numerical
             }
             else if key == "@" {
                 self = .at
@@ -114,10 +127,17 @@ public class Keylog : Codable {
             else if key == "#" {
                 self = .hashtag
             }
+            else if key == "-" || key == "/" || key == ":" || key == "(" || key == ")" || key == "$" || key == "&" || key == "\"" {
+                self = .symbols1
+            }
+          else if key == "[" || key == "]" || key == "{" || key == "}" || key == "#" || key == "%" || key == "^" || key == "*" || key == "+" || key == "=" || key == "_" || key == "\\" || key == "|" || key == "~" || key == "<" || key == ">" || key == "€" || key == "£" || key == "¥" || key == "•" {
+ "\"" {
+                self = .symbols2
+            }}
             else if key == " " {
                 self = .space
             }
-            else if CharacterSet.symbols.contains(char) {
+            else if key == "." || key == "," || key == "?" || key == "!" || key == "'" {
                 self = .punctuation
             }
             else {

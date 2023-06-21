@@ -12,47 +12,47 @@ public class Keylog : Codable {
     private enum CodingKeys : String, CodingKey {
         case uptime, _timestamp = "timestamp", value, duration, distanceFromPrevious, distanceFromCenter, force, radius
     }
-    
+
     /// System clock time
     public let uptime: TimeInterval
-    
+
     /// Time instant of the touch up event (when the finger is raised).
     public var timestamp: Date {
         get { Date(timeIntervalSince1970: _timestamp) }
         set { _timestamp = newValue.timeIntervalSince1970 }
     }
     internal var _timestamp: TimeInterval
-    
+
     /// Description of the key pressed. It can be either a KeyType or a particular key that is recorded.
     public var keyType: KeyType { .init(rawValue: value) ?? .other }
     private let value: String
-    
+
     /// Residence Time. Time interval the finger is kept on the key.
     public var duration: TimeInterval?
-    
+
     /// Distance (in universal size called gridpoint which is independent of screen resolutions) of touch from the previous KeyLog touch position.
     public var distanceFromPrevious: Double?
-    
+
     /// Distance (in universal size called gridpoint which is independent of screen resolutions) of touch from key center.
     public var distanceFromCenter: Double?
-    
+
     /// Force of touch.
     public var force: Force?
-    
+
     /// Radius of touch.
     public var radius: Radius?
-    
-    /** 
+
+    /**
         Coordinates of the touch in the keyboard.
         It is used just to compute distances between two consecutive touch events.
         ** It should never be serialized and sent to not compromise text privacy **
     */
     public var coordinates: CGPoint? = nil
-    
+
     public convenience init(key: String, timestamp: Date = Date()) {
         self.init(value: .init(key: key), timestamp: timestamp)
     }
-    
+
     public init(value: KeyType, timestamp: Date = Date()) {
         let now = Date()
         let nowUptime = ProcessInfo.processInfo.systemUptime
@@ -60,7 +60,7 @@ public class Keylog : Codable {
         self._timestamp = timestamp.timeIntervalSince1970
         self.value = value.rawValue
     }
-    
+
     /// Compute distance between this keylog touch coordinates and the previous one passed as parameter.
     /// - parameter from: Touch position of the previous keylog.
     public func setDistance(from point: CGPoint?) {
@@ -69,68 +69,79 @@ public class Keylog : Codable {
         }
         self.distanceFromPrevious = Utils.distance(coordinates, b: point)
     }
-    
+
     /// General types of key which is pressed
     public enum KeyType : String {
-        /// It represents a character or number.
-        case alphanum
-        
-        /// It can be a point, a comma or another special character.
+        /// It represents a character.
+        case alphabetical
+
+        /// Numbers
+        case numerical
+
+        /// It can be a point, a comma or another special character on the bottom row of both symbols pages of the keyboard.
         case punctuation
-        
+
+        /// Symbols Page 1: a key from the middle row of the first symbols page of the keyboard, except for the @ symbol
+        case symbols1
+
+        /// Symbols Page 2: a key from the topmost two row of the first symbols page of the keyboard, except for the # symbol
+        case symbols2
+
         /// Emoji
         case emoji
-        
+
         /// Backspace
         case backspace
 
         /// Space
         case space
-        
+
         /// Suggestion
         case suggestion
-        
+
         /// Autocorrection
         case autocorrection
-        
+
         /// Special-case characters
         case at = "@", hashtag = "#"
-        
+
         /// Default base case; it should never occur.
         case other
-        
+
         public init(key: String) {
             guard let char = key.unicodeScalars.first else {
                 self = .other
                 return
             }
-            
-            if CharacterSet.alphanumerics.contains(char) {
-                self = .alphanum
-            }
-            else if key == "@" {
+
+            switch char {
+            case let c where CharacterSet.alphanumerics.contains(c):
+                self = .alphabetical
+            case "1", "2", "3", "4", "5", "6", "7", "8", "9", "0":
+                self = .numerical
+            case "@":
                 self = .at
-            }
-            else if key == "#" {
+            case "#":
                 self = .hashtag
-            }
-            else if key == " " {
+            case "-", "/", ":", "(", ")", "$", "&", "\"":
+                self = .symbols1
+            case "[", "]", "{", "}", "#", "%", "^", "*", "+", "=", "_", "\\", "|", "~", "<", ">", "€", "£", "¥", "•":
+                self = .symbols2
+            case " ":
                 self = .space
-            }
-            else if CharacterSet.symbols.contains(char) {
+            case ".", ",", "?", "!", "'":
                 self = .punctuation
-            }
-            else {
+            default:
                 self = .other
             }
         }
     }
-    
+
     /// Touch force sensed by 3DTouch sensor.
     public struct Force : Codable {
         public let value: Double
         public let max: Double
-        
+
         /// - Parameters:
         ///   - value: Actual force sensed as conventional value.
         ///   - max: Maximum possible force that can be sensed by the sensor.
@@ -139,7 +150,7 @@ public class Keylog : Codable {
             self.max = max
         }
     }
-    
+
     /// Radius of the touch surface.
     public struct Radius : Codable {
         public private(set) var value: Double

@@ -31,7 +31,7 @@ public struct Statistic : Codable, Hashable {
         self.duration = session.duration
         
         var keys = 0
-	var spaces = 0
+        var spaces = 0
         var autocorrections = 0
         var suggestions = 0
         var backspaces = 0
@@ -39,7 +39,7 @@ public struct Statistic : Codable, Hashable {
         // Count up all the keys of each subcategory
         session.keylogs.forEach {
             switch $0.keyType {
-            case .alphanum, .punctuation, .emoji:
+            case .alphabetical, .numerical, .symbols1, .symbols2, .punctuation, .emoji:
                 keys += 1
             case .space:
                 spaces += 1

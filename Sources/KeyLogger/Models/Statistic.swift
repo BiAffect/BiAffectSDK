@@ -15,7 +15,7 @@ public struct Statistic : Codable, Hashable {
     public let backspaces : Int
     public let spaces : Int
     public let duration: TimeInterval
-    
+
     public init(date: Date, keys: Int = 0, autocorrections: Int = 0, suggestions: Int = 0, backspaces: Int = 0, spaces: Int = 0, duration: TimeInterval = 0) {
         self.date = date
         self.keys = keys
@@ -25,21 +25,21 @@ public struct Statistic : Codable, Hashable {
         self.spaces = spaces
         self.duration = duration
     }
-    
+
     public init(session: Session) {
         self.date = session.timestamp
         self.duration = session.duration
-        
+
         var keys = 0
-	var spaces = 0
+        var spaces = 0
         var autocorrections = 0
         var suggestions = 0
         var backspaces = 0
-        
+
         // Count up all the keys of each subcategory
         session.keylogs.forEach {
             switch $0.keyType {
-            case .alphanum, .punctuation, .emoji:
+            case .alphabet, .numeral, .punctuation, .symbol, .emoji:
                 keys += 1
             case .space:
                 spaces += 1
@@ -53,7 +53,7 @@ public struct Statistic : Codable, Hashable {
                 break;
             }
         }
-        
+
         self.keys = keys
         self.autocorrections = autocorrections
         self.suggestions = suggestions
@@ -63,11 +63,11 @@ public struct Statistic : Codable, Hashable {
 }
 
 extension Statistic {
-    
+
     public static var zero: Statistic {
         .init(date: .distantFuture)
     }
-    
+
     public static func + (lhs: Statistic, rhs: Statistic) -> Statistic {
         .init(date: lhs.date < rhs.date ? lhs.date : rhs.date,
               keys: lhs.keys + rhs.keys,
@@ -80,7 +80,7 @@ extension Statistic {
 }
 
 extension Sequence where Element == Statistic {
-    
+
     public func aggregateHourly(on date: Date = .init()) -> [Int : Statistic] {
         self.reduce(into: [Int : Statistic]()) { hourlyStatistics, stat in
             guard Calendar.current.isDate(stat.date, inSameDayAs: date) else { return }
@@ -88,7 +88,7 @@ extension Sequence where Element == Statistic {
             hourlyStatistics[hour] = (hourlyStatistics[hour] ?? .zero) + stat
         }
     }
-    
+
     public func aggregateDaily() -> [Date : Statistic] {
         self.reduce(into: [Date : Statistic]()) { dailyStatistics, stat in
             let startOfDay = Calendar.current.startOfDay(for: stat.date)

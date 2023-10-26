@@ -41,14 +41,16 @@ public struct Statistic : Codable, Hashable {
             switch $0.keyType {
             case .alphanum, .punctuation, .emoji:
                 keys += 1
-            case .space:
-                spaces += 1
+                print("key logged, timestamp: \(Date())")
             case .autocorrection:
                 autocorrections += 1
+                print("autocorrection logged, timestamp: \(Date())")
             case .suggestion:
                 suggestions += 1
+                print("suggestion logged, timestamp: \(Date())")
             case .backspace:
                 backspaces += 1
+                print("backspace logged, timestamp: \(Date())")
             default:
                 break;
             }

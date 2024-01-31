@@ -30,6 +30,7 @@ public class Session : Codable {
     internal let _timestamp: TimeInterval
     public private(set) var duration: TimeInterval
     public private(set) var keylogs: [Keylog]
+    public private(set) var sentiment: Sentiment?
     public var associatedFiles: [FileResultObject]?
     
     public convenience init(_ keylog: Keylog) {
@@ -59,6 +60,11 @@ public class Session : Codable {
     public func endSession() {
         guard let start = keylogs.first, let end = keylogs.last else { return }
         duration = end._timestamp - start._timestamp + (end.duration ?? 0)
+    }
+    
+    public func setSentiment(sentiment : Sentiment) {
+        self.sentiment = sentiment
+        debugPrint(">>> Sentiment set on Session class: \(self.sentiment?.sentimentScore() ?? -100)")
     }
 }
 

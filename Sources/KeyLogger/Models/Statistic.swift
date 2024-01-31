@@ -15,6 +15,7 @@ public struct Statistic : Codable, Hashable {
     public let backspaces : Int
     public let spaces : Int
     public let duration: TimeInterval
+    public let sentiment: Int?
 
     public init(date: Date, keys: Int = 0, autocorrections: Int = 0, suggestions: Int = 0, backspaces: Int = 0, spaces: Int = 0, duration: TimeInterval = 0) {
         self.date = date
@@ -24,12 +25,14 @@ public struct Statistic : Codable, Hashable {
         self.backspaces = backspaces
         self.spaces = spaces
         self.duration = duration
+        self.sentiment = nil
     }
 
     public init(session: Session) {
         self.date = session.timestamp
         self.duration = session.duration
-
+        self.sentiment = session.sentiment?.sentimentScore()
+        
         var keys = 0
         var spaces = 0
         var autocorrections = 0
@@ -64,6 +67,8 @@ public struct Statistic : Codable, Hashable {
         self.suggestions = suggestions
         self.backspaces = backspaces
         self.spaces = spaces
+        
+        debugPrint(">>> Initialized Statistic. Current sentiment: \(self.sentiment ?? -100)")
     }
 }
 

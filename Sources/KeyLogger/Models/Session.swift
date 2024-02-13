@@ -64,7 +64,7 @@ public class Session : Codable {
     
     public func setSentiment(sentiment : Sentiment) {
         self.sentiment = sentiment
-        debugPrint(">>> Sentiment set on Session class: \(self.sentiment?.sentimentScore() ?? -100)")
+        debugPrint(">>> Session > Sentiment set on Session class: \(self.sentiment?.sentimentScore() ?? -100)")
     }
 }
 

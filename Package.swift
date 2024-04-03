@@ -30,7 +30,7 @@ let package = Package(
                  from: "0.11.0"),
         .package(name: "MobilePassiveData",
                  url: "https://github.com/Sage-Bionetworks/MobilePassiveData-SDK.git",
-                 from: "1.5.1"),
+                 "1.5.1"..<"1.5.5"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

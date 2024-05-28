@@ -43,8 +43,8 @@ final class BiAffectFactory : AssessmentFactory {
     required init() {
         super.init()
         
-        self.nodeSerializer.add(GoNoGoStepObject())
-        self.nodeSerializer.add(TrailmakingStepObject())
+        try! self.nodeSerializer.add(GoNoGoStepObject())
+        try! self.nodeSerializer.add(TrailmakingStepObject())
         
         self.resultSerializer.add(GoNoGoResultObject())
         self.resultSerializer.add(TrailmakingResultObject())

@@ -23,14 +23,14 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(name: "JsonModel",
-                 url: "https://github.com/Sage-Bionetworks/JsonModel-Swift.git",
-                 "1.6.0"..<"3.0.0"),
+                 url: "https://github.com/BiAffectBridge/JsonModel-Swift.git",
+                 "2.2.0"..<"2.3.0"),
         .package(name: "AssessmentModel",
-                 url: "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git",
-                 from: "0.11.0"),
+                 url: "https://github.com/BiAffectBridge/AssessmentModelKMM.git",
+                 from: "1.2.0"),
         .package(name: "MobilePassiveData",
-                 url: "https://github.com/Sage-Bionetworks/MobilePassiveData-SDK.git",
-                 "1.5.1"..<"1.5.5"),
+                 url: "https://github.com/BiAffectBridge/MobilePassiveData-SDK.git",
+                 from: "1.6.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.

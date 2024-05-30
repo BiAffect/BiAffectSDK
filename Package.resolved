@@ -3,7 +3,7 @@
     "pins": [
       {
         "package": "AssessmentModel",
-        "repositoryURL": "https://github.com/BiAffectBridge/AssessmentModelKMM.git",
+        "repositoryURL": "https://github.com/BiAffectBridge/AssessmentModel-Swift.git",
         "state": {
           "branch": null,
           "revision": "8f085a7fe1b53d8feeea54accf1ceb3b43f1ba84",

@@ -26,7 +26,7 @@ let package = Package(
                  url: "https://github.com/BiAffectBridge/JsonModel-Swift.git",
                  "2.2.0"..<"2.3.0"),
         .package(name: "AssessmentModel",
-                 url: "https://github.com/BiAffectBridge/AssessmentModelKMM.git",
+                 url: "https://github.com/BiAffectBridge/AssessmentModel-Swift.git",
                  from: "1.2.0"),
         .package(name: "MobilePassiveData",
                  url: "https://github.com/BiAffectBridge/MobilePassiveData-SDK.git",

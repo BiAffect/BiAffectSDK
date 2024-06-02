@@ -11,7 +11,7 @@ public enum TrailType : String, Codable, CaseIterable {
     case A, B
 }
 
-public struct TrailmakingPoint : Codable, Hashable, Identifiable {
+public struct TrailmakingPoint : Codable, Hashable, Identifiable, Sendable {
     public var id: Int { index }
     private enum CodingKeys : String, OrderedEnumCodingKey {
         case index, label, x, y

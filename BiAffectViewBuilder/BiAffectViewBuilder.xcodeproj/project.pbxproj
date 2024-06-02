@@ -7,57 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FF04023029930C4D0062DF9C /* AssessmentModel in Frameworks */ = {isa = PBXBuildFile; productRef = FF04022F29930C4D0062DF9C /* AssessmentModel */; };
-		FF04023229930C4D0062DF9C /* AssessmentModelUI in Frameworks */ = {isa = PBXBuildFile; productRef = FF04023129930C4D0062DF9C /* AssessmentModelUI */; };
-		FF04023529930CF30062DF9C /* MobilePassiveData in Frameworks */ = {isa = PBXBuildFile; productRef = FF04023429930CF30062DF9C /* MobilePassiveData */; };
-		FF04023729930CF30062DF9C /* MotionSensor in Frameworks */ = {isa = PBXBuildFile; productRef = FF04023629930CF30062DF9C /* MotionSensor */; };
-		FF29AC9F2862A8AE002A42AE /* TrailmakingStepObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29AC9E2862A8AE002A42AE /* TrailmakingStepObject.swift */; };
-		FF29ACA12862A92E002A42AE /* TrailmakingResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29ACA02862A92E002A42AE /* TrailmakingResultObject.swift */; };
-		FF29ACA42862BFBA002A42AE /* TrailmakingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF29ACA32862BFBA002A42AE /* TrailmakingPoint.swift */; };
-		FFA2306128613D1500120300 /* TrailmakingStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA2306028613D1500120300 /* TrailmakingStepView.swift */; };
-		FFD8C45C285C30B5000FC950 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C45E285C30B5000FC950 /* Localizable.strings */; };
-		FFD8C45F285C30FC000FC950 /* Trail_Making.json in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C461285C30FC000FC950 /* Trail_Making.json */; };
-		FFD8C462285C3108000FC950 /* Go-No-Go.json in Resources */ = {isa = PBXBuildFile; fileRef = FFD8C464285C3108000FC950 /* Go-No-Go.json */; };
-		FFD8C46A285D6FF9000FC950 /* ShakeMotionSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD8C469285D6FF9000FC950 /* ShakeMotionSensor.swift */; };
-		FFD8C46D285D7065000FC950 /* AnimatedShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD8C46C285D7065000FC950 /* AnimatedShape.swift */; };
-		FFD8C46F285D70AB000FC950 /* Task+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD8C46E285D70AB000FC950 /* Task+Utils.swift */; };
+		FFC350542C069A5F003957BB /* BiAffectSDK in Frameworks */ = {isa = PBXBuildFile; productRef = FFC350532C069A5F003957BB /* BiAffectSDK */; };
 		FFE2A6AC285BA8AA009805C0 /* BiAffectViewBuilderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6AB285BA8AA009805C0 /* BiAffectViewBuilderApp.swift */; };
 		FFE2A6AE285BA8AA009805C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6AD285BA8AA009805C0 /* ContentView.swift */; };
 		FFE2A6B0285BA8AC009805C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE2A6AF285BA8AC009805C0 /* Assets.xcassets */; };
 		FFE2A6B3285BA8AC009805C0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE2A6B2285BA8AC009805C0 /* Preview Assets.xcassets */; };
-		FFE2A6C9285BA9A8009805C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFE2A6BE285BA9A8009805C0 /* Images.xcassets */; };
-		FFE2A6CA285BA9A8009805C0 /* GoNoGoResultObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C0285BA9A8009805C0 /* GoNoGoResultObject.swift */; };
-		FFE2A6CB285BA9A8009805C0 /* BiAffectSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C1285BA9A8009805C0 /* BiAffectSDK.swift */; };
-		FFE2A6CC285BA9A8009805C0 /* GoNoGoStepObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C3285BA9A8009805C0 /* GoNoGoStepObject.swift */; };
-		FFE2A6CD285BA9A8009805C0 /* BiAffectAssessmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C5285BA9A8009805C0 /* BiAffectAssessmentView.swift */; };
-		FFE2A6CE285BA9A8009805C0 /* GoNoGoStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE2A6C6285BA9A8009805C0 /* GoNoGoStepView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FF04022C29930AD60062DF9C /* BiAffectSDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BiAffectSDK; path = ..; sourceTree = "<group>"; };
 		FF04022D29930B920062DF9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		FF29AC9E2862A8AE002A42AE /* TrailmakingStepObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailmakingStepObject.swift; sourceTree = "<group>"; };
-		FF29ACA02862A92E002A42AE /* TrailmakingResultObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailmakingResultObject.swift; sourceTree = "<group>"; };
-		FF29ACA32862BFBA002A42AE /* TrailmakingPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailmakingPoint.swift; sourceTree = "<group>"; };
-		FFA2306028613D1500120300 /* TrailmakingStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailmakingStepView.swift; sourceTree = "<group>"; };
 		FFD8C458285BC2D3000FC950 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		FFD8C45D285C30B5000FC950 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		FFD8C460285C30FC000FC950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = Base.lproj/Trail_Making.json; sourceTree = "<group>"; };
-		FFD8C463285C3108000FC950 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = Base; path = "Base.lproj/Go-No-Go.json"; sourceTree = "<group>"; };
-		FFD8C469285D6FF9000FC950 /* ShakeMotionSensor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeMotionSensor.swift; sourceTree = "<group>"; };
-		FFD8C46C285D7065000FC950 /* AnimatedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedShape.swift; sourceTree = "<group>"; };
-		FFD8C46E285D70AB000FC950 /* Task+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Utils.swift"; sourceTree = "<group>"; };
 		FFE2A6A8285BA8AA009805C0 /* BiAffectViewBuilder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiAffectViewBuilder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFE2A6AB285BA8AA009805C0 /* BiAffectViewBuilderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiAffectViewBuilderApp.swift; sourceTree = "<group>"; };
 		FFE2A6AD285BA8AA009805C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FFE2A6AF285BA8AC009805C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFE2A6B2285BA8AC009805C0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FFE2A6BE285BA9A8009805C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		FFE2A6C0285BA9A8009805C0 /* GoNoGoResultObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNoGoResultObject.swift; sourceTree = "<group>"; };
-		FFE2A6C1285BA9A8009805C0 /* BiAffectSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiAffectSDK.swift; sourceTree = "<group>"; };
-		FFE2A6C3285BA9A8009805C0 /* GoNoGoStepObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNoGoStepObject.swift; sourceTree = "<group>"; };
-		FFE2A6C5285BA9A8009805C0 /* BiAffectAssessmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiAffectAssessmentView.swift; sourceTree = "<group>"; };
-		FFE2A6C6285BA9A8009805C0 /* GoNoGoStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoNoGoStepView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,55 +30,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF04023729930CF30062DF9C /* MotionSensor in Frameworks */,
-				FF04023229930C4D0062DF9C /* AssessmentModelUI in Frameworks */,
-				FF04023529930CF30062DF9C /* MobilePassiveData in Frameworks */,
-				FF04023029930C4D0062DF9C /* AssessmentModel in Frameworks */,
+				FFC350542C069A5F003957BB /* BiAffectSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FF736D93285BBFC800E3E1A2 /* GoNoGo */ = {
-			isa = PBXGroup;
-			children = (
-				FFE2A6C6285BA9A8009805C0 /* GoNoGoStepView.swift */,
-				FFE2A6C0285BA9A8009805C0 /* GoNoGoResultObject.swift */,
-				FFE2A6C3285BA9A8009805C0 /* GoNoGoStepObject.swift */,
-				FFD8C469285D6FF9000FC950 /* ShakeMotionSensor.swift */,
-			);
-			path = GoNoGo;
-			sourceTree = "<group>";
-		};
-		FFA2305F28613CF300120300 /* Trailmaking */ = {
-			isa = PBXGroup;
-			children = (
-				FFA2306028613D1500120300 /* TrailmakingStepView.swift */,
-				FF29AC9E2862A8AE002A42AE /* TrailmakingStepObject.swift */,
-				FF29ACA02862A92E002A42AE /* TrailmakingResultObject.swift */,
-				FF29ACA32862BFBA002A42AE /* TrailmakingPoint.swift */,
-			);
-			path = Trailmaking;
-			sourceTree = "<group>";
-		};
-		FFD8C465285C3135000FC950 /* Strings */ = {
-			isa = PBXGroup;
-			children = (
-				FFD8C45E285C30B5000FC950 /* Localizable.strings */,
-			);
-			path = Strings;
-			sourceTree = "<group>";
-		};
-		FFD8C46B285D704A000FC950 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				FFD8C46C285D7065000FC950 /* AnimatedShape.swift */,
-				FFD8C46E285D70AB000FC950 /* Task+Utils.swift */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
 		FFE2A69F285BA8AA009805C0 = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				FF04022D29930B920062DF9C /* Info.plist */,
-				FFE2A6B9285BA9A8009805C0 /* BiAffectSDK */,
 				FFE2A6AB285BA8AA009805C0 /* BiAffectViewBuilderApp.swift */,
 				FFE2A6AD285BA8AA009805C0 /* ContentView.swift */,
 				FFE2A6AF285BA8AC009805C0 /* Assets.xcassets */,
@@ -152,39 +74,6 @@
 				FFE2A6B2285BA8AC009805C0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		FFE2A6B9285BA9A8009805C0 /* BiAffectSDK */ = {
-			isa = PBXGroup;
-			children = (
-				FFA2305F28613CF300120300 /* Trailmaking */,
-				FFD8C46B285D704A000FC950 /* Utils */,
-				FF736D93285BBFC800E3E1A2 /* GoNoGo */,
-				FFE2A6BA285BA9A8009805C0 /* Resources */,
-				FFE2A6C1285BA9A8009805C0 /* BiAffectSDK.swift */,
-				FFE2A6C5285BA9A8009805C0 /* BiAffectAssessmentView.swift */,
-			);
-			name = BiAffectSDK;
-			path = ../../Sources/BiAffectSDK;
-			sourceTree = "<group>";
-		};
-		FFE2A6BA285BA9A8009805C0 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				FFD8C465285C3135000FC950 /* Strings */,
-				FFE2A6BB285BA9A8009805C0 /* Json */,
-				FFE2A6BE285BA9A8009805C0 /* Images.xcassets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		FFE2A6BB285BA9A8009805C0 /* Json */ = {
-			isa = PBXGroup;
-			children = (
-				FFD8C461285C30FC000FC950 /* Trail_Making.json */,
-				FFD8C464285C3108000FC950 /* Go-No-Go.json */,
-			);
-			path = Json;
 			sourceTree = "<group>";
 		};
 		FFE2A6D9285BAB4C009805C0 /* Frameworks */ = {
@@ -211,10 +100,7 @@
 			);
 			name = BiAffectViewBuilder;
 			packageProductDependencies = (
-				FF04022F29930C4D0062DF9C /* AssessmentModel */,
-				FF04023129930C4D0062DF9C /* AssessmentModelUI */,
-				FF04023429930CF30062DF9C /* MobilePassiveData */,
-				FF04023629930CF30062DF9C /* MotionSensor */,
+				FFC350532C069A5F003957BB /* BiAffectSDK */,
 			);
 			productName = BiAffectViewBuilder;
 			productReference = FFE2A6A8285BA8AA009805C0 /* BiAffectViewBuilder.app */;
@@ -228,7 +114,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					FFE2A6A7285BA8AA009805C0 = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -245,8 +131,6 @@
 			);
 			mainGroup = FFE2A69F285BA8AA009805C0;
 			packageReferences = (
-				FF04022E29930C4D0062DF9C /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */,
-				FF04023329930CF30062DF9C /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */,
 			);
 			productRefGroup = FFE2A6A9285BA8AA009805C0 /* Products */;
 			projectDirPath = "";
@@ -262,10 +146,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFD8C462285C3108000FC950 /* Go-No-Go.json in Resources */,
-				FFD8C45C285C30B5000FC950 /* Localizable.strings in Resources */,
-				FFE2A6C9285BA9A8009805C0 /* Images.xcassets in Resources */,
-				FFD8C45F285C30FC000FC950 /* Trail_Making.json in Resources */,
 				FFE2A6B3285BA8AC009805C0 /* Preview Assets.xcassets in Resources */,
 				FFE2A6B0285BA8AC009805C0 /* Assets.xcassets in Resources */,
 			);
@@ -278,51 +158,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFD8C46F285D70AB000FC950 /* Task+Utils.swift in Sources */,
-				FFE2A6CE285BA9A8009805C0 /* GoNoGoStepView.swift in Sources */,
-				FF29ACA42862BFBA002A42AE /* TrailmakingPoint.swift in Sources */,
-				FFE2A6CD285BA9A8009805C0 /* BiAffectAssessmentView.swift in Sources */,
 				FFE2A6AE285BA8AA009805C0 /* ContentView.swift in Sources */,
-				FFE2A6CA285BA9A8009805C0 /* GoNoGoResultObject.swift in Sources */,
-				FFD8C46D285D7065000FC950 /* AnimatedShape.swift in Sources */,
-				FFE2A6CC285BA9A8009805C0 /* GoNoGoStepObject.swift in Sources */,
-				FFE2A6CB285BA9A8009805C0 /* BiAffectSDK.swift in Sources */,
-				FF29AC9F2862A8AE002A42AE /* TrailmakingStepObject.swift in Sources */,
-				FFD8C46A285D6FF9000FC950 /* ShakeMotionSensor.swift in Sources */,
 				FFE2A6AC285BA8AA009805C0 /* BiAffectViewBuilderApp.swift in Sources */,
-				FFA2306128613D1500120300 /* TrailmakingStepView.swift in Sources */,
-				FF29ACA12862A92E002A42AE /* TrailmakingResultObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		FFD8C45E285C30B5000FC950 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FFD8C45D285C30B5000FC950 /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		FFD8C461285C30FC000FC950 /* Trail_Making.json */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FFD8C460285C30FC000FC950 /* Base */,
-			);
-			name = Trail_Making.json;
-			sourceTree = "<group>";
-		};
-		FFD8C464285C3108000FC950 /* Go-No-Go.json */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FFD8C463285C3108000FC950 /* Base */,
-			);
-			name = "Go-No-Go.json";
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		FFE2A6B4285BA8AC009805C0 /* Debug */ = {
@@ -361,6 +202,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -421,6 +263,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -522,45 +365,10 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		FF04022E29930C4D0062DF9C /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.11.0;
-			};
-		};
-		FF04023329930CF30062DF9C /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Sage-Bionetworks/MobilePassiveData-SDK.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		FF04022F29930C4D0062DF9C /* AssessmentModel */ = {
+		FFC350532C069A5F003957BB /* BiAffectSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FF04022E29930C4D0062DF9C /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */;
-			productName = AssessmentModel;
-		};
-		FF04023129930C4D0062DF9C /* AssessmentModelUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FF04022E29930C4D0062DF9C /* XCRemoteSwiftPackageReference "AssessmentModelKMM" */;
-			productName = AssessmentModelUI;
-		};
-		FF04023429930CF30062DF9C /* MobilePassiveData */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FF04023329930CF30062DF9C /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */;
-			productName = MobilePassiveData;
-		};
-		FF04023629930CF30062DF9C /* MotionSensor */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FF04023329930CF30062DF9C /* XCRemoteSwiftPackageReference "MobilePassiveData-SDK" */;
-			productName = MotionSensor;
+			productName = BiAffectSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

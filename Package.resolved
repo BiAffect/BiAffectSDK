@@ -3,38 +3,29 @@
     "pins": [
       {
         "package": "AssessmentModel",
-        "repositoryURL": "https://github.com/Sage-Bionetworks/AssessmentModelKMM.git",
+        "repositoryURL": "https://github.com/BiAffectBridge/AssessmentModel-Swift.git",
         "state": {
           "branch": null,
-          "revision": "0efc7de4679b61c0c27c4117558de87318fd77dc",
-          "version": "0.11.1"
+          "revision": "8f085a7fe1b53d8feeea54accf1ceb3b43f1ba84",
+          "version": "1.2.0"
         }
       },
       {
         "package": "JsonModel",
-        "repositoryURL": "https://github.com/Sage-Bionetworks/JsonModel-Swift.git",
+        "repositoryURL": "https://github.com/BiAffectBridge/JsonModel-Swift.git",
         "state": {
           "branch": null,
-          "revision": "cf13a8af6b09c25605f340150bb6392ea9d3c0f8",
-          "version": "2.0.0"
+          "revision": "3274a1192148b9652885d4a6baa50462ae9842b8",
+          "version": "2.2.2"
         }
       },
       {
         "package": "MobilePassiveData",
-        "repositoryURL": "https://github.com/Sage-Bionetworks/MobilePassiveData-SDK.git",
+        "repositoryURL": "https://github.com/BiAffectBridge/MobilePassiveData-SDK.git",
         "state": {
           "branch": null,
-          "revision": "33a124d928a8499c88ac36543f414d7604f26573",
-          "version": "1.5.1"
-        }
-      },
-      {
-        "package": "SharedMobileUI",
-        "repositoryURL": "https://github.com/Sage-Bionetworks/SharedMobileUI-AppleOS.git",
-        "state": {
-          "branch": null,
-          "revision": "a3c4ff73d2b222d5a246f617d5c2b062eb3abfe4",
-          "version": "0.17.0"
+          "revision": "a766738b422ae2f0a894b63bf823f252b3c1545e",
+          "version": "1.6.0"
         }
       }
     ]

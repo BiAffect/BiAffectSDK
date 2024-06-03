@@ -5,6 +5,7 @@
 
 import SwiftUI
 import AssessmentModelUI
+import BiAffectSDK
 
 struct ContentView: View {
     @StateObject var viewModel: ViewModel = .init()

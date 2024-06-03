@@ -8,7 +8,7 @@ final class ModelTests: XCTestCase {
     let decoder = SerializationFactory.defaultFactory.createJSONDecoder()
     
     func testKeylogCodable_NilValues() throws {
-        let keylog = Keylog(value: .alphanum)
+        let keylog = Keylog(value: .alphabet)
         let encodedData = try encoder.encode(keylog)
         let decodedObj = try decoder.decode(Keylog.self, from: encodedData)
         
@@ -17,7 +17,7 @@ final class ModelTests: XCTestCase {
     }
     
     func testKeylogCodable_NonNilValues() throws {
-        let keylog = Keylog(value: .alphanum)
+        let keylog = Keylog(value: .alphabet)
         keylog.duration = 0.23
         keylog.coordinates = .init(x: 5, y: 7)
         keylog.distanceFromCenter = 0.5
@@ -45,7 +45,7 @@ final class ModelTests: XCTestCase {
             return
         }
         
-        XCTAssertEqual("alphanum", dictionary["value"] as? String)
+        XCTAssertEqual("alphabet", dictionary["value"] as? String)
         XCTAssertEqual(keylog._timestamp, dictionary["timestamp"] as? Double ?? 0, accuracy: 0.0001)
         XCTAssertEqual(keylog.duration!, dictionary["duration"] as? Double ?? 0, accuracy: 0.0001)
         XCTAssertEqual(keylog.distanceFromCenter!, dictionary["distanceFromCenter"] as? Double ?? 0, accuracy: 0.0001)
@@ -109,19 +109,19 @@ final class ModelTests: XCTestCase {
         let session = Session(timestamp: firstKeyTimestamp,
                               duration: 3.67,
                               keylogs: [
-                                .init(value: .alphanum),
-                                .init(value: .alphanum),
-                                .init(value: .alphanum),
+                                .init(value: .alphabet),
+                                .init(value: .alphabet),
+                                .init(value: .alphabet),
                                 .init(value: .backspace),
-                                .init(value: .alphanum),
+                                .init(value: .alphabet),
                                 .init(value: .suggestion),
                                 .init(value: .punctuation),
                                 .init(value: .emoji),
                                 .init(value: .at),
                                 .init(value: .hashtag),
-                                .init(value: .alphanum),
-                                .init(value: .alphanum),
-                                .init(value: .alphanum),
+                                .init(value: .alphabet),
+                                .init(value: .alphabet),
+                                .init(value: .alphabet),
                                 .init(value: .autocorrection),
                               ])
         let statistic = Statistic(session: session)

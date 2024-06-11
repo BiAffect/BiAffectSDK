@@ -15,16 +15,13 @@ let package = Package(
         .library(
             name: "BiAffectSDK",
             targets: ["BiAffectSDK"]),
-        .library(
-            name: "KeyLogger",
-            targets: ["KeyLogger"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(name: "JsonModel",
                  url: "https://github.com/BiAffectBridge/JsonModel-Swift.git",
-                 "2.2.0"..<"2.3.0"),
+                 from: "2.2.0"),
         .package(name: "AssessmentModel",
                  url: "https://github.com/BiAffectBridge/AssessmentModel-Swift.git",
                  from: "1.2.0"),
@@ -51,18 +48,6 @@ let package = Package(
         .testTarget(
             name: "BiAffectSDKTests",
             dependencies: ["BiAffectSDK"]),
-        
-        .target(
-            name: "KeyLogger",
-            dependencies: [
-                .product(name: "JsonModel", package: "JsonModel"),
-            ]),
-        .testTarget(
-            name: "KeyLoggerTests",
-            dependencies: [
-                "KeyLogger",
-                .product(name: "JsonModel", package: "JsonModel"),
-            ]),
     ]
 )
 

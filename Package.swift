@@ -21,7 +21,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(name: "JsonModel",
                  url: "https://github.com/BiAffectBridge/JsonModel-Swift.git",
-                 from: "2.2.0"),
+                 from: "2.5.0"),
         .package(name: "AssessmentModel",
                  url: "https://github.com/BiAffectBridge/AssessmentModel-Swift.git",
                  from: "1.2.0"),

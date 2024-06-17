@@ -7,8 +7,6 @@ import AssessmentModel
 import AssessmentModelUI
 import JsonModel
 
-let kBaseJsonSchemaURL = URL(string: "https://biaffect.github.io/biaffectsdk/json/schemas/v1/")!
-
 public enum BiAffectIdentifier : String, CaseIterable {
     case trailmaking = "Trail_Making", goNoGo = "Go-No-Go"
     

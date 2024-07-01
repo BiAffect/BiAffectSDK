@@ -24,9 +24,9 @@ let package = Package(
                  from: "2.5.0"),
         .package(name: "AssessmentModel",
                  url: "https://github.com/BiAffectBridge/AssessmentModel-Swift.git",
-                 from: "1.2.0"),
+                 from: "1.2.1"),
         .package(name: "MobilePassiveData",
-                 url: "https://github.com/BiAffectBridge/MobilePassiveData-SDK.git",
+                 url: "https://github.com/BiAffectBridge/MobilePassiveData-Swift.git",
                  from: "1.6.0"),
     ],
     targets: [

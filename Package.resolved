@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/BiAffectBridge/AssessmentModel-Swift.git",
         "state": {
           "branch": null,
-          "revision": "8f085a7fe1b53d8feeea54accf1ceb3b43f1ba84",
-          "version": "1.2.0"
+          "revision": "0d9f9dc99d16372b1936f30ce0fe2d831efd067d",
+          "version": "1.2.1"
         }
       },
       {
@@ -21,11 +21,11 @@
       },
       {
         "package": "MobilePassiveData",
-        "repositoryURL": "https://github.com/BiAffectBridge/MobilePassiveData-SDK.git",
+        "repositoryURL": "https://github.com/BiAffectBridge/MobilePassiveData-Swift.git",
         "state": {
           "branch": null,
-          "revision": "a766738b422ae2f0a894b63bf823f252b3c1545e",
-          "version": "1.6.0"
+          "revision": "b0c9b79f17b198a0398b7bda3bdf80045a9cd422",
+          "version": "1.7.1"
         }
       }
     ]

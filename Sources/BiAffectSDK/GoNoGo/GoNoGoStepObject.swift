@@ -59,7 +59,7 @@ struct GoNoGoStepObject : SerializableNode, Step, Codable {
     
     init() {
         self.identifier = SerializableNodeType.gonogo.rawValue
-        self.detail = "Quickly shake the device when the blue dot appears. Do not shake for a green dot."
+        self.detail = "Quickly shake the device when the blue dot appears. Do not shake for a red dot."
     }
     
     func instantiateResult() -> ResultData {

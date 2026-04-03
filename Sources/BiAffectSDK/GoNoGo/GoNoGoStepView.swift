@@ -109,7 +109,7 @@ struct GoNoGoStepView: View {
         ZStack {
             // The circle is shown/hidden using opacity b/c its more performant
             Circle()
-                .fill(viewModel.go ? .blue : .green)
+                .fill(viewModel.go ? .yellow : .red)
                 .opacity(viewModel.showingDot ? 1 : 0)
             // The response is added/removed b/c the animation of drawing the
             // checkmark or X is simplier.
@@ -251,7 +251,7 @@ struct GoNoGoStepView: View {
         
         func showStimulus() {
             shakeSensor.stimulusUptime = shakeSensor.clock.now()
-            shakeSensor.dotType = go ? .blue : .green
+            shakeSensor.dotType = go ? .yellow : .red
             showingDot = true
             waitTask = Task {
                 guard await Task.wait(seconds: step.timeout) else { return }

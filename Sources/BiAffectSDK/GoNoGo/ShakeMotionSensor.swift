@@ -42,7 +42,7 @@ final class ShakeMotionSensor : MotionRecorder {
     private var samples: [GoNoGoResultObject.Sample] = []
     
     enum DisplayState: String, CaseIterable, Comparable, Codable {
-        case starting, result, none, blue, green
+        case starting, result, none, yellow, red
         static func < (lhs: ShakeMotionSensor.DisplayState, rhs: ShakeMotionSensor.DisplayState) -> Bool {
             allCases.firstIndex(of: lhs)! < allCases.firstIndex(of: rhs)!
         }

@@ -338,7 +338,7 @@ struct GoNoGoStepView: View {
             }
             
             // Otherwise, ~2/3 of the time, return a "go" stimulus
-            return drand48() < 0.667
+            return Int.random(in: 1...3) <= 2
         }
     }
 }
